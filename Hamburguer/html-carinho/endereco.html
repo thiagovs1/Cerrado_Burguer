@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Endereço de Entrega</title>
+
+    <link rel="stylesheet" href="../css-carrinho/endereco.css">
+    <link rel="stylesheet" href="../css-carrinho/carrinho.css">
+
+</head>
+
+<body>
+
+<header class="topo">
+
+    <a href="../html/tela-inicial.html">
+        <img src="../imagens/logo.png" class="logo">
+    </a>
+
+    <nav>
+        <a href="../html/tela-inicial.html">Inicio</a>
+        <a href="../html/tela-inicial.html">Promoções do dia</a>
+        <a href="../html/cardapio.html">Cardápio</a>
+        <a href="../html/contato.html">Contato</a>
+        <a href="../html/avaliacoes.html">Avaliações</a>
+    </nav>
+
+    <div class="icones">
+
+        <img src="../imagens/perfil.png" class="icone-img">
+
+        <img src="../imagens/carrinho.png" class="icone-img">
+
+    </div>
+
+</header>
+
+
+        <section class="entrega-section">
+
+            <div class="entrega-container">
+
+                <div class="form-endereco">
+
+                    <label>Cidade:</label>
+        <input
+            type="text"
+            id="cidade"
+            placeholder="Ex.: Colinas - TO"
+        >
+
+        <label>Estado:</label>
+        <input
+            type="text"
+            id="estado"
+            placeholder="Ex.: Tocantins"
+        >
+
+        <label>Endereço:</label>
+        <input
+            type="text"
+            id="endereco"
+            placeholder="Ex.: Rua Alegria, 1234"
+        >
+
+        <label>Setor:</label>
+        <input
+            type="text"
+            id="setor"
+            placeholder="Ex.: Norte"
+        >
+
+        <label>Informação Adicional:</label>
+
+        <textarea
+            id="informacao"
+            maxlength="100"
+            placeholder="Ex.: Portão Vermelho"
+        ></textarea>
+        </div>
+
+
+        <div class="entrega-opcoes">
+
+            <div class="opcao-box">
+
+                <div class="opcao">
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="entrega"
+                            value="retirada"
+                        >
+
+                        Retirada
+
+                    </label>
+
+                    <img src="../imagens/moto.png">
+
+                </div>
+
+
+                <div class="opcao">
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="entrega"
+                            value="entrega"
+                            checked
+                        >
+
+                        Entrega
+
+                    </label>
+
+                    <img src="../imagens/moto.png">
+
+                </div>
+
+            </div>
+
+
+            <div class="botoes-entrega">
+
+                <button
+                    type="button"
+                    class="btn-cancelar"
+                    onclick="window.location.href='carrinho.html'"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    type="button"
+                    class="btn-confirmar"
+                >
+                    Confirmar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script src="../js/endereco.js"></script>
+
+</body>
+
+</html>

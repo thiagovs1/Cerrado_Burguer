@@ -1,0 +1,112 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    display:flex;
+    background:#ecd6a6;
+}
+
+.sidebar{
+    width:225px;
+    background:#fff4df;
+    border-right:1px solid #ead3ab;
+    display:flex;
+    flex-direction:column;
+}
+
+.logo-area{
+
+    display:flex;
+    align-items:center;
+
+    gap:12px;
+
+    padding:18px;
+}
+
+.logo-area img{
+
+    width:45px;
+}
+
+.logo-area h2{
+
+    font-size:18px;
+    color:#d05c0c;
+}
+
+.logo-area span{
+
+    font-size:11px;
+    color:#777;
+}
+
+nav{
+    flex:1; margin-top:15px;
+}
+
+nav a{
+
+    display:flex;
+    align-items:center;
+
+    gap:14px;
+
+    text-decoration:none;
+
+    color:#603813;
+
+    padding:14px 20px;
+
+    transition:.3s;
+}
+
+nav a img{
+
+    width:20px;
+}
+
+nav a:hover{
+
+    background:#edd3af;
+}
+
+.ativo{
+
+    background:#e8b783;
+}
+
+.sair{
+    margin-top:auto;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:16px 20px;
+    text-decoration:none;
+    color:#603813;
+}
+.sair:hover{
+    background:#edd3af;
+}
+
+.sair img{
+
+    width:20px;
+}
+
+.sair:hover{
+
+    background:#edd3af;
+}
+
+.conteudo{
+
+    flex:1;
+
+    background:#ecd6a6;
+}

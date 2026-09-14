@@ -1,0 +1,300 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    display:flex;
+    background:#f6e5ba;
+    min-height:100vh;
+}
+
+.sidebar{
+    width:225px;
+    background:#fff4df;
+    border-right:1px solid #ead3ab;
+    display:flex;
+    flex-direction:column;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:18px;
+}
+
+.logo-area img{
+    width:45px;
+}
+
+.logo-area h2{
+    font-size:24px;
+    color:#d45c1e;
+    line-height:22px;
+}
+
+.logo-area span{
+    font-size:12px;
+    color:#444;
+}
+
+nav{
+    display:flex;
+    flex-direction:column;
+    margin-top:15px;
+}
+
+nav a{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:16px 25px;
+    text-decoration:none;
+    color:#5f2d12;
+    font-size:19px;
+    transition:.3s;
+}
+
+nav a img{
+    width:28px;
+}
+
+nav a:hover{
+    background:#efc89f;
+}
+
+nav .ativo{
+    background:#eab07d;
+}
+
+.sair{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:25px;
+    text-decoration:none;
+    color:#5f2d12;
+    font-size:20px;
+}
+
+.sair img{
+    width:28px;
+}
+
+
+main{
+    flex:1;
+    padding:28px 40px;
+}
+
+main h1{
+    color:#5d2d13;
+    margin-bottom:25px;
+}
+
+.cards{
+    display:flex;
+    gap:55px;
+    margin-bottom:25px;
+}
+
+.card{
+    width:330px;
+    height:105px;
+    background:white;
+    border-radius:22px;
+    display:flex;
+
+    gap:22px;
+    padding:22px;
+    box-shadow:0 3px 8px rgba(0,0,0,.08);
+}
+
+.card img{
+    width:50px;
+}
+
+.card p{
+    color:#744329;
+    font-size:15px;
+}
+
+.card h2{
+    color:#ff6200;
+    margin-top:5px;
+    font-size:22px;
+    font-weight:600;
+}
+
+.ultimo-pedido{
+    height:70px;
+    background:white;
+    border-radius:22px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 25px;
+    margin-bottom:15px;
+    box-shadow:0 3px 8px rgba(0,0,0,.08);
+}
+
+.esquerda{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.esquerda img{
+    width:42px;
+}
+
+.esquerda h3{
+    color:#744329;
+    font-size:16px;
+}
+
+.esquerda span{
+    color:#999;
+    font-size:10px;
+}
+
+.esquerda p{
+    color:#9b5632;
+    font-size:12px;
+}
+
+.ultimo-pedido button{
+    border:none;
+    background:#d9733d;
+    color:white;
+    padding:5px 20px;
+    border-radius:25px;
+    cursor:pointer;
+    font-size:11px;
+}
+
+.pedidos {
+    background: #f1dfb6;
+    border: 10px solid white;
+    border-radius: 22px;
+    padding: 0;
+    box-shadow: 0 3px 8px rgba(0,0,0,.08);
+    overflow: hidden;
+
+    height: 650px;
+}
+
+.filtros{
+    height:32px;
+    background:#c89c73;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    border:1px solid #70411e;
+}
+
+.filtros span{
+    color:#5c2c10;
+    cursor:pointer;
+    font-size:11px;
+}
+
+.filtros .ativo{
+    color:#ff6200;
+    font-weight:600;
+}
+
+.filtros b{
+    background:#d96d30;
+    color:white;
+    border-radius:50%;
+    width:16px;
+    height:16px;
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    margin-left:4px;
+    font-size:10px;
+}
+
+.pedido{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:9px 8px;
+    min-height:50px;
+    border-bottom:1px solid #8d623f;
+    background:#f1dfb6;
+}
+
+.pedido:last-child{
+    border-bottom:none;
+}
+
+
+.dados{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.dados img{
+    width:30px;
+    height:30px;
+}
+
+.dados strong{
+    color:#5d2d13;
+    font-size:12px;
+}
+
+.dados h4{
+    color:#5d2d13;
+    font-size:11px;
+    font-weight:500;
+}
+
+.dados p{
+    color:#ad5930;
+    font-size:11px;
+}
+
+
+.status{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:5px;
+}
+
+.status span{
+    color:#7f5b3d;
+    font-size:10px;
+}
+
+.status button{
+    border:none;
+    color:white;
+    padding:3px 16px;
+    border-radius:20px;
+    font-size:9px;
+}
+.pendente{
+    background:#d77743;
+}
+
+.delivery{
+    background:#d76600;
+}
+
+.retirada{
+    background:#99974d;
+}
+
+.finalizado{
+    background:#d3b467;
+}
+

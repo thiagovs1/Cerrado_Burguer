@@ -1,0 +1,797 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background: #ecd6a6;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    width: 225px;
+    min-height: 100vh;
+    background: #fff4df;
+    border-right: 1px solid #ead3ab;
+
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px;
+}
+
+.logo-area img {
+    width: 45px;
+}
+
+.logo-area h2 {
+    font-size: 18px;
+    color: #d05c0c;
+    line-height: 18px;
+}
+
+.logo-area span {
+    font-size: 11px;
+    color: #777;
+}
+
+nav { 
+    margin-top: 15px; 
+}
+
+nav a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    height: 43px;
+    text-decoration: none;
+    color: #603813;
+    padding: 0 20px;
+}
+
+.sair { 
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #603813;
+}
+
+nav a img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+nav a:hover,
+nav a.ativo {
+    background: #e9ad78;
+}
+
+.sair:hover{
+    background:#edd3af;
+}
+
+.sair img{
+
+    width:20px;
+}
+
+
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+.conteudo {
+    flex: 1;
+    min-width: 0;
+    padding: 18px 20px;
+
+    background: #ecd6a6;
+}
+
+
+/* =========================
+   TOPO
+========================= */
+
+.topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    margin-bottom: 18px;
+}
+
+.topo h1 {
+    font-size: 25px;
+    font-weight: 500;
+    color: #603813;
+}
+
+.acoes-topo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+}
+
+.acoes-topo button {
+    border: none;
+    border-radius: 4px;
+
+    color: white;
+    background: #8b664e;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+.data {
+    padding: 7px 12px;
+    font-size: 12px;
+}
+
+.atualizar {
+    padding: 4px 10px;
+    font-size: 11px;
+}
+
+.acoes-topo button:hover {
+    opacity: 0.85;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+
+    margin-bottom: 10px;
+}
+
+.card {
+    min-height: 58px;
+
+    background: #fff;
+    border-radius: 13px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 9px 13px;
+
+    color: #603813;
+}
+
+.icone-card {
+    width: 34px;
+    height: 34px;
+
+    border: 1px solid #8d6c52;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+
+    margin-right: 10px;
+}
+
+.card span {
+    display: block;
+
+    font-size: 10px;
+    color: #603813;
+}
+
+.card strong {
+    display: block;
+
+    font-size: 15px;
+    color: #d05c0c;
+}
+
+.card small {
+    display: block;
+
+    font-size: 8px;
+    color: #603813;
+}
+
+
+/* =========================
+   PAINÉIS
+========================= */
+
+.painel {
+    background: #fff;
+
+    border-radius: 13px;
+
+    overflow: hidden;
+}
+
+.titulo-painel {
+    height: 27px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 12px;
+
+    border-bottom: 1px solid #c58d69;
+
+    color: #603813;
+
+    font-size: 10px;
+}
+
+
+/* =========================
+   GRÁFICOS
+========================= */
+
+.graficos {
+    display: grid;
+
+    grid-template-columns: 1.8fr 0.9fr 0.9fr;
+
+    gap: 10px;
+
+    margin-bottom: 10px;
+}
+
+.grafico-vendas {
+    min-height: 140px;
+}
+
+.grafico {
+    position: relative;
+
+    height: 110px;
+
+    margin: 5px 12px 0 28px;
+}
+
+.linha {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    border-top: 1px solid #eadbc8;
+}
+
+.linha1 {
+    top: 10px;
+}
+
+.linha2 {
+    top: 34px;
+}
+
+.linha3 {
+    top: 58px;
+}
+
+.linha4 {
+    top: 82px;
+}
+
+.barras {
+    position: absolute;
+
+    left: 8px;
+    right: 3px;
+    bottom: 8px;
+
+    height: 92px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+}
+
+.barra-coluna {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 4px;
+}
+
+.barra-coluna span {
+    font-size: 7px;
+    color: #603813;
+}
+
+.barra {
+    width: 34px;
+
+    border-radius: 6px 6px 2px 2px;
+
+    background: #bd6c3d;
+}
+
+.b1 {
+    height: 18px;
+    background: #e6cfa4;
+}
+
+.b2 {
+    height: 34px;
+    background: #d1a261;
+}
+
+.b3 {
+    height: 51px;
+    background: #d27f45;
+}
+
+.b4 {
+    height: 60px;
+    background: #c96f3e;
+}
+
+.b5 {
+    height: 78px;
+    background: #b95d32;
+}
+
+.b6 {
+    height: 88px;
+    background: #a94c27;
+}
+
+.b7 {
+    height: 94px;
+    background: #970000;
+}
+
+
+/* =========================
+   DONUTS
+========================= */
+
+.grafico-tipo,
+.grafico-status {
+    min-height: 140px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.donut {
+    width: 72px;
+    height: 72px;
+
+    margin: 12px auto 5px;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.donut-centro {
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+
+    background: #fff;
+}
+
+.donut-pedidos {
+    background: conic-gradient(
+        #df0000 0 70%,
+        #d88a3e 70% 100%
+    );
+}
+
+.donut-status {
+    background: conic-gradient(
+        #4f8a00 0 45%,
+        #f2bd25 45% 80%,
+        #df0000 80% 100%
+    );
+}
+
+.legenda {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+
+    flex-wrap: wrap;
+
+    padding: 0 5px 7px;
+
+    font-size: 6px;
+    color: #603813;
+}
+
+.legenda span {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.legenda i {
+    width: 6px;
+    height: 6px;
+
+    display: inline-block;
+
+    border-radius: 50%;
+}
+
+.delivery {
+    background: #df0000;
+}
+
+.retirada {
+    background: #d88a3e;
+}
+
+.entregue {
+    background: #4f8a00;
+}
+
+.rota {
+    background: #f2bd25;
+}
+
+.atrasado {
+    background: #df0000;
+}
+
+
+/* =========================
+   PARTE INFERIOR
+========================= */
+
+.inferior {
+    display: grid;
+
+    grid-template-columns: 1.05fr 0.9fr 1.35fr;
+
+    gap: 10px;
+}
+
+
+/* =========================
+   PRODUTOS
+========================= */
+
+.produtos {
+    min-height: 210px;
+}
+
+.produto {
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 4px 10px;
+
+    border-bottom: 1px solid #cfa07d;
+}
+
+.produto-img {
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+
+    background: #f2e3c5;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-right: 8px;
+
+    font-size: 17px;
+}
+
+.produto strong {
+    display: block;
+
+    font-size: 9px;
+    font-weight: 500;
+
+    color: #603813;
+}
+
+.produto span {
+    display: block;
+
+    font-size: 7px;
+
+    color: #603813;
+}
+
+
+/* =========================
+   RESUMO
+========================= */
+
+.resumo {
+    min-height: 210px;
+
+    padding-bottom: 8px;
+}
+
+.resumo-item {
+    height: 53px;
+
+    margin: 8px 10px;
+
+    border-radius: 11px;
+
+    background: #bd6b3b;
+
+    display: flex;
+    align-items: center;
+
+    padding: 7px 10px;
+
+    color: white;
+}
+
+.resumo-icone {
+    width: 28px;
+
+    font-size: 21px;
+
+    text-align: center;
+
+    margin-right: 8px;
+}
+
+.resumo-item span {
+    display: block;
+
+    font-size: 8px;
+}
+
+.resumo-item strong {
+    display: block;
+
+    font-size: 10px;
+}
+
+
+/* =========================
+   ENTREGAS
+========================= */
+
+.entregas {
+    min-height: 210px;
+}
+
+.entrega {
+    height: 39px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 3px 10px;
+
+    border-bottom: 1px solid #cfa07d;
+}
+
+.cliente-icone {
+    width: 29px;
+    height: 29px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 17px;
+
+    margin-right: 7px;
+
+    color: #603813;
+}
+
+.cliente {
+    flex: 1;
+}
+
+.cliente strong {
+    font-size: 9px;
+    font-weight: 500;
+
+    color: #603813;
+}
+
+.horario {
+    font-size: 8px;
+
+    color: #603813;
+
+    margin-right: 12px;
+}
+
+.status {
+    width: 32px;
+    height: 5px;
+
+    border-radius: 10px;
+}
+
+.verde {
+    background: #4f8a00;
+}
+
+.vermelho {
+    background: #a90000;
+}
+
+.amarelo {
+    background: #f2bd25;
+}
+
+.ver-entregas {
+    display: block;
+
+    text-align: center;
+
+    padding: 5px;
+
+    color: #d05c0c;
+
+    text-decoration: none;
+
+    font-size: 8px;
+}
+
+.ver-entregas:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 1100px) {
+
+    .sidebar {
+        width: 200px;
+    }
+
+    .graficos {
+        grid-template-columns: 1.5fr 1fr 1fr;
+    }
+
+    .barra {
+        width: 25px;
+    }
+
+    .inferior {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .entregas {
+        grid-column: span 2;
+    }
+}
+
+
+@media (max-width: 850px) {
+
+    .sidebar {
+        width: 180px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .graficos {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .grafico-vendas {
+        grid-column: span 2;
+    }
+
+    .inferior {
+        grid-template-columns: 1fr;
+    }
+
+    .entregas {
+        grid-column: auto;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    body {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .logo-area {
+        justify-content: center;
+    }
+
+    nav {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        margin: 0;
+    }
+
+    nav a {
+        padding: 10px;
+        justify-content: center;
+    }
+
+    .sair {
+        justify-content: center;
+    }
+
+    .conteudo {
+        padding: 12px;
+    }
+
+    .topo {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .acoes-topo {
+        align-items: flex-start;
+    }
+
+    .graficos {
+        grid-template-columns: 1fr;
+    }
+
+    .grafico-vendas {
+        grid-column: auto;
+    }
+
+    .inferior {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Login - Cerrado Burguer</title>
+        <link rel="stylesheet" href="../css/login.css" />
+    </head>
+    <body>
+        <header class="topo">
+            <img src="../imagens/logo.png" class="logo" />
+            <nav>
+                <a href="../html/tela-inicial.html">Inicio</a>
+                <a href="#">Promoções do dia</a>
+                <a href="#">Cardápio</a>
+                <a href="#">Contato</a>
+                <a href="#">Avaliações</a>
+            </nav>
+            <div class="icones">
+                <img src="../imagens/Perfil.png" class="icone-img" />
+                <img src="../imagens/carrinho.png" class="icone-img" />
+            </div>
+        </header>
+
+        <div class="area-login">
+            <div class="login-container">
+                <h1>LOGIN</h1>
+                <p class="subtitulo">Bem-vindo</p>
+
+                <form action="login.php" method="POST">
+                    <label>Login:</label>
+                    <input type="email" name="email" placeholder="Digite seu e-mail" required />
+
+                    <label>Senha:</label>
+                    <input type="password" name="senha" placeholder="Digite sua senha" required />
+
+                    <button type="submit">Entrar</button>
+                </form>
+
+                <p id="mensagem"></p>
+
+                <div class="opcoes">
+                    <a href="recuperar.html">Esqueci a senha</a>
+                    <a href="cadastra.html">Cadastrar</a>
+                    <a href="../html/tela-inicial.html">Cancelar</a>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            const erro = urlParams.get('erro');
+            const sucesso = urlParams.get('sucesso');
+            const mensagemElement = document.getElementById('mensagem');
+
+            if (erro) {
+                mensagemElement.innerText = erro;
+                mensagemElement.style.color = 'red';
+            } else if (sucesso) {
+                mensagemElement.innerText = sucesso;
+                mensagemElement.style.color = 'green';
+                
+               
+                if (sucesso === 'Login realizado') {
+                    setTimeout(() => {
+                        window.location.href = '../html/tela-inicial.html';
+                    }, 500);
+                }
+            }
+        </script>
+    </body>
+</html>

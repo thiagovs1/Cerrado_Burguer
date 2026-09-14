@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Cadastrar - Cerrado Burguer</title>
+        <link rel="stylesheet" href="../css/login.css" />
+    </head>
+    <body>
+        <header class="topo">
+            <img src="../imagens/logo.png" class="logo" />
+            <nav>
+                <a href="../html/tela-inicial.html">Inicio</a>
+                <a href="#">Promoções do dia</a>
+                <a href="#">Cardápio</a>
+                <a href="#">Contato</a>
+                <a href="#">Avaliações</a>
+            </nav>
+            <div class="icones">
+                <img src="../imagens/Perfil.png" class="icone-img" />
+                <img src="../imagens/carrinho.png" class="icone-img" />
+            </div>
+        </header>
+
+        <div class="area-login">
+            <div class="login-container">
+                <h1>CADASTRAR</h1>
+                <p class="subtitulo">Crie sua conta</p>
+
+                <form action="../crud/cadastrar.php" method="POST">
+                    <label>Nome completo:</label>
+                    <input type="text" name="nome" placeholder="Digite seu nome completo" required />
+                    <label>CPF:</label>
+                    <input type="text" name="cpf" placeholder="Digite seu CPF" required />
+                    <label>Telefone:</label>
+                    <input type="text" name="telefone" placeholder="Digite seu número de telefone" required />
+                
+                    <label>E-mail:</label>
+                    <input type="email" name="email" placeholder="Digite seu e-mail" required />
+
+                    <label>Senha:</label>
+                    <input type="password" name="senha1" placeholder="Digite sua senha" required />
+
+                    <label>Confirmar senha:</label>
+                    <input type="password" name="senha2" placeholder="Confirme sua senha" required />
+
+                    <button type="submit">Cadastrar</button>
+                </form>
+
+                <p id="mensagem"></p>
+
+                <div class="opcoes">
+                    <a href="login.html">Voltar</a>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            const erro = urlParams.get('erro');
+            const mensagemElement = document.getElementById('mensagem');
+
+            if (erro) {
+                mensagemElement.innerText = erro;
+                mensagemElement.style.color = 'red';
+            }
+        </script>
+    </body>
+</html>

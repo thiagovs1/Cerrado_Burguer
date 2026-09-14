@@ -1,0 +1,138 @@
+html {
+    scroll-behavior: smooth; }
+
+body {
+    background-color: #fdf3dd; margin: 0; font-family: Georgia, Arial, Helvetica, sans-serif; }
+
+.icons a img {
+    cursor: pointer; }
+
+.topo {
+    background-color: #fdf3dd; display: flex; align-items: center;justify-content: center;
+     gap: 40px; padding: 5px 50px; position: fixed; width: 100%; z-index: 1000; }
+
+.logo {
+    width: 100px; }
+
+.menu {
+    display: flex; gap: 70px; }
+
+.menu a {
+    text-decoration: none; color: #481c11; font-size: 20px; }
+
+.menu a:hover {
+    color: #f36f40; }
+
+.icons {
+    display: flex; gap: 10px; }
+
+.icons img {
+    width: 45px; }
+
+section {
+    min-height: 100vh;
+    padding: 80px 40px 40px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+#hamburgueres {
+    background: #f1dfb6;
+    min-height: 100vh;
+    padding: 160px 40px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+}
+#hamburgueres h1,
+#hamburgueres h3 {
+    font-size: 40px;
+    color: #481c11;
+    margin-bottom: 50px;
+}
+
+.lista-hambuguer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px 80px;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.pao {
+    background: #cb962e;
+}
+
+.carne {
+    background: #884927;
+}
+
+.burger-item {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    font-size: 17px;
+}
+
+.burger-item img {
+    width: 50px;
+    border-radius: 15px;
+}
+
+.burger-item p {
+    flex: 1;
+    margin: 0 10px;
+}
+
+.burger-item span {
+    font-weight: bold;
+}
+
+.burger-item .add {
+    position: absolute;
+    bottom: 10px;
+    right: 5px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.lista-hambuguer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 80px;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.linha-voltar{
+    width: 1000px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -20px;
+    padding-right: 80px;
+}
+
+.btn-voltar{
+    background: #8B4513;
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+}

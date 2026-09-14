@@ -1,0 +1,323 @@
+html {
+scroll-behavior: smooth;
+}
+ body {
+background: #f1dfb6;
+margin: 0;
+font-family: Georgia, Arial, Helvetica, sans-serif;
+}
+ .icons a img {
+cursor: pointer;
+}
+ .topo {
+background-color: #fdf3dd;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 40px;
+padding: 5px 50px;
+position: fixed;
+width: 100%;
+z-index: 1000;
+}
+ .logo {
+width: 100px;
+}
+ nav {
+display: flex;
+gap: 70px;
+}
+ nav a {
+text-decoration: none;
+color: #481c11;
+font-size: 20px;
+font-weight: normal;
+}
+ nav a:hover {
+color: #f36f40;
+}
+ .icones {
+display: flex;
+gap: 10px;
+}
+ .icone-img {
+width: 36px;
+height: 36px;
+cursor: pointer;
+transition: 0.3s;
+}
+ .icone-img:hover {
+transform: scale(1.1);
+}
+ .status-page {
+background: #f1dfb6;
+min-height: 100vh;
+padding: 130px 10px 30px;
+ display: flex;
+flex-direction: column;
+align-items: center;
+ gap: 15px;
+box-sizing: border-box;
+ }
+ .confirmado-topo {
+margin-bottom: 20px;
+ display: flex;
+flex-direction: column;
+align-items: center;
+gap: 10px;
+ }
+ .confirmado-topo h1 {
+margin: 0;
+color: #4b1d10;
+font-size: 30px;
+}
+ .confirmado-topo p {
+margin: 0;
+color: #4b1d10;
+font-size: 17px;
+}
+ .check-circulo {
+width: 80px;
+height: 80px;
+ border: 5px solid #39b54a;
+border-radius: 50%;
+ display: flex;
+justify-content: center;
+align-items: center;
+ box-sizing: border-box;
+ }
+ .check-circulo span {
+color: #39b54a;
+font-size: 45px;
+font-weight: bold;
+line-height: 1;
+}
+ .status-container {
+width: 600px;
+ background: #f5ecd8;
+ border: 2px solid #2d1a12;
+border-radius: 25px;
+ padding: 20px 30px;
+ box-sizing: border-box;
+ }
+ .status-container h2 {
+margin: 0 0 40px;
+ color: #4b1d10;
+font-size: 20px;
+ }
+ .status-progresso-wrapper {
+position: relative;
+}
+ .linha-conector {
+position: absolute;
+ top: 30px;
+left: 40px;
+right: 40px;
+ height: 5px;
+ background: #8b5a3c;
+ z-index: 1;
+ }
+ .status-linha {
+display: flex;
+justify-content: space-between;
+ position: relative;
+z-index: 2;
+ }
+ .status-item {
+display: flex;
+flex-direction: column;
+align-items: center;
+ width: 130px;
+ text-align: center;
+ }
+ .status-circulo {
+width: 60px;
+height: 60px;
+ border-radius: 50%;
+ background: #8b5a3c;
+ display: flex;
+justify-content: center;
+align-items: center;
+ border: 5px solid #b98b6d;
+ box-sizing: border-box;
+ }
+ .status-item.ativo .status-circulo {
+background: #8b5a3c;
+}
+ .icon-check {
+color: #d8c3ae;
+font-size: 28px;
+font-weight: bold;
+}
+ .relogio-ponteiro {
+width: 22px;
+height: 22px;
+ border: 3px solid #d8c3ae;
+border-radius: 50%;
+ position: relative;
+ }
+ .relogio-ponteiro::before {
+content: "";
+ position: absolute;
+ width: 2px;
+height: 7px;
+ background: #d8c3ae;
+ top: 3px;
+left: 10px;
+ }
+ .relogio-ponteiro::after {
+content: "";
+ position: absolute;
+ width: 6px;
+height: 2px;
+ background: #d8c3ae;
+ top: 10px;
+left: 10px;
+ }
+ .status-circulo img {
+width: 30px;
+height: 30px;
+ object-fit: contain;
+ filter: brightness(0) invert(0.8);
+ }
+ .status-item p {
+margin-top: 12px;
+ color: #4b1d10;
+ font-size: 15px;
+font-weight: 500;
+ }
+ .pedido-info {
+width: 600px;
+ background: #f5ecd8;
+ border: 2px solid #2d1a12;
+border-radius: 25px;
+ padding: 20px 30px;
+ box-sizing: border-box;
+ }
+ .pedido-info h2 {
+margin-top: 0;
+margin-bottom: 20px;
+ color: #4b1d10;
+ font-size: 20px;
+letter-spacing: 2px;
+ }
+ .pedido-info p {
+color: #4b1d10;
+ font-size: 17px;
+ margin: 18px 0;
+ line-height: 1.4;
+ }
+ .pedido-info strong {
+font-weight: bold;
+}
+ .valor-destaque {
+font-weight: bold;
+}
+ #lista-produtos {
+margin-bottom: 10px;
+}
+ #lista-produtos p {
+margin: 10px 0;
+ padding-bottom: 8px;
+ border-bottom: 1px solid #c8ad92;
+ }
+ #lista-produtos p:last-child {
+border-bottom: none;
+}
+ #mensagem-pagamento {
+margin-top: 15px;
+ background: #ffe1e1;
+ color: #b30000;
+ border: 2px solid #ff8c8c;
+ padding: 14px;
+ border-radius: 15px;
+ font-size: 18px;
+font-weight: bold;
+ text-align: center;
+ display: none;
+ }
+ .btn-cancelar-pagamento {
+background: #f5f0e4;
+color: red;
+ width: 170px;
+height: 60px;
+ border-radius: 35px;
+ display: flex;
+justify-content: center;
+align-items: center;
+ text-decoration: none;
+ font-size: 20px;
+font-weight: bold;
+ cursor: pointer;
+transition: 0.3s;
+ border: none;
+ }
+ .btn-cancelar-pagamento:hover {
+transform: scale(1.05);
+}
+ .voltar-inicio {
+margin-top: 10px;
+margin-bottom: 20px;
+}
+ .btn-voltar-inicio {
+background: #4b1d10;
+color: white;
+ width: 220px;
+height: 55px;
+ border-radius: 30px;
+ display: flex;
+justify-content: center;
+align-items: center;
+ text-decoration: none;
+ font-size: 18px;
+font-weight: bold;
+ transition: 0.3s;
+ margin: auto;
+ }
+ .btn-voltar-inicio:hover {
+transform: scale(1.05);
+background: #6a2a16;
+}
+ .pao {
+background: #cb962e;
+}
+ .carne {
+background: #884927;
+}
+ .login-container {
+width: 90%;
+max-width: 280px;
+padding: 20px 24px;
+}
+ @media (max-width: 700px) {
+ .topo {
+    gap: 15px;
+    padding: 5px 15px;
+}
+ nav {
+    gap: 15px;
+}
+ nav a {
+    font-size: 14px;
+}
+ .logo {
+    width: 75px;
+}
+ .status-container,
+.pedido-info {
+    width: 95%;
+}
+ .status-container {
+    padding: 20px 15px;
+}
+ .status-item {
+    width: 80px;
+}
+ .status-item p {
+    font-size: 12px;
+}
+ .linha-conector {
+    left: 25px;
+    right: 25px;
+}
+ }

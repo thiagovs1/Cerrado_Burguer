@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo</title>
+
+    <link rel="stylesheet" href="../Adm.css/promocoes.css">
+
+   
+</head>
+
+<body>
+
+    <div class="sidebar">
+
+        <div class="logo-area">
+            <img src="../../imagens/logo.png" alt="Logo">
+
+            <div>
+                <h2>Cerrado Burguer</h2>
+                <span>Painel Administrativo</span>
+            </div>
+        </div>
+
+        <nav>
+
+            <a href="adm-inicio.html">
+                <img src="../../imagens/icon-inicio.png">
+                Início
+            </a>
+
+            <a href="pedidos.html">
+                <img src="../../imagens/icon-pedidos.png">
+                Pedidos
+            </a>
+
+            <a href="cadastro.html">
+                <img src="../../imagens/icon-hamburguerpng.png">
+                Cadastro
+            </a>
+
+            <a href="categorias.html">
+                <img src="../../imagens/icon-categorias.png">
+                Categorias
+            </a>
+
+            <a href="relatorio.html">
+                <img src="../../imagens/icon-relatorio.png">
+                Relatório
+            </a>
+
+            <a href="promocoes.html">
+                <img src="../../imagens/icon-promocoes.png">
+                Promoção
+            </a>
+
+            <a href="clientes.html">
+                <img src="../../imagens/icon-clientes.png">
+                Clientes
+            </a>
+
+            <a href="entregas.html">
+                <img src="../../imagens/icon-entrega.png">
+                Entregas
+            </a>
+
+            <a href="avaliacoes.html">
+                <img src="../../imagens/icon-avaliacoes.png">
+                Avaliação
+            </a>
+
+            <a href="configuracoes.html">
+                <img src="../../imagens/icon-configuracoes.png">
+                Configurações
+            </a>
+
+        </nav>
+
+        <a href="sair.html" class="sair">
+            <img src="../../imagens/icon-sair.png">
+            Sair
+        </a>
+
+    </div>
+
+    <main class="conteudo">
+
+    </main>
+<script>
+const links = document.querySelectorAll("nav a");
+
+links.forEach(link => {
+    if (link.href === window.location.href) {
+        link.classList.add("ativo");
+    }
+});
+</script>
+</body>
+
+</html>

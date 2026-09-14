@@ -1,0 +1,731 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+    background: #ead5a5;
+    color: #4a2114;
+}
+
+
+/* =========================
+SIDEBAR
+========================= */
+
+.sidebar {
+    width: 100px;
+    min-width: 120px;
+    height: 100vh;
+    background: #fff0d2;
+    border-right: 1px solid #e4c995;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-area {
+    height: 43px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 7px;
+}
+
+.logo-area img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.logo-texto h2 {
+    color: #c55a14;
+    font-size: 7px;
+    line-height: 8px;
+    white-space: nowrap;
+}
+
+.logo-texto span {
+    color: #7e6c5b;
+    font-size: 4px;
+    line-height: 5px;
+    display: block;
+    white-space: nowrap;
+}
+
+nav {
+    flex: 1;
+    margin-top: 3px;
+}
+
+nav a {
+    height: 28px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 9px;
+    text-decoration: none;
+    color: #633d28;
+    font-size: 7px;
+}
+
+nav a img {
+    width: 12px;
+    height: 12px;
+    object-fit: contain;
+}
+
+nav a:hover {
+    background: #f0d9b0;
+}
+
+nav a.ativo {
+    background: #e4ad7e;
+    color: #4d2113;
+}
+
+.sair {
+    height: 29px;
+    margin-bottom: 7px;
+    padding: 0 9px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #633d28;
+    font-size: 7px;
+}
+
+.sair img {
+    width: 12px;
+    height: 12px;
+}
+
+
+/* =========================
+CONTEÚDO PRINCIPAL
+========================= */
+
+.conteudo {
+    flex: 1;
+    min-width: 0;
+    height: 100vh;
+    padding: 12px 16px;
+    background: #ead5a5;
+    overflow: hidden;
+}
+
+.conteudo h1 {
+    margin: 0 0 12px 4px;
+    color: #4b2113;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+/* =========================
+CARDS
+========================= */
+
+.cards-resumo {
+    width: 100%;
+    height: 75px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    padding: 0;
+    margin-bottom: 14px;
+}
+
+.card-resumo {
+    height: 75px;
+    background: #fffdf8;
+    border-radius: 9px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: none;
+}
+
+.card-icone {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    border-radius: 50%;
+    background: #f0dfc1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-icone img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+.card-info {
+    min-width: 0;
+}
+
+.card-info span {
+    display: block;
+    color: #755a43;
+    font-size: 9px;
+    line-height: 11px;
+    white-space: nowrap;
+}
+
+.card-info strong {
+    display: block;
+    color: #9a3f20;
+    font-size: 19px;
+    line-height: 22px;
+    font-weight: 400;
+}
+
+.card-info small {
+    display: block;
+    color: #806a56;
+    font-size: 8px;
+    line-height: 10px;
+    white-space: nowrap;
+}
+
+
+/* =========================
+ÁREA DOS CLIENTES
+========================= */
+
+.area-clientes {
+    width: 100%;
+    height: calc(100vh - 125px);
+    margin: 0;
+    padding: 8px;
+    background: #fffdf8;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+/* =========================
+TABELA
+========================= */
+
+.tabela-container {
+    width: 100%;
+    height: calc(100% - 25px);
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #f1dfbd;
+}
+
+th {
+    height: 30px;
+    padding: 5px 8px;
+    color: #68442c;
+    text-align: left;
+    font-size: 8px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+th:nth-child(1) {
+    width: 23%;
+}
+
+th:nth-child(2) {
+    width: 19%;
+}
+
+th:nth-child(3) {
+    width: 9%;
+    text-align: center;
+}
+
+th:nth-child(4) {
+    width: 13%;
+}
+
+th:nth-child(5) {
+    width: 15%;
+}
+
+th:nth-child(6) {
+    width: 9%;
+}
+
+th:nth-child(7) {
+    width: 12%;
+}
+
+td {
+    height: 46px;
+    padding: 4px 8px;
+    border-bottom: 1px solid #ead8bb;
+    color: #67422c;
+    font-size: 8px;
+    vertical-align: middle;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================
+CLIENTE
+========================= */
+
+.cliente {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    min-width: 0;
+}
+
+.avatar {
+    width: 27px;
+    height: 27px;
+    min-width: 27px;
+    border-radius: 50%;
+    background: #efcfaa;
+    border: 1px solid #b9572f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #a64324;
+    font-size: 8px;
+    font-weight: 700;
+}
+
+.cliente strong {
+    display: block;
+    color: #4d2214;
+    font-size: 8px;
+    line-height: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cliente small {
+    display: block;
+    color: #966d51;
+    font-size: 7px;
+    line-height: 9px;
+    white-space: nowrap;
+}
+
+
+/* =========================
+CONTATO
+========================= */
+
+.contato {
+    min-width: 0;
+}
+
+.contato span {
+    display: block;
+    color: #65412b;
+    font-size: 8px;
+    line-height: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.contato small {
+    display: block;
+    color: #927159;
+    font-size: 7px;
+    line-height: 9px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =========================
+STATUS
+========================= */
+
+.status {
+    font-size: 8px;
+    white-space: nowrap;
+}
+
+.status.ativo {
+    color: #78914f;
+}
+
+.status.inativo {
+    color: #a52f2f;
+}
+
+
+/* =========================
+AÇÕES
+========================= */
+
+.acoes {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.acoes button {
+    height: 23px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.btn-editar {
+    width: 48px;
+    padding: 0 4px;
+    gap: 4px;
+    background: #fffaf0;
+    border: 1px solid #c9a77b;
+    color: #68442d;
+    font-size: 7px;
+}
+
+.btn-editar img {
+    width: 10px;
+    height: 10px;
+    object-fit: contain;
+}
+
+.acoes .btn-excluir {
+    width: 23px;
+    padding: 0;
+    background: #fff1ed;
+    border: 1px solid #daa9a0;
+}
+
+.acoes .btn-excluir img {
+    width: 10px;
+    height: 10px;
+    object-fit: contain;
+}
+
+
+/* =========================
+VER TODOS
+========================= */
+
+.ver-todos {
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: #775f49;
+    font-size: 8px;
+}
+
+.ver-todos span:last-child {
+    font-size: 8px;
+}
+
+
+/* =========================
+MENSAGENS
+========================= */
+
+.carregando,
+.vazio,
+.erro {
+    padding: 20px;
+    text-align: center;
+    color: #775f49;
+    font-size: 9px;
+}
+
+.erro {
+    color: #a52f2f;
+}
+
+
+/* ==================================================
+MODAIS
+================================================== */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(45, 20, 10, 0.58);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+
+/* =========================
+CAIXA DO MODAL
+========================= */
+
+.modal-conteudo {
+    width: 420px;
+    max-width: 90%;
+    max-height: 85vh;
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+    background: #fff8eb;
+    border: 1px solid #e5c99f;
+    border-radius: 15px;
+    box-shadow: 0 18px 45px rgba(72, 28, 17, 0.30);
+}
+
+
+/* =========================
+FAIXA COLORIDA
+========================= */
+
+.modal-conteudo::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(
+        90deg,
+        #c95718 0%,
+        #e89a42 50%,
+        #b83d2f 100%
+    );
+}
+
+
+/* =========================
+TÍTULO
+========================= */
+
+.modal-conteudo h2 {
+    color: #481c11;
+    margin: 23px 25px 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+
+
+/* =========================
+TEXTO
+========================= */
+
+.modal-conteudo p {
+    color: #6b4938;
+    margin: 0 auto;
+    padding: 0 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+
+/* =========================
+AVISO DO MODAL DE EXCLUSÃO
+========================= */
+
+.modal-excluir .modal-conteudo p::before {
+    content: "ATENÇÃO";
+    display: block;
+    width: fit-content;
+    margin: 0 auto 10px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    background: #f7dfb7;
+    color: #a35416;
+    font-size: 8px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+BOTÃO FECHAR
+========================= */
+
+.fechar-modal {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    z-index: 2;
+    width: 27px;
+    height: 27px;
+    border: none;
+    border-radius: 50%;
+    background: #f4dfc2;
+    color: #76513d;
+    font-size: 18px;
+    line-height: 27px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.fechar-modal:hover {
+    background: #e7c49b;
+    color: #481c11;
+}
+
+
+/* =========================
+CAMPOS DO MODAL DE EDITAR
+========================= */
+
+.modal-conteudo label {
+    display: block;
+    color: #603813;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 10px 24px 4px;
+}
+
+.modal-conteudo input {
+    width: calc(100% - 48px);
+    margin: 0 24px;
+    padding: 9px 11px;
+    border: 1px solid #ddc39b;
+    border-radius: 7px;
+    outline: none;
+    background: #fff;
+    color: #481c11;
+    font-size: 12px;
+}
+
+.modal-conteudo input:focus {
+    border-color: #d86100;
+    box-shadow: 0 0 0 2px rgba(216, 97, 0, 0.10);
+}
+
+
+/* =========================
+ÁREA DOS BOTÕES
+========================= */
+
+.modal-botoes {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 24px;
+    padding: 16px 24px;
+    background: #f5e5cb;
+    border-top: 1px solid #e4ceb0;
+}
+
+
+/* =========================
+BOTÕES DO MODAL
+========================= */
+
+.modal-botoes button {
+    min-width: 105px;
+    height: 34px;
+    padding: 0 16px;
+    border-radius: 7px;
+    border: none;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    transition: 0.2s ease;
+}
+
+
+/* =========================
+CANCELAR
+========================= */
+
+.modal-botoes .btn-cancelar {
+    background: #fffaf1;
+    color: #5d321f;
+    border: 1px solid #cdb38f;
+}
+
+.modal-botoes .btn-cancelar:hover {
+    background: #ead8bb;
+    border-color: #b99870;
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+EXCLUIR
+========================= */
+
+.modal-botoes .btn-excluir {
+    background: linear-gradient(
+        135deg,
+        #d65343,
+        #a92f26
+    );
+    color: #fff;
+    border: 1px solid #972820;
+    box-shadow: 0 3px 8px rgba(169, 47, 38, 0.25);
+}
+
+.modal-botoes .btn-excluir:hover {
+    background: linear-gradient(
+        135deg,
+        #e56452,
+        #98261f
+    );
+    transform: translateY(-1px);
+    box-shadow: 0 5px 13px rgba(169, 47, 38, 0.35);
+}
+
+
+/* =========================
+SALVAR
+========================= */
+
+.modal-botoes .btn-salvar {
+    background: linear-gradient(
+        135deg,
+        #d86100,
+        #b94800
+    );
+    color: #fff;
+}
+
+.modal-botoes .btn-salvar:hover {
+    background: linear-gradient(
+        135deg,
+        #e87312,
+        #a83f00
+    );
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+EFEITO AO CLICAR
+========================= */
+
+.modal-botoes button:active {
+    transform: scale(0.97);
+}
