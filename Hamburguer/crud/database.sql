@@ -482,3 +482,6 @@ AND NOT EXISTS (
     SELECT 1 FROM produto
     WHERE nome = 'Bolinho de mandioca com carne seca e 2 molhos'
 );
+
+ALTER TABLE categoria
+ADD COLUMN status ENUM('Ativa', 'Inativa') NOT NULL DEFAULT 'Ativa';
