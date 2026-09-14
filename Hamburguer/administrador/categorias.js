@@ -1,6 +1,5 @@
 const API_CATEGORIAS = "../Crud/categorias/";
 
-
 const tabela = document.querySelector("#tabelaCategorias");
 const busca = document.querySelector("#buscaCategoria");
 const filtroStatus = document.querySelector("#filtroStatus");
@@ -15,191 +14,232 @@ const nomeCategoria = document.querySelector("#nomeCategoria");
 const descricaoCategoria = document.querySelector("#descricaoCategoria");
 const statusCategoria = document.querySelector("#statusCategoria");
 
+// =====================================================
+// CARREGAR CATEGORIAS
+// =====================================================
+
 async function carregarCategorias() {
 
-    const params = new URLSearchParams();
 
-    if (busca.value.trim() !== "") {
-        params.append("busca", busca.value.trim());
+const params = new URLSearchParams();
+
+if (busca.value.trim() !== "") {
+    params.append("busca", busca.value.trim());
+}
+
+if (filtroStatus.value !== "") {
+    params.append("status", filtroStatus.value);
+}
+
+try {
+
+    const resposta = await fetch(
+        API_CATEGORIAS + "listar.php?" + params.toString()
+    );
+
+    if (!resposta.ok) {
+        throw new Error("Erro HTTP: " + resposta.status);
     }
 
-    if (filtroStatus.value !== "") {
-        params.append("status", filtroStatus.value);
-    }
+    const dados = await resposta.json();
 
-    try {
-
-        const resposta = await fetch(
-            API_CATEGORIAS + "listar.php?" + params.toString()
+    if (!dados.sucesso) {
+        alert(
+            dados.mensagem ||
+            "Erro ao carregar categorias."
         );
+        return;
+    }
 
-        if (!resposta.ok) {
-            throw new Error("Erro HTTP: " + resposta.status);
-        }
+    tabela.innerHTML = "";
 
-        const dados = await resposta.json();
 
-        if (!dados.sucesso) {
-            alert(dados.mensagem || "Erro ao carregar categorias.");
-            return;
-        }
+    // =================================================
+    // NENHUMA CATEGORIA
+    // =================================================
 
-        tabela.innerHTML = "";
+    if (
+        !dados.categorias ||
+        dados.categorias.length === 0
+    ) {
 
-        if (!dados.categorias || dados.categorias.length === 0) {
+        tabela.innerHTML = `
+            <tr>
+                <td colspan="5" style="text-align: center;">
+                    Nenhuma categoria encontrada.
+                </td>
+            </tr>
+        `;
 
-            tabela.innerHTML = `
-                <tr>
-                    <td colspan="5" style="text-align: center;">
-                        Nenhuma categoria encontrada.
-                    </td>
-                </tr>
+        atualizarCards([]);
+
+        return;
+    }
+
+
+    // =================================================
+    // MOSTRAR CATEGORIAS
+    // =================================================
+
+    dados.categorias.forEach(categoria => {
+
+        let imagem;
+
+
+        // Se tiver imagem cadastrada
+        if (categoria.imagem) {
+
+            imagem = `
+                <img
+                    src="../../imagens/${escaparHTML(categoria.imagem)}"
+                    alt="${escaparHTML(categoria.nome)}"
+                >
             `;
 
-            atualizarCards([]);
-
-            return;
         }
 
-        dados.categorias.forEach(categoria => {
+        // Se não tiver imagem, usa imagem padrão
+        else {
 
-            let imagem;
+            imagem = `
+                <img
+                    src="../../imagens/icon-categorias.png"
+                    alt="${escaparHTML(categoria.nome)}"
+                >
+            `;
 
-            if (categoria.imagem) {
-
-                imagem = `
-                    <img
-                        src="../../imagens/${categoria.imagem}"
-                        alt="${categoria.nome}"
-                    >
-                `;
-
-            } else {
-
-                imagem = `
-                    <span class="imagem-interrogacao">
-                        ?
-                    </span>
-                `;
-
-            }
-
-            const tr = document.createElement("tr");
+        }
 
 
-            tr.innerHTML = `
-
-                <td class="categoria">
-
-                    ${imagem}
-
-                    <div>
-
-                        <strong>
-                            ${escaparHTML(categoria.nome)}
-                        </strong>
-
-                    </div>
-
-                </td>
+        const tr = document.createElement("tr");
 
 
-                <td>
+        tr.innerHTML = `
 
-                    ${categoria.descricao
+            <td class="categoria">
+
+                ${imagem}
+
+                <div>
+
+                    <strong>
+                        ${escaparHTML(categoria.nome)}
+                    </strong>
+
+                </div>
+
+            </td>
+
+
+            <td>
+
+                ${
+                    categoria.descricao
                         ? escaparHTML(categoria.descricao)
                         : "Sem descrição"
-                    }
+                }
 
-                </td>
-
-
-                <td class="numero">
-
-                    ${Number(categoria.produtos) || 0}
-
-                </td>
+            </td>
 
 
-                <td>
+            <td class="numero">
 
-                    <span class="${
-                        categoria.status === "Ativa"
-                            ? "ativo-status"
-                            : "inativo-status"
-                    }">
+                ${Number(categoria.produtos) || 0}
 
-                        ${escaparHTML(categoria.status)}
-
-                    </span>
-
-                </td>
+            </td>
 
 
-                <td>
+            <td>
 
-                    <div class="acoes">
+                <span class="${
+                    categoria.status === "Ativa"
+                        ? "ativo-status"
+                        : "inativo-status"
+                }">
+
+                    ${escaparHTML(
+                        categoria.status || "Ativa"
+                    )}
+
+                </span>
+
+            </td>
 
 
-                        <button
-                            type="button"
-                            class="editar"
-                            onclick='abrirEdicao(${JSON.stringify(categoria)})'
+            <td>
+
+                <div class="acoes">
+
+
+                    <button
+                        type="button"
+                        class="editar"
+                        onclick='abrirEdicao(${JSON.stringify(categoria)})'
+                    >
+
+                        <img
+                            src="../../imagens/icon-editar.png"
+                            alt="Editar"
                         >
 
-                            <img
-                                src="../../imagens/icon-editar.png"
-                                alt="Editar"
-                            >
+                        Editar
 
-                            Editar
-
-                        </button>
+                    </button>
 
 
-                        <button
-                            type="button"
-                            class="lixeira"
-                            onclick="excluirCategoria(${categoria.id_categoria})"
+                    <button
+                        type="button"
+                        class="lixeira"
+                        onclick="excluirCategoria(${categoria.id_categoria})"
+                    >
+
+                        <img
+                            src="../../imagens/icon-lixeira.png"
+                            alt="Excluir"
                         >
 
-                            <img
-                                src="../../imagens/icon-lixeira.png"
-                                alt="Excluir"
-                            >
-
-                        </button>
+                    </button>
 
 
-                    </div>
+                </div>
 
-                </td>
+            </td>
 
-            `;
-
-
-            tabela.appendChild(tr);
-
-        });
-
-        atualizarCards(dados.categorias);
+        `;
 
 
-    } catch (erro) {
+        tabela.appendChild(tr);
 
-        console.error("Erro:", erro);
+    });
 
-        alert("Erro ao carregar categorias.");
 
-    }
+    atualizarCards(dados.categorias);
+
+
+} catch (erro) {
+
+    console.error("Erro:", erro);
+
+    alert("Erro ao carregar categorias.");
 
 }
 
-form.addEventListener("submit", async function(event) {
+
+}
+
+// =====================================================
+// SALVAR / EDITAR CATEGORIA
+// =====================================================
+
+form.addEventListener(
+"submit",
+async function(event) {
+
 
     event.preventDefault();
 
     const dados = new FormData(form);
+
     let url;
 
 
@@ -216,13 +256,13 @@ form.addEventListener("submit", async function(event) {
 
     try {
 
-        const resposta = await fetch(url, {
-
-            method: "POST",
-
-            body: dados
-
-        });
+        const resposta = await fetch(
+            url,
+            {
+                method: "POST",
+                body: dados
+            }
+        );
 
 
         if (!resposta.ok) {
@@ -234,24 +274,36 @@ form.addEventListener("submit", async function(event) {
         }
 
 
-       const texto = await resposta.text();
+        const texto = await resposta.text();
 
-console.log("Resposta do PHP:", texto);
+        console.log(
+            "Resposta do PHP:",
+            texto
+        );
 
-let resultado;
 
-try {
-    resultado = JSON.parse(texto);
-} catch (erro) {
-    console.error("PHP não retornou JSON:", texto);
+        let resultado;
 
-    alert(
-        "O PHP retornou uma resposta inválida.\n\n" +
-        "Veja o Console (F12) para descobrir o erro."
-    );
 
-    return;
-}
+        try {
+
+            resultado = JSON.parse(texto);
+
+        } catch (erro) {
+
+            console.error(
+                "PHP não retornou JSON:",
+                texto
+            );
+
+            alert(
+                "O PHP retornou uma resposta inválida.\n\n" +
+                "Veja o Console (F12) para descobrir o erro."
+            );
+
+            return;
+
+        }
 
 
         alert(
@@ -259,6 +311,7 @@ try {
             "Operação realizada."
         );
 
+
         if (resultado.sucesso) {
 
             fecharModal();
@@ -270,313 +323,390 @@ try {
 
     } catch (erro) {
 
-        console.error("Erro:", erro);
+        console.error(
+            "Erro:",
+            erro
+        );
 
-        alert("Erro ao salvar categoria.");
+        alert(
+            "Erro ao salvar categoria."
+        );
 
     }
 
-});
+}
+
+
+);
+
+// =====================================================
+// ABRIR NOVA CATEGORIA
+// =====================================================
 
 function abrirNovaCategoria() {
 
-    form.reset();
 
-    idCategoria.value = "";
+form.reset();
 
-    tituloModal.textContent = "Nova categoria";
+idCategoria.value = "";
 
-    statusCategoria.value = "Ativa";
+tituloModal.textContent =
+    "Nova categoria";
 
-    modal.classList.add("mostrar");
+statusCategoria.value =
+    "Ativa";
+
+modal.classList.add("mostrar");
+
 
 }
+
+// =====================================================
+// ABRIR EDIÇÃO
+// =====================================================
 
 function abrirEdicao(categoria) {
 
-    idCategoria.value = categoria.id_categoria;
 
-    nomeCategoria.value = categoria.nome;
+idCategoria.value =
+    categoria.id_categoria;
 
-    descricaoCategoria.value =
-        categoria.descricao || "";
+nomeCategoria.value =
+    categoria.nome;
 
-    statusCategoria.value =
-        categoria.status || "Ativa";
+descricaoCategoria.value =
+    categoria.descricao || "";
 
-    tituloModal.textContent =
-        "Editar categoria";
+statusCategoria.value =
+    categoria.status || "Ativa";
 
-    modal.classList.add("mostrar");
+tituloModal.textContent =
+    "Editar categoria";
+
+modal.classList.add("mostrar");
+
 
 }
+
+// =====================================================
+// FECHAR MODAL
+// =====================================================
 
 function fecharModal() {
 
-    modal.classList.remove("mostrar");
 
-    form.reset();
+modal.classList.remove("mostrar");
 
-    idCategoria.value = "";
+form.reset();
 
-    tituloModal.textContent =
-        "Nova categoria";
+idCategoria.value = "";
+
+tituloModal.textContent =
+    "Nova categoria";
+
 
 }
+
+// =====================================================
+// EXCLUIR CATEGORIA
+// =====================================================
 
 async function excluirCategoria(id) {
 
 
-    const confirmar = confirm(
-        "Tem certeza que deseja excluir esta categoria?"
+const confirmar = confirm(
+    "Tem certeza que deseja excluir esta categoria?"
+);
+
+
+if (!confirmar) {
+    return;
+}
+
+
+const dados = new FormData();
+
+dados.append(
+    "id_categoria",
+    id
+);
+
+
+try {
+
+    const resposta = await fetch(
+
+        API_CATEGORIAS + "excluir.php",
+
+        {
+            method: "POST",
+            body: dados
+        }
+
     );
 
 
-    if (!confirmar) {
+    if (!resposta.ok) {
 
-        return;
+        throw new Error(
+            "Erro HTTP: " + resposta.status
+        );
 
     }
 
 
-    const dados = new FormData();
+    const resultado =
+        await resposta.json();
 
-    dados.append(
-        "id_categoria",
-        id
+
+    alert(
+        resultado.mensagem ||
+        "Categoria excluída."
     );
 
 
-    try {
+    if (resultado.sucesso) {
 
-        const resposta = await fetch(
-
-            API_CATEGORIAS + "excluir.php",
-
-            {
-                method: "POST",
-                body: dados
-            }
-
-        );
-
-
-        if (!resposta.ok) {
-
-            throw new Error(
-                "Erro HTTP: " + resposta.status
-            );
-
-        }
-
-
-        const resultado =
-            await resposta.json();
-
-
-        alert(
-            resultado.mensagem ||
-            "Categoria excluída."
-        );
-
-
-        if (resultado.sucesso) {
-
-            await carregarCategorias();
-
-        }
-
-
-    } catch (erro) {
-
-        console.error("Erro:", erro);
-
-        alert(
-            "Erro ao excluir categoria."
-        );
+        await carregarCategorias();
 
     }
+
+
+} catch (erro) {
+
+    console.error(
+        "Erro:",
+        erro
+    );
+
+    alert(
+        "Erro ao excluir categoria."
+    );
 
 }
+
+
+}
+
+// =====================================================
+// ATUALIZAR CARDS
+// =====================================================
 
 function atualizarCards(categorias) {
 
 
-    const total =
-        categorias.length;
+const total =
+    categorias.length;
 
 
-    const ativas =
-        categorias.filter(
-            categoria =>
-                categoria.status === "Ativa"
-        ).length;
+const ativas =
+    categorias.filter(
+        categoria =>
+            categoria.status === "Ativa"
+    ).length;
 
 
-    const inativas =
-        categorias.filter(
-            categoria =>
-                categoria.status === "Inativa"
-        ).length;
+const inativas =
+    categorias.filter(
+        categoria =>
+            categoria.status === "Inativa"
+    ).length;
 
 
-    let produtos = 0;
+let produtos = 0;
 
 
-    categorias.forEach(categoria => {
+categorias.forEach(categoria => {
 
-        produtos +=
-            Number(categoria.produtos) || 0;
+    produtos +=
+        Number(categoria.produtos) || 0;
 
-    });
-
-    const elementoTotal =
-        document.querySelector(
-            "#totalCategorias"
-        );
+});
 
 
-    if (elementoTotal) {
-
-        elementoTotal.textContent =
-            total;
-
-    }
-
-    const elementoAtivas =
-        document.querySelector(
-            "#categoriasAtivas"
-        );
+const elementoTotal =
+    document.querySelector(
+        "#totalCategorias"
+    );
 
 
-    if (elementoAtivas) {
+if (elementoTotal) {
 
-        elementoAtivas.textContent =
-            ativas;
+    elementoTotal.textContent =
+        total;
 
-    }
-
-    const elementoInativas =
-        document.querySelector(
-            "#categoriasInativas"
-        );
+}
 
 
-    if (elementoInativas) {
-
-        elementoInativas.textContent =
-            inativas;
-
-    }
-
-    const elementoProdutos =
-        document.querySelector(
-            "#produtosVinculados"
-        );
+const elementoAtivas =
+    document.querySelector(
+        "#categoriasAtivas"
+    );
 
 
-    if (elementoProdutos) {
+if (elementoAtivas) {
 
-        elementoProdutos.textContent =
-            produtos;
+    elementoAtivas.textContent =
+        ativas;
 
-    }
-
-    const porcentagemAtivas =
-        total > 0
-            ? Math.round(
-                (ativas / total) * 100
-            )
-            : 0;
+}
 
 
-    const porcentagemInativas =
-        total > 0
-            ? Math.round(
-                (inativas / total) * 100
-            )
-            : 0;
+const elementoInativas =
+    document.querySelector(
+        "#categoriasInativas"
+    );
 
 
-    const elementoPorcentagemAtivas =
-        document.querySelector(
-            "#porcentagemAtivas"
-        );
+if (elementoInativas) {
+
+    elementoInativas.textContent =
+        inativas;
+
+}
 
 
-    if (elementoPorcentagemAtivas) {
-
-        elementoPorcentagemAtivas.textContent =
-            porcentagemAtivas + "% do total";
-
-    }
+const elementoProdutos =
+    document.querySelector(
+        "#produtosVinculados"
+    );
 
 
-    const elementoPorcentagemInativas =
-        document.querySelector(
-            "#porcentagemInativas"
-        );
+if (elementoProdutos) {
+
+    elementoProdutos.textContent =
+        produtos;
+
+}
 
 
-    if (elementoPorcentagemInativas) {
+const porcentagemAtivas =
+    total > 0
+        ? Math.round(
+            (ativas / total) * 100
+        )
+        : 0;
 
-        elementoPorcentagemInativas.textContent =
-            porcentagemInativas + "% do total";
+
+const porcentagemInativas =
+    total > 0
+        ? Math.round(
+            (inativas / total) * 100
+        )
+        : 0;
+
+
+const elementoPorcentagemAtivas =
+    document.querySelector(
+        "#porcentagemAtivas"
+    );
+
+
+if (elementoPorcentagemAtivas) {
+
+    elementoPorcentagemAtivas.textContent =
+        porcentagemAtivas + "% do total";
+
+}
+
+
+const elementoPorcentagemInativas =
+    document.querySelector(
+        "#porcentagemInativas"
+    );
+
+
+if (elementoPorcentagemInativas) {
+
+    elementoPorcentagemInativas.textContent =
+        porcentagemInativas + "% do total";
+
+}
+
+
+}
+
+// =====================================================
+// PESQUISA
+// =====================================================
+
+busca.addEventListener(
+"input",
+carregarCategorias
+);
+
+// =====================================================
+// FILTRO DE STATUS
+// =====================================================
+
+filtroStatus.addEventListener(
+"change",
+carregarCategorias
+);
+
+// =====================================================
+// FECHAR MODAL CLICANDO FORA
+// =====================================================
+
+modal.addEventListener(
+"click",
+function(event) {
+
+
+    if (event.target === modal) {
+
+        fecharModal();
 
     }
 
 }
 
-busca.addEventListener(
-    "input",
-    carregarCategorias
+
 );
 
-
-filtroStatus.addEventListener(
-    "change",
-    carregarCategorias
-);
-
-modal.addEventListener(
-    "click",
-    function(event) {
-
-        if (event.target === modal) {
-
-            fecharModal();
-
-        }
-
-    }
-);
+// =====================================================
+// FECHAR COM ESC
+// =====================================================
 
 document.addEventListener(
-    "keydown",
-    function(event) {
+"keydown",
+function(event) {
 
-        if (
-            event.key === "Escape" &&
-            modal.classList.contains("mostrar")
-        ) {
 
-            fecharModal();
+    if (
+        event.key === "Escape" &&
+        modal.classList.contains("mostrar")
+    ) {
 
-        }
+        fecharModal();
 
     }
+
+}
+
+
 );
+
+// =====================================================
+// ESCAPAR HTML
+// =====================================================
 
 function escaparHTML(texto) {
 
-    const div =
-        document.createElement("div");
 
-    div.textContent =
-        texto ?? "";
+const div =
+    document.createElement("div");
 
-    return div.innerHTML;
+div.textContent =
+    texto ?? "";
+
+return div.innerHTML;
+
 
 }
+
+// =====================================================
+// INICIAR
+// =====================================================
 
 carregarCategorias();
