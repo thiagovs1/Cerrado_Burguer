@@ -1,921 +1,359 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <meta charset="UTF-8">
-
-    <title>CerradoBurguer</title>
-
-    <link rel="stylesheet" href="../css/tela-inicial.css">
+<meta charset="UTF-8">
+<title>CerradoBurguer</title>
+<link rel="stylesheet" href="../css/tela-inicial.css">
 </head>
-
 <body>
 
-    <header class="topo">
+<header class="topo">
+<img src="../imagens/logo.png" class="logo" alt="Cerrado Burguer">
+
+<nav class="menu">
+<a href="#inicio">Início</a>
+<a href="#promocoes">Promoções</a>
+<a href="cardapio.html">Cardápio</a>
+<a href="#contato">Contato</a>
+<a href="#avaliacao">Avaliações</a>
+</nav>
+
+<div class="icons" id="area-perfil">
+<a href="../crud/login.html"><img src="../imagens/Perfil.png" alt="Perfil"></a>
+<a href="../html-carrinho/carrinho.php"><img src="../imagens/carrinho.png" class="icone-img" alt="Carrinho"></a>
+</div>
+</header>
+
+<section id="inicio">
+<div class="tela-preta"></div>
+
+<div class="inicio-conteudo">
+
+<div class="card-destaque" data-produto-id="22">
+<span class="numero">2</span>
+
+<div class="info">
+<h2>Acompanhamentos de sua preferência</h2>
+<p class="preco">R$ 17,90</p>
+<span class="add" onclick="adicionarProduto(22)">+</span>
+</div>
+
+<img src="../imagens/combo.png" alt="Acompanhamentos de sua preferência">
+</div>
+
+<div class="card-destaque escuro" data-produto-id="23">
+<span class="numero">3</span>
+
+<div class="info">
+<h2>Supremo Burguer</h2>
+<p class="preco">R$ 87,90</p>
+<span class="add" onclick="adicionarProduto(23)">+</span>
+</div>
+
+<img src="../imagens/amburgueres.png" alt="Supremo Burguer">
+</div>
+
+</div>
+</section>
+
+<section id="promocoes">
+<div class="proms">
+
+<div class="promo-card claro" data-produto-id="15">
+<h3>Cheddar Burguer</h3>
+<img src="../imagens/Amburguer_card.png" alt="Cheddar Burguer">
 
-        <img
-            src="../imagens/logo.png"
-            class="logo"
-            alt="Cerrado Burguer">
+<ul>
+<li>Pão Brioche</li>
+<li>Carne</li>
+<li>Queijo cheddar</li>
+<li>Molho especial</li>
+</ul>
 
+<p class="preco-antigo">De: 28,00 R$</p>
+<p class="preco-novo">Por: 25,99 R$</p>
+<span class="add" onclick="adicionarProduto(15)">+</span>
+</div>
 
-        <nav class="menu">
+<div class="promo-card marrom" data-produto-id="19">
+<h3>Hambúrguer Simples</h3>
+<img src="../imagens/burger5.png" alt="Hambúrguer Simples">
 
-            <a href="#inicio">
-                Início
-            </a>
+<ul>
+<li>Pão</li>
+<li>Carne</li>
+<li>Queijo cheddar</li>
+<li>Alface</li>
+<li>Tomate</li>
+</ul>
 
-            <a href="#promocoes">
-                Promoções
-            </a>
+<p class="preco-antigo">De: 20,00 R$</p>
+<p class="preco-novo">Por: 18,00 R$</p>
+<span class="add" onclick="adicionarProduto(19)">+</span>
+</div>
 
-            <a href="cardapio.html">
-                Cardápio
-            </a>
+<div class="promo-card claro" data-produto-id="8">
+<h3>Coca Cola 1L</h3>
+<img src="../imagens/coca.png" alt="Coca Cola 1L">
 
-            <a href="#contato">
-                Contato
-            </a>
+<p class="preco-antigo">De: 8,99 R$</p>
+<p class="preco-novo">Por: 6,99 R$</p>
+<span class="add" onclick="adicionarProduto(8)">+</span>
+</div>
 
-            <a href="#avaliacao">
-                Avaliações
-            </a>
+<div class="promo-card amarelo" data-produto-id="17">
+<h3>X-Burguer</h3>
+<img src="../imagens/amini.png" alt="X-Burguer">
 
-        </nav>
+<ul>
+<li>Pão</li>
+<li>Carne</li>
+<li>Bacon</li>
+<li>Queijo</li>
+</ul>
 
+<p class="preco-antigo">De: 38,00 R$</p>
+<p class="preco-novo">Por: 27,99 R$</p>
+<span class="add" onclick="adicionarProduto(17)">+</span>
+</div>
 
-        <div class="icons" id="area-perfil">
+</div>
+</section>
 
-            <a href="../crud/login.html">
+<section id="contato">
 
-                <img
-                    src="../imagens/Perfil.png"
-                    alt="Perfil">
+<div class="contato-info">
+<h1>Contato</h1>
+<h2>CERRADO BURGUER</h2>
 
-            </a>
+<p class="email-contato">
+E-mail:
+<span>cerrado_burguer@gmail.com</span>
+</p>
+</div>
 
+<div class="contato-formulario">
+<p>Utilize o formulário abaixo para nos enviar uma mensagem</p>
 
-            <a href="../html-carrinho/carrinho.html">
+<form>
+<label>Nome</label>
+<input type="text" required>
 
-                <img
-                    src="../imagens/carrinho.png"
-                    class="icone-img"
-                    alt="Carrinho">
+<label>E-mail</label>
+<input type="email" required>
 
-            </a>
+<label>Assunto</label>
+<input type="text" required>
 
-        </div>
+<label>Mensagem</label>
+<textarea required></textarea>
 
-    </header>
+<button type="submit" class="btn-contato">Enviar</button>
+</form>
+</div>
 
-    <section id="inicio">
+</section>
 
-        <div class="tela-preta"></div>
+<section id="avaliacao">
 
+<div class="avaliacoes">
 
-        <div class="inicio-conteudo">
+<div class="cabecalho-avaliacao">
 
-            <div class="card-destaque" data-produto-id="22">
+<div class="info-restaurante">
 
-                <span class="numero">
-                    2
-                </span>
+<img src="../imagens/logo.png" class="logo-avaliacao" alt="Logo">
 
+<div class="nome-restaurante">
 
-                <div class="info">
+<h2>Hamburgueria<br>Hambúrguer do Cerrado</h2>
 
-                    <h2>
-                        Acompanhamentos de sua preferência
-                    </h2>
+<p>Veja o que nossos clientes estão dizendo.</p>
 
+</div>
+</div>
 
-                    <p class="preco">
-                        R$ 17,90
-                    </p>
+<button id="abrirComentario" class="btn-comentar">✎ Comentar</button>
 
+</div>
 
-                    <span class="add">
-                        +
-                    </span>
+<h3 class="titulo-comentarios">Comentários</h3>
 
-                </div>
+<div class="comentario">
+<div class="foto-usuario">👤</div>
 
+<div class="conteudo-comentario">
 
-                <img
-                    src="../imagens/combo.png"
-                    alt="Acompanhamentos de sua preferência">
+<div class="nome">Otávio Pereira de Rosa</div>
+<div class="tempo">1 semana atrás</div>
+<div class="estrelas-texto">★★★★★</div>
+<div class="texto-comentario">Excelente atendimento.</div>
 
-            </div>
+<div class="acoes">
+<a href="#">↩ Responder</a>
+<a href="#">👍 Curtir</a>
+</div>
 
-            <div class="card-destaque escuro" data-produto-id="23">
+</div>
+</div>
 
-                <span class="numero">
-                    3
-                </span>
+<div class="comentario">
+<div class="foto-usuario">👤</div>
 
+<div class="conteudo-comentario">
 
-                <div class="info">
+<div class="nome">Nathalia de Souza</div>
+<div class="tempo">1 semana atrás</div>
+<div class="estrelas-texto">★★★★★</div>
+<div class="texto-comentario">Adorei o atendimento. Os preços são ótimos!</div>
 
-                    <h2>
-                        Supremo Burguer
-                    </h2>
+<div class="acoes">
+<a href="#">↩ Responder</a>
+<a href="#">👍 Curtir</a>
+</div>
 
+</div>
+</div>
 
-                    <p class="preco">
-                        R$ 87,90
-                    </p>
+<div class="comentario">
+<div class="foto-usuario">👤</div>
 
+<div class="conteudo-comentario">
 
-                    <span class="add">
-                        +
-                    </span>
+<div class="nome">Felipe Flausino</div>
+<div class="tempo">1 semana atrás</div>
+<div class="estrelas-texto">★★★★★</div>
+<div class="texto-comentario">Atendimento rápido e comida deliciosa.</div>
 
-                </div>
+<div class="acoes">
+<a href="#">↩ Responder</a>
+<a href="#">👍 Curtir</a>
+</div>
 
+</div>
+</div>
 
-                <img
-                    src="../imagens/amburgueres.png"
-                    alt="Supremo Burguer">
+<div class="comentario">
+<div class="foto-usuario">👤</div>
 
-            </div>
+<div class="conteudo-comentario">
 
-        </div>
+<div class="nome">Allana</div>
+<div class="tempo">1 semana atrás</div>
+<div class="estrelas-texto">★★★★★</div>
+<div class="texto-comentario">Melhor hambúrguer da cidade.</div>
 
-    </section>
+<div class="acoes">
+<a href="#">↩ Responder</a>
+<a href="#">👍 Curtir</a>
+</div>
 
-    <section id="promocoes">
+</div>
+</div>
 
-        <div class="proms">
+</div>
+</section>
 
-            <div class="promo-card claro" data-produto-id="15">
+<div id="modal" class="modal">
 
-                <h3>
-                    Cheddar Burguer
-                </h3>
+<div class="caixa-comentario">
 
+<h2>Avalie nosso atendimento</h2>
 
-                <img
-                    src="../imagens/Amburguer_card.png"
-                    alt="Cheddar Burguer">
+<div class="estrelas">
 
+<input type="radio" id="estrela5" name="estrela">
+<label for="estrela5">★</label>
 
-                <ul>
+<input type="radio" id="estrela4" name="estrela">
+<label for="estrela4">★</label>
 
-                    <li>
-                        Pão Brioche
-                    </li>
+<input type="radio" id="estrela3" name="estrela">
+<label for="estrela3">★</label>
 
-                    <li>
-                        Carne
-                    </li>
+<input type="radio" id="estrela2" name="estrela">
+<label for="estrela2">★</label>
 
-                    <li>
-                        Queijo cheddar
-                    </li>
+<input type="radio" id="estrela1" name="estrela">
+<label for="estrela1">★</label>
 
-                    <li>
-                        Molho especial
-                    </li>
+</div>
 
-                </ul>
+<textarea placeholder="Conte para nós como foi sua experiência..."></textarea>
 
+<div class="botoes">
+<button id="cancelar">Cancelar</button>
+<button id="enviar">Enviar</button>
+</div>
 
-                <p class="preco-antigo">
-                    De: 28,00 R$
-                </p>
+</div>
+</div>
 
+<script>
 
-                <p class="preco-novo">
-                    Por: 25,99 R$
-                </p>
+function adicionarProduto(idProduto) {
+const form = document.createElement('form');
+form.method = 'POST';
+form.action = '../php/carrinho.php';
 
+const acao = document.createElement('input');
+acao.type = 'hidden';
+acao.name = 'acao';
+acao.value = 'adicionar';
 
-                <span class="add">
-                    +
-                </span>
+const produto = document.createElement('input');
+produto.type = 'hidden';
+produto.name = 'id_produto';
+produto.value = idProduto;
 
-            </div>
+form.appendChild(acao);
+form.appendChild(produto);
 
-            <div class="promo-card marrom" data-produto-id="19">
+document.body.appendChild(form);
+form.submit();
+}
 
-                <h3>
-                    Hambúrguer Simples
-                </h3>
+fetch('../crud/check_session.php')
+.then(response => response.json())
+.then(data => {
 
+const areaPerfil = document.getElementById('area-perfil');
 
-                <img
-                    src="../imagens/burger5.png"
-                    alt="Hambúrguer Simples">
+if (data.logado) {
 
+areaPerfil.innerHTML = `
+<a href="../crud/perfil.php" class="user-menu">
+<img src="../imagens/Perfil.png" alt="Perfil">
+</a>
 
-                <ul>
+<a href="../html-carrinho/carrinho.php">
+<img src="../imagens/carrinho.png" class="icone-img" alt="Carrinho">
+</a>
+`;
 
-                    <li>
-                        Pão
-                    </li>
+}
+});
 
-                    <li>
-                        Carne
-                    </li>
+const modal = document.getElementById("modal");
 
-                    <li>
-                        Queijo cheddar
-                    </li>
+document.getElementById("abrirComentario").addEventListener("click", function() {
+modal.style.display = "flex";
+});
 
-                    <li>
-                        Alface
-                    </li>
+document.getElementById("cancelar").addEventListener("click", function() {
+modal.style.display = "none";
+});
 
-                    <li>
-                        Tomate
-                    </li>
+window.addEventListener("click", function(e) {
 
-                </ul>
+if (e.target === modal) {
+modal.style.display = "none";
+}
 
+});
 
-                <p class="preco-antigo">
-                    De: 20,00 R$
-                </p>
-
-
-                <p class="preco-novo">
-                    Por: 18,00 R$
-                </p>
-
-
-                <span class="add">
-                    +
-                </span>
-
-            </div>
-
-            <div class="promo-card claro" data-produto-id="8">
-
-                <h3>
-                    Coca Cola 1L
-                </h3>
-
-
-                <img
-                    src="../imagens/coca.png"
-                    alt="Coca Cola 1L">
-
-
-                <p class="preco-antigo">
-                    De: 8,99 R$
-                </p>
-
-
-                <p class="preco-novo">
-                    Por: 6,99 R$
-                </p>
-
-
-                <span class="add">
-                    +
-                </span>
-
-            </div>
-
-            <div class="promo-card amarelo" data-produto-id="17">
-
-                <h3>
-                    X-Burguer
-                </h3>
-
-
-                <img
-                    src="../imagens/amini.png"
-                    alt="X-Burguer">
-
-
-                <ul>
-
-                    <li>
-                        Pão
-                    </li>
-
-                    <li>
-                        Carne
-                    </li>
-
-                    <li>
-                        Bacon
-                    </li>
-
-                    <li>
-                        Queijo
-                    </li>
-
-                </ul>
-
-
-                <p class="preco-antigo">
-                    De: 38,00 R$
-                </p>
-
-
-                <p class="preco-novo">
-                    Por: 27,99 R$
-                </p>
-
-
-                <span class="add">
-                    +
-                </span>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <section id="contato">
-
-        <div class="contato-info">
-
-            <h1>
-                Contato
-            </h1>
-
-
-            <h2>
-                CERRADO BURGUER
-            </h2>
-
-
-            <p class="email-contato">
-
-                E-mail:
-
-                <span>
-                    cerrado_burguer@gmail.com
-                </span>
-
-            </p>
-
-        </div>
-
-
-        <div class="contato-formulario">
-
-            <p>
-                Utilize o formulário abaixo para nos enviar uma mensagem
-            </p>
-
-
-            <form>
-
-                <label>
-                    Nome
-                </label>
-
-                <input
-                    type="text"
-                    required>
-
-
-                <label>
-                    E-mail
-                </label>
-
-                <input
-                    type="email"
-                    required>
-
-
-                <label>
-                    Assunto
-                </label>
-
-                <input
-                    type="text"
-                    required>
-
-
-                <label>
-                    Mensagem
-                </label>
-
-                <textarea required></textarea>
-
-
-                <button
-                    type="submit"
-                    class="btn-contato">
-
-                    Enviar
-
-                </button>
-
-            </form>
-
-        </div>
-
-    </section>
-
-    <section id="avaliacao">
-
-        <div class="avaliacoes">
-
-
-            <div class="cabecalho-avaliacao">
-
-                <div class="info-restaurante">
-
-                    <img
-                        src="../imagens/logo.png"
-                        class="logo-avaliacao"
-                        alt="Logo">
-
-
-                    <div class="nome-restaurante">
-
-                        <h2>
-                            Hamburgueria<br>
-                            Hambúrguer do Cerrado
-                        </h2>
-
-
-                        <p>
-                            Veja o que nossos clientes estão dizendo.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <button
-                    id="abrirComentario"
-                    class="btn-comentar">
-
-                    ✎ Comentar
-
-                </button>
-
-            </div>
-
-
-            <h3 class="titulo-comentarios">
-                Comentários
-            </h3>
-
-            <div class="comentario">
-
-                <div class="foto-usuario">
-                    👤
-                </div>
-
-
-                <div class="conteudo-comentario">
-
-                    <div class="nome">
-                        Otávio Pereira de Rosa
-                    </div>
-
-
-                    <div class="tempo">
-                        1 semana atrás
-                    </div>
-
-
-                    <div class="estrelas-texto">
-                        ★★★★★
-                    </div>
-
-
-                    <div class="texto-comentario">
-                        Excelente atendimento.
-                    </div>
-
-
-                    <div class="acoes">
-
-                        <a href="#">
-                            ↩ Responder
-                        </a>
-
-                        <a href="#">
-                            👍 Curtir
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="comentario">
-
-                <div class="foto-usuario">
-                    👤
-                </div>
-
-
-                <div class="conteudo-comentario">
-
-                    <div class="nome">
-                        Nathalia de Souza
-                    </div>
-
-
-                    <div class="tempo">
-                        1 semana atrás
-                    </div>
-
-
-                    <div class="estrelas-texto">
-                        ★★★★★
-                    </div>
-
-
-                    <div class="texto-comentario">
-                        Adorei o atendimento. Os preços são ótimos!
-                    </div>
-
-
-                    <div class="acoes">
-
-                        <a href="#">
-                            ↩ Responder
-                        </a>
-
-                        <a href="#">
-                            👍 Curtir
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="comentario">
-
-                <div class="foto-usuario">
-                    👤
-                </div>
-
-
-                <div class="conteudo-comentario">
-
-                    <div class="nome">
-                        Felipe Flausino
-                    </div>
-
-
-                    <div class="tempo">
-                        1 semana atrás
-                    </div>
-
-
-                    <div class="estrelas-texto">
-                        ★★★★★
-                    </div>
-
-
-                    <div class="texto-comentario">
-                        Atendimento rápido e comida deliciosa.
-                    </div>
-
-
-                    <div class="acoes">
-
-                        <a href="#">
-                            ↩ Responder
-                        </a>
-
-                        <a href="#">
-                            👍 Curtir
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="comentario">
-
-                <div class="foto-usuario">
-                    👤
-                </div>
-
-
-                <div class="conteudo-comentario">
-
-                    <div class="nome">
-                        Allana
-                    </div>
-
-
-                    <div class="tempo">
-                        1 semana atrás
-                    </div>
-
-
-                    <div class="estrelas-texto">
-                        ★★★★★
-                    </div>
-
-
-                    <div class="texto-comentario">
-                        Melhor hambúrguer da cidade.
-                    </div>
-
-
-                    <div class="acoes">
-
-                        <a href="#">
-                            ↩ Responder
-                        </a>
-
-                        <a href="#">
-                            👍 Curtir
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <div id="modal" class="modal">
-
-        <div class="caixa-comentario">
-
-            <h2>
-                Avalie nosso atendimento
-            </h2>
-
-
-            <div class="estrelas">
-
-                <input
-                    type="radio"
-                    id="estrela5"
-                    name="estrela">
-
-                <label for="estrela5">
-                    ★
-                </label>
-
-
-                <input
-                    type="radio"
-                    id="estrela4"
-                    name="estrela">
-
-                <label for="estrela4">
-                    ★
-                </label>
-
-
-                <input
-                    type="radio"
-                    id="estrela3"
-                    name="estrela">
-
-                <label for="estrela3">
-                    ★
-                </label>
-
-
-                <input
-                    type="radio"
-                    id="estrela2"
-                    name="estrela">
-
-                <label for="estrela2">
-                    ★
-                </label>
-
-
-                <input
-                    type="radio"
-                    id="estrela1"
-                    name="estrela">
-
-                <label for="estrela1">
-                    ★
-                </label>
-
-            </div>
-
-
-            <textarea
-                placeholder="Conte para nós como foi sua experiência...">
-            </textarea>
-
-
-            <div class="botoes">
-
-                <button id="cancelar">
-                    Cancelar
-                </button>
-
-
-                <button id="enviar">
-                    Enviar
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <script>
-
-        fetch('../crud/check_session.php')
-
-            .then(response => response.json())
-
-            .then(data => {
-
-                const areaPerfil =
-                    document.getElementById('area-perfil');
-
-
-                if (data.logado) {
-
-    areaPerfil.innerHTML = `
-
-        <a href="../crud/perfil.php" class="user-menu">
-
-            <img 
-                src="../imagens/Perfil.png" 
-                alt="Perfil">
-
-        </a>
-
-        <a href="../html-carrinho/carrinho.html">
-
-            <img 
-                src="../imagens/carrinho.png"
-                class="icone-img"
-                alt="Carrinho">
-
-        </a>
-
-    `;
-            }
-
-            });
-
-        const urlParams =
-            new URLSearchParams(
-                window.location.search
-            );
-
-
-        const erro =
-            urlParams.get('erro');
-
-
-        const sucesso =
-            urlParams.get('sucesso');
-
-
-        const alerta =
-            document.getElementById(
-                'mensagem-alerta'
-            );
-
-
-        if (erro || sucesso) {
-
-            alerta.innerText =
-                erro || sucesso;
-
-
-            alerta.style.display =
-                'block';
-
-
-            alerta.style.backgroundColor =
-                erro
-                    ? '#ffcccc'
-                    : '#ccffcc';
-
-
-            alerta.style.color =
-                erro
-                    ? 'red'
-                    : 'green';
-
-
-            alerta.style.border =
-                `1px solid ${
-                    erro
-                        ? 'red'
-                        : 'green'
-                }`;
-
-
-            setTimeout(() => {
-
-                alerta.style.display =
-                    'none';
-
-            }, 5000);
-
-        }
-
-        function abrirModal(e) {
-
-            e.preventDefault();
-
-            document.getElementById(
-                'modalExcluir'
-            ).style.display = 'flex';
-
-        }
-
-
-        function fecharModal() {
-
-            document.getElementById(
-                'modalExcluir'
-            ).style.display = 'none';
-
-        }
-
-
-        window.addEventListener(
-            'click',
-            function(event) {
-
-                const modal =
-                    document.getElementById(
-                        'modalExcluir'
-                    );
-
-
-                if (event.target === modal) {
-
-                    fecharModal();
-
-                }
-
-            }
-        );
-        const modal =
-            document.getElementById(
-                "modal"
-            );
-
-
-        document
-            .getElementById("abrirComentario")
-            .addEventListener(
-                "click",
-                function() {
-
-                    modal.style.display =
-                        "flex";
-
-                }
-            );
-
-
-        document
-            .getElementById("cancelar")
-            .addEventListener(
-                "click",
-                function() {
-
-                    modal.style.display =
-                        "none";
-
-                }
-            );
-
-
-        window.addEventListener(
-            "click",
-            function(e) {
-
-                if (e.target === modal) {
-
-                    modal.style.display =
-                        "none";
-
-                }
-
-            }
-        );
-
-    </script>
-
-    <script src="../js/carrinho.js"></script>
-
+</script>
 
 </body>
-
 </html>
+

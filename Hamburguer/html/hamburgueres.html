@@ -1,32 +1,33 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
 
-    <title>
-        Cardápio - Cerrado Burguer
-    </title>
-    <link
-        rel="stylesheet"
-        href="../css-cardapio-tela-inicial/hamburguer.css">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hambúrgueres - Cerrado Burguer</title>
+
+    <link rel="stylesheet" href="../css-cardapio-tela-inicial/hamburguer.css">
+    <link rel="stylesheet" href="../css/menu_perfil.css">
+
 </head>
 
 <body>
 
 <header class="topo">
 
-    <a href="../html/tela-inicial.html">
-
-        <img
-            src="../imagens/logo.png" class="logo">
+    <a href="tela-inicial.html">
+        <img src="../imagens/logo.png" class="logo" alt="Cerrado Burguer">
     </a>
+
     <nav class="menu">
+
         <a href="tela-inicial.html">
             Inicio
         </a>
 
-        <a href="#promocoes">
+        <a href="tela-inicial.html#promocoes">
             Promoções
         </a>
 
@@ -38,30 +39,20 @@
             Contato
         </a>
 
-        <a href="#avaliacao">
+        <a href="tela-inicial.html#avaliacao">
             Avaliações
         </a>
 
     </nav>
 
-
     <div class="icons">
 
         <a href="../crud/perfil.php">
-
-            <img
-                src="../imagens/Perfil.png"
-                alt="Perfil">
-
+            <img src="../imagens/Perfil.png" alt="Perfil">
         </a>
 
-
-        <a href="../html-carrinho/carrinho.html">
-
-            <img
-                src="../imagens/carrinho.png"
-                class="icone-img">
-
+        <a href="../html-carrinho/carrinho.php">
+            <img src="../imagens/carrinho.png" alt="Carrinho">
         </a>
 
     </div>
@@ -69,165 +60,285 @@
 </header>
 
 
+<main>
 
-<section id="hamburgueres">
+    <h1>Hambúrgueres</h1>
 
-    <h3>
-        Hambúrgueres
-    </h3>
+    <div class="produtos">
 
 
-    <div class="lista-hambuguer">
-
-        <div
-            class="burger-item pao"
-            data-produto-id="15">
+        <!-- PRODUTO 15 -->
+        <div class="item">
 
             <img
-                src="../imagens/Amburguer_card - Copia.png">
+                src="../imagens/Amburguer_card - Copia.png"
+                alt="Cheddar Burguer">
 
-            <p>
-                Cheddar Burguer – Pão brioche, cheddar duplo e carne dupla
-            </p>
+            <div>
 
-            <span>
-                R$ 28,00
-            </span>
-
-            <div class="add">
-                +
-            </div>
-
-        </div>
-
-        <div
-            class="burger-item pao"
-            data-produto-id="16">
-
-            <img
-                src="../imagens/Burguer2.png">
-
-            <p>
-                Tropical Burguer – Carne, queijo, abacaxi grelhado e molho agridoce
-            </p>
-
-            <span>
-                R$ 30,00
-            </span>
-
-            <div class="add">
-                +
-            </div>
-
-        </div>
-        <div
-            class="burger-item carne"
-            data-produto-id="17">
-
-            <img
-                src="../imagens/burguer3.png">
-
-            <p>
-                X-Burguer – Carne, alface, tomate, bacon e cheddar
-            </p>
-
-            <span>
-                R$ 38,00
-            </span>
-
-            <div class="add">
-                +
-            </div>
-
-        </div>
-        <div
-            class="burger-item carne"
-            data-produto-id="18">
-
-            <img
-                src="../imagens/burguer4.png">
-
-            <p>
-                Smash Burguer Duplo – Dois smash, queijo e molho da casa
-            </p>
-
-            <span>
-                R$ 25,00
-            </span>
-
-            <div class="add">
-                +
-            </div>
-
-        </div>
-
-        <div
-            class="burger-item carne"
-            data-produto-id="19">
-
-            <img
-                src="../imagens/burger5.png">
-
-            <p>
-                Burguer Simples – Carne, queijo, alface e tomate
-            </p>
-
-            <span>
-                R$ 20,00
-            </span>
-
-            <div class="add">
-                +
-            </div>
-
-        </div>
-
-        <div
-            class="burger-item"
-            data-produto-id="20">
-
-            <img
-                src="../imagens/burger6.png"
-                alt="X-Bacon">
-
-
-            <div class="info">
+                <h2>
+                    Cheddar Burguer
+                </h2>
 
                 <p>
-                    X-Bacon
+                    Pão brioche, cheddar duplo e carne dupla.
                 </p>
 
                 <span>
-                    R$ 36,98
+                    R$ 28,00
                 </span>
 
             </div>
 
+            <form action="../php/carrinho.php" method="POST">
 
-            <div class="add">
-                +
-            </div>
+                <input
+                    type="hidden"
+                    name="acao"
+                    value="adicionar">
+
+                <input
+                    type="hidden"
+                    name="id_produto"
+                    value="15">
+
+                <button
+                    type="submit"
+                    class="add">
+                    +
+                </button>
+
+            </form>
 
         </div>
 
-        <div
-            class="burger-item pao"
-            data-produto-id="21">
+
+        <!-- PRODUTO 16 -->
+        <div class="item">
 
             <img
-                src="../imagens/burguer7.png">
+                src="../imagens/Burguer2.png"
+                alt="Tropical Burguer">
 
-            <p>
-                Supremo Burguer – Carne, picles, alface, tomate e maionese
-            </p>
+            <div>
 
-            <span>
-                R$ 30,00
-            </span>
+                <h2>
+                    Tropical Burguer
+                </h2>
 
-            <div class="add">
-                +
+                <p>
+                    Carne, queijo, abacaxi grelhado e molho agridoce.
+                </p>
+
+                <span>
+                    R$ 30,00
+                </span>
+
             </div>
+
+            <form action="../php/carrinho.php" method="POST">
+
+                <input
+                    type="hidden"
+                    name="acao"
+                    value="adicionar">
+
+                <input
+                    type="hidden"
+                    name="id_produto"
+                    value="16">
+
+                <button
+                    type="submit"
+                    class="add">
+                    +
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- PRODUTO 17 -->
+        <div class="item">
+
+            <img
+                src="../imagens/burguer3.png"
+                alt="X-Burguer">
+
+            <div>
+
+                <h2>
+                    X-Burguer
+                </h2>
+
+                <p>
+                    Carne, alface, tomate, bacon e cheddar.
+                </p>
+
+                <span>
+                    R$ 38,00
+                </span>
+
+            </div>
+
+            <form action="../php/carrinho.php" method="POST">
+
+                <input
+                    type="hidden"
+                    name="acao"
+                    value="adicionar">
+
+                <input
+                    type="hidden"
+                    name="id_produto"
+                    value="17">
+
+                <button
+                    type="submit"
+                    class="add">
+                    +
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- PRODUTO 18 -->
+        <div class="item">
+
+            <img
+                src="../imagens/burguer4.png"
+                alt="Smash Burguer Duplo">
+
+            <div>
+
+                <h2>
+                    Smash Burguer Duplo
+                </h2>
+
+                <p>
+                    Dois smash, queijo e molho da casa.
+                </p>
+
+                <span>
+                    R$ 25,00
+                </span>
+
+            </div>
+
+            <form action="../php/carrinho.php" method="POST">
+
+                <input
+                    type="hidden"
+                    name="acao"
+                    value="adicionar">
+
+                <input
+                    type="hidden"
+                    name="id_produto"
+                    value="18">
+
+                <button
+                    type="submit"
+                    class="add">
+                    +
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- PRODUTO 19 -->
+        <div class="item">
+
+            <img
+                src="../imagens/burger5.png"
+                alt="Burguer Simples">
+
+            <div>
+
+                <h2>
+                    Burguer Simples
+                </h2>
+
+                <p>
+                    Carne, queijo, alface e tomate.
+                </p>
+
+                <span>
+                    R$ 20,00
+                </span>
+
+            </div>
+
+            <form action="../php/carrinho.php" method="POST">
+
+                <input
+                    type="hidden"
+                    name="acao"
+                    value="adicionar">
+
+                <input
+                    type="hidden"
+                    name="id_produto"
+                    value="19">
+
+                <button
+                    type="submit"
+                    class="add">
+                    +
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- PRODUTO 20 -->
+        <div class="item">
+
+            <img
+                src="../imagens/burger6.png"
+                alt="Supremo Burguer">
+
+            <div>
+
+                <h2>
+                    Supremo Burguer
+                </h2>
+
+                <p>
+                    Carne, picles, alface, tomate e maionese.
+                </p>
+
+                <span>
+                    R$ 30,00
+                </span>
+
+            </div>
+
+            <form action="../php/carrinho.php" method="POST">
+
+                <input
+                    type="hidden"
+                    name="acao"
+                    value="adicionar">
+
+                <input
+                    type="hidden"
+                    name="id_produto"
+                    value="20">
+
+                <button
+                    type="submit"
+                    class="add">
+                    +
+                </button>
+
+            </form>
 
         </div>
 
@@ -235,8 +346,7 @@
     </div>
 
 
-
-    <div class="linha-voltar">
+    <div class="area-voltar">
 
         <a
             href="cardapio.html"
@@ -248,13 +358,7 @@
 
     </div>
 
-
-</section>
-
-
-
-<script src="../js/carrinho.js"></script>
-
+</main>
 
 </body>
 

@@ -5,25 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Cardápio - Cerrado Burguer</title>
+    <title>Combos - Cerrado Burguer</title>
 
     <link rel="stylesheet" href="../css-cardapio-tela-inicial/combos.css">
+    <link rel="stylesheet" href="../css/menu_perfil.css">
 </head>
 
 <body>
 
 <header class="topo">
 
-    <a href="../html/tela-inicial.html">
-        <img src="../imagens/logo.png" class="logo">
+    <a href="tela-inicial.html">
+        <img src="../imagens/logo.png" class="logo" alt="Cerrado Burguer">
     </a>
 
     <nav class="menu">
         <a href="tela-inicial.html">Inicio</a>
-        <a href="#promocoes">Promoções</a>
+        <a href="tela-inicial.html#promocoes">Promoções</a>
         <a href="cardapio.html">Cardápio</a>
         <a href="tela-inicial.html">Contato</a>
-        <a href="#avaliacao">Avaliações</a>
+        <a href="tela-inicial.html#avaliacao">Avaliações</a>
     </nav>
 
     <div class="icons">
@@ -32,7 +33,7 @@
             <img src="../imagens/Perfil.png" alt="Perfil">
         </a>
 
-        <a href="../html-carrinho/carrinho.html">
+        <a href="../html-carrinho/carrinho.php">
             <img src="../imagens/carrinho.png" alt="Carrinho">
         </a>
 
@@ -41,98 +42,135 @@
 </header>
 
 
-<section id="combos">
+<main>
 
     <h1>Combos</h1>
 
+    <div class="produtos">
 
-    <div class="lista-combos">
+        <!-- COMBO 21 -->
+        <div class="item">
 
-        <div class="combo-item combo-claro" data-produto-id="22">
+            <img src="../imagens/Co1.png" alt="2 Acompanhamentos">
 
-            <h3>2 Acompanhamentos de sua preferência</h3>
+            <div class="informacoes">
 
-            <ul>
-                <li>Uma porção de anéis de cebola, porção pequena</li>
-                <li>Bolinho de mandioca com carne seca, porção pequena</li>
-                <li>Batata Frita 500g</li>
-            </ul>
+                <h2>2 Acompanhamentos de sua preferência</h2>
 
-            <img src="../imagens/Co1.png">
+                <p>
+                    Uma porção de anéis de cebola, porção pequena.<br>
+                    Bolinho de mandioca com carne seca, porção pequena.<br>
+                    Batata Frita 500g.
+                </p>
 
-            <span>R$ 17,90</span>
+                <span>R$ 17,90</span>
 
-            <div class="add">+</div>
+            </div>
+
+            <form action="../php/carrinho.php" method="POST">
+
+                <input type="hidden" name="acao" value="adicionar">
+                <input type="hidden" name="id_produto" value="21">
+
+                <button type="submit" class="add">+</button>
+
+            </form>
 
         </div>
 
 
-        <div class="combo-item combo-escuro" data-produto-id="23">
+        <!-- COMBO 22 -->
+        <div class="item">
 
-            <h3>3 Supremo Burguer</h3>
+            <img src="../imagens/amburgueres.png" alt="3 Supremo Burguer">
 
-            <ul>
-                <li>
+            <div class="informacoes">
+
+                <h2>3 Supremo Burguer</h2>
+
+                <p>
                     Supremo Burguer - Pão de azeite, carne,
-                    picles, alface, tomate e molho de maionese
-                </li>
-            </ul>
+                    picles, alface, tomate e molho de maionese.
+                </p>
 
-            <img src="../imagens/amburgueres.png">
+                <span>R$ 87,90</span>
 
-            <span>R$ 87,90</span>
+            </div>
 
-            <div class="add">+</div>
+            <form action="../php/carrinho.php" method="POST">
+
+                <input type="hidden" name="acao" value="adicionar">
+                <input type="hidden" name="id_produto" value="22">
+
+                <button type="submit" class="add">+</button>
+
+            </form>
 
         </div>
 
 
-        <div class="combo-item combo-escuro" data-produto-id="24">
+        <!-- COMBO 23 -->
+        <div class="item">
 
-            <h3>Cheddar Burguer e Coca-Cola</h3>
+            <img src="../imagens/Amburguer_card.png"
+                 alt="Cheddar Burguer e Coca-Cola">
 
-            <ul>
-                <li>
+            <div class="informacoes">
+
+                <h2>Cheddar Burguer e Coca-Cola</h2>
+
+                <p>
                     Cheddar Burguer - Pão Brioche,
-                    cheddar duplo e carne dupla
-                </li>
+                    cheddar duplo e carne dupla.<br>
+                    Coca-Cola 1L.
+                </p>
 
-                <li>Coca-Cola 1L</li>
-            </ul>
+                <span>R$ 28,90</span>
 
-            <img src="../imagens/Amburguer_card.png">
+            </div>
 
-            <span>R$ 28,90</span>
+            <form action="../php/carrinho.php" method="POST">
 
-            <div class="add">+</div>
+                <input type="hidden" name="acao" value="adicionar">
+                <input type="hidden" name="id_produto" value="23">
+
+                <button type="submit" class="add">+</button>
+
+            </form>
 
         </div>
 
 
-        <div class="combo-item combo-claro" data-produto-id="25">
+        <!-- COMBO 24 -->
+        <div class="item">
 
-            <h3>
-                Bolinho de mandioca com carne seca e 2 molhos
-            </h3>
+            <img src="../imagens/bolinhoM.png"
+                 alt="Bolinho de mandioca com carne seca">
 
-            <ul>
-                <li>
+            <div class="informacoes">
+
+                <h2>Bolinho de mandioca com carne seca e 2 molhos</h2>
+
+                <p>
                     Bolinho de mandioca com carne seca,
-                    porção pequena
-                </li>
+                    porção pequena.<br>
+                    Molho barbecue 150g.<br>
+                    Geleia de pimenta 150g.<br>
+                    Maionese Temperada 150g.
+                </p>
 
-                <li>Molho barbecue 150g</li>
+                <span>R$ 16,00</span>
 
-                <li>Geleia de pimenta 150g</li>
+            </div>
 
-                <li>Maionese Temperada 150g</li>
-            </ul>
+            <form action="../php/carrinho.php" method="POST">
 
-            <img src="../imagens/bolinhoM.png">
+                <input type="hidden" name="acao" value="adicionar">
+                <input type="hidden" name="id_produto" value="24">
 
-            <span>R$ 16,00</span>
+                <button type="submit" class="add">+</button>
 
-            <div class="add">+</div>
+            </form>
 
         </div>
 
@@ -146,10 +184,7 @@
 
     </div>
 
-
-</section>
-
-<script src="../js/carrinho.js"></script>
+</main>
 
 </body>
 </html>

@@ -1,153 +1,393 @@
 html {
-    scroll-behavior: smooth; }
+    scroll-behavior: smooth;
+}
 
 body {
     background-color: #fdf3dd;
-     margin: 0;
-      font-family: Georgia, Arial, Helvetica, sans-serif; }
+    margin: 0;
+    font-family: Georgia, Arial, Helvetica, sans-serif;
+}
 
-.icons a img {
-    cursor: pointer; }
+
+/* =========================
+   CABEÇALHO
+========================= */
 
 .topo {
     background-color: #fdf3dd;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     gap: 40px;
+
     padding: 5px 50px;
+
     position: fixed;
+
+    top: 0;
+    left: 0;
+
     width: 100%;
+
     box-sizing: border-box;
+
     z-index: 1000;
 }
 
+
+/* LOGO */
+
 .logo {
-    width: 100px; }
+    width: 100px;
+    height: auto;
+}
+
+
+/* =========================
+   MENU
+========================= */
 
 .menu {
-    display: flex; 
-    gap: 70px; }
+    display: flex;
+    gap: 70px;
+}
 
 .menu a {
-    text-decoration: none; 
+    text-decoration: none;
+
     color: #481c11;
-     font-size: 20px; }
+
+    font-size: 20px;
+}
 
 .menu a:hover {
-    color: #f36f40; }
+    color: #f36f40;
+}
+
+
+/* =========================
+   ÍCONES
+========================= */
 
 .icons {
-    display: flex; 
-    gap: 10px; }
+    display: flex;
+    gap: 10px;
+}
+
+.icons a img {
+    cursor: pointer;
+}
 
 .icons img {
-    width: 45px; }
+    width: 45px;
+    height: 45px;
 
-section {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    box-sizing: border-box;
+    object-fit: contain;
 }
+
+
+/* =========================
+   SEÇÃO
+========================= */
 
 #bebidas {
     background: #f1dfb6;
+
     min-height: 100vh;
+
     padding: 160px 40px 40px;
+
     display: flex;
+
     flex-direction: column;
+
     justify-content: flex-start;
+
     align-items: center;
+
     box-sizing: border-box;
 }
 
+
+/* =========================
+   TÍTULO
+========================= */
+
 #bebidas h3 {
     font-size: 40px;
+
     color: #5a2818;
+
     margin-top: 0;
+
     margin-bottom: 35px;
 }
-.lista-bebidas{
+
+
+/* =========================
+   LISTA
+========================= */
+
+.lista-bebidas {
     display: grid;
-    grid-template-columns: 1fr 1fr; 
+
+    grid-template-columns: 1fr 1fr;
+
     gap: 40px 80px;
+
     max-width: 1000px;
+
     width: 100%;
 }
+
+
+/* =========================
+   PRODUTO
+========================= */
+
 .bebida-item {
     width: 90%;
+
+    min-height: 90px;
+
     margin: 0 auto;
+
     padding: 20px;
+
     border-radius: 40px;
+
     display: flex;
+
     align-items: center;
-    justify-content: space-between;
+
     position: relative;
+
     font-size: 17px;
+
+    box-sizing: border-box;
 }
+
+
+/* =========================
+   CORES
+========================= */
 
 .bebida-clara {
     background: #cb962e;
+
     color: white;
 }
 
 .bebida-escura {
     background: #884927;
+
     color: white;
 }
 
-.bebida-item img {
+
+/* =========================
+   IMAGEM
+========================= */
+
+.bebida-item > img {
     width: 30px;
+
+    height: 50px;
+
+    object-fit: contain;
+
     border-radius: 15px;
+
+    flex-shrink: 0;
 }
+
+
+/* =========================
+   NOME
+========================= */
 
 .bebida-item p {
     flex: 1;
-    margin: 0 10px;
+
+    margin: 0 45px 0 10px;
+
+    line-height: 1.3;
 }
+
+
+/* =========================
+   PREÇO
+========================= */
 
 .bebida-item span {
     font-weight: bold;
+
+    white-space: nowrap;
+
+    margin-right: 30px;
 }
+
+
+/* =========================
+   FORMULÁRIO
+========================= */
+
+.bebida-item form {
+    margin: 0;
+
+    padding: 0;
+}
+
+
+/* =========================
+   BOTÃO +
+========================= */
 
 .bebida-item .add {
     position: absolute;
+
     bottom: 10px;
+
     right: 5px;
+
     width: 25px;
+
     height: 25px;
+
+    padding: 0;
+
+    border: none;
+
     border-radius: 50%;
+
     background: black;
+
     color: white;
+
     display: flex;
+
     justify-content: center;
+
     align-items: center;
+
     cursor: pointer;
-}
-.linha-voltar{
-    width: 1000px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-top: -25px;
+
+    font-size: 18px;
+
+    line-height: 25px;
 }
 
-.btn-voltar{
-    grid-column: 2;
-    justify-self: start;
-    margin-left: 280px; /* ajuste fino para alinhar com o Suco de Uva */
+.bebida-item .add:hover {
+    transform: scale(1.1);
 }
 
-.btn-voltar{
-    grid-column: 2;
-    justify-self: start; 
 
+/* =========================
+   BOTÃO VOLTAR
+========================= */
+
+.linha-voltar {
+    width: 100%;
+
+    max-width: 1000px;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    margin-top: 25px;
+}
+
+.btn-voltar {
     background: #8B4513;
+
     color: #fff;
+
     text-decoration: none;
+
     padding: 8px 18px;
+
     border-radius: 8px;
+
     font-weight: bold;
+
+    transition: 0.2s;
+}
+
+.btn-voltar:hover {
+    background: #A0522D;
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 1000px) {
+
+    .menu {
+        gap: 30px;
+    }
+
+    .menu a {
+        font-size: 17px;
+    }
+
+    .lista-bebidas {
+        gap: 25px;
+    }
+}
+
+
+@media (max-width: 800px) {
+
+    .topo {
+        gap: 20px;
+
+        padding: 5px 20px;
+    }
+
+    .menu {
+        gap: 15px;
+    }
+
+    .menu a {
+        font-size: 14px;
+    }
+
+    .icons img {
+        width: 35px;
+
+        height: 35px;
+    }
+
+    .lista-bebidas {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    #bebidas {
+        padding: 130px 20px 40px;
+    }
+
+    #bebidas h3 {
+        font-size: 32px;
+    }
+
+    .bebida-item {
+        width: 100%;
+    }
+
+    .bebida-item p {
+        font-size: 15px;
+    }
+
+    .bebida-item span {
+        font-size: 14px;
+    }
 }

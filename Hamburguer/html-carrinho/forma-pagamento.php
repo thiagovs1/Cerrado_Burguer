@@ -1,16 +1,72 @@
+<?php
+
+session_start();
+
+require_once "../crud/conexao.php";
+
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: ../crud/login.html");
+    exit;
+}
+
+$id_usuario = $_SESSION['usuario_id'];
+
+$sql = "SELECT *
+        FROM pedido
+        WHERE id_usuario = ?
+        AND status = 'Carrinho'
+        LIMIT 1";
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$id_usuario]);
+
+$pedido = $stmt->fetch();
+
+if (!$pedido) {
+    header("Location: carrinho.php");
+    exit;
+}
+
+
+/* CALCULA O SUBTOTAL */
+
+$sql = "SELECT SUM(quantidade * preco_unitario) AS subtotal
+        FROM itens_pedidos
+        WHERE id_pedido = ?";
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$pedido['id_pedido']]);
+
+$subtotal = $stmt->fetch()['subtotal'] ?? 0;
+
+
+/* VALOR DA ENTREGA */
+
+$entrega = ($pedido['tipo_entrega'] === 'Entrega') ? 5 : 0;
+
+$total = $subtotal + $entrega;
+
+
+/* ENDEREÇO */
+
+$endereco = $pedido['endereco'] ?? '';
+$cidade = $pedido['cidade'] ?? '';
+
+?>
+
 <!DOCTYPE html>
 
 <html lang="pt-br">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Forma de Pagamento</title>
 
-<title>Forma de Pagamento</title>
-
-<link rel="stylesheet" href="../css-carrinho/forma-pagamento.css">
-
+    <link rel="stylesheet" href="../css-carrinho/forma-pagamento.css">
 
 </head>
 
@@ -18,33 +74,52 @@
 
 <header class="topo">
 
+    <a href="../html/tela-inicial.html">
+        <img src="../imagens/logo.png" class="logo">
+    </a>
 
-<a href="../html/tela-inicial.html">
-    <img src="../imagens/logo.png" class="logo">
-</a>
+    <nav>
 
-<nav>
-    <a href="../html/tela-inicial.html">Inicio</a>
-    <a href="../html/tela-inicial.html">Promoções do dia</a>
-    <a href="../html/cardapio.html">Cardápio</a>
-    <a href="../html/contato.html">Contato</a>
-    <a href="../html/avaliacoes.html">Avaliações</a>
-</nav>
+        <a href="../html/tela-inicial.html">Inicio</a>
 
-<div class="icones">
+        <a href="../html/tela-inicial.html">
+            Promoções do dia
+        </a>
 
-    <img src="../imagens/perfil.png" class="icone-img">
-    <img src="../imagens/carrinho.png" class="icone-img">
+        <a href="../html/cardapio.html">
+            Cardápio
+        </a>
 
-</div>
+        <a href="../html/contato.html">
+            Contato
+        </a>
 
+        <a href="../html/avaliacoes.html">
+            Avaliações
+        </a>
+
+    </nav>
+
+    <div class="icones">
+
+        <a href="../crud/perfil.php">
+            <img src="../imagens/perfil.png" class="icone-img">
+        </a>
+
+        <a href="carrinho.php">
+            <img src="../imagens/carrinho.png" class="icone-img">
+        </a>
+
+    </div>
 
 </header>
+
 
 <section class="pagamento-section">
 
 
-<form>
+<form action="../php/forma-pagamento.php" method="POST">
+
 
     <div class="pagamento-esquerda">
 
@@ -52,6 +127,7 @@
 
 
         <div class="pagamento-box">
+
 
             <label class="forma-pagamento">
 
@@ -61,6 +137,7 @@
                         type="radio"
                         name="pagamento"
                         value="Dinheiro"
+                        required
                     >
 
                     <span>Dinheiro</span>
@@ -109,11 +186,14 @@
 
             </label>
 
+
         </div>
+
 
         <div class="troco-box">
 
             <h3>Precisa de Troco?</h3>
+
 
             <div class="troco-input">
 
@@ -122,8 +202,7 @@
                     <input
                         type="radio"
                         name="troco"
-                        value="sim"
-                        id="troco-sim"
+                        value="Sim"
                     >
 
                     Sim
@@ -131,11 +210,24 @@
                 </label>
 
 
+                <label>
+
+                    <input
+                        type="radio"
+                        name="troco"
+                        value="Não"
+                        checked
+                    >
+
+                    Não
+
+                </label>
+
+
                 <input
                     type="text"
-                    id="valor-troco"
+                    name="valor_troco"
                     placeholder="R$ 0,00"
-                    disabled
                 >
 
             </div>
@@ -144,7 +236,9 @@
 
     </div>
 
+
     <div class="pagamento-direita">
+
 
         <div class="resumo-pagamento">
 
@@ -158,11 +252,15 @@
                 <div>
 
                     <p id="endereco-resumo">
-                        Endereço de entrega
+
+                        <?= htmlspecialchars($endereco ?: 'Retirada no estabelecimento') ?>
+
                     </p>
 
                     <p id="cidade-resumo">
-                        Cidade
+
+                        <?= htmlspecialchars($cidade) ?>
+
                     </p>
 
                 </div>
@@ -177,8 +275,10 @@
 
                 <span>Subtotal:</span>
 
-                <span id="subtotal-pagamento">
-                    R$ 0,00
+                <span>
+
+                    R$ <?= number_format($subtotal, 2, ',', '.') ?>
+
                 </span>
 
             </div>
@@ -188,8 +288,10 @@
 
                 <span>Entrega:</span>
 
-                <span id="entrega-pagamento">
-                    R$ 0,00
+                <span>
+
+                    R$ <?= number_format($entrega, 2, ',', '.') ?>
+
                 </span>
 
             </div>
@@ -202,43 +304,48 @@
 
                 <span>Total:</span>
 
-                <span id="total-pagamento">
-                    R$ 0,00
+                <span>
+
+                    R$ <?= number_format($total, 2, ',', '.') ?>
+
                 </span>
 
             </div>
 
+
         </div>
-        
+
+
         <div class="botoes-pagamento">
+
 
             <button
                 type="button"
                 class="btn-cancelar"
-                onclick="window.location.href='endereco.html'"
+                onclick="window.location.href='endereco.php'"
             >
                 Cancelar
             </button>
 
 
             <button
-                type="button"
+                type="submit"
                 class="btn-confirmar"
-                id="btn-confirmar-pagamento"
             >
                 Confirmar
             </button>
 
+
         </div>
 
+
     </div>
+
 
 </form>
 
 
 </section>
-
-<script src="../js/forma-pagamento.js"></script>
 
 </body>
 

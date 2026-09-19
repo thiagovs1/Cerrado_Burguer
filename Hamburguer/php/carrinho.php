@@ -1,166 +1,190 @@
 <?php
+
 session_start();
-header('Content-Type: application/json; charset=utf-8');
 require_once __DIR__ . '/../crud/conexao.php';
-if (!isset($_SESSION['carrinho'])) {
-    $_SESSION['carrinho'] = [];
+
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: ../crud/login.html");
+    exit;
 }
-if (!isset($_SESSION['observacao'])) {
-    $_SESSION['observacao'] = '';
-}
-$acao = $_POST['acao'] ?? $_GET['acao'] ?? '';
+
+$id_usuario = $_SESSION['usuario_id'];
+$acao = $_POST['acao'] ?? '';
+
+$stmt = $pdo->prepare(
+    "SELECT id_pedido FROM pedido
+     WHERE id_usuario = ? AND status = 'Carrinho'
+     LIMIT 1"
+);
+$stmt->execute([$id_usuario]);
+$carrinho = $stmt->fetch();
+
 if ($acao === 'adicionar') {
-    $idProduto = (int) ($_POST['id_produto'] ?? 0);
-    if ($idProduto <= 0) {
-        echo json_encode([
-            'sucesso' => false,
-            'mensagem' => 'Produto não identificado.'
-        ], JSON_UNESCAPED_UNICODE);
+
+    $id_produto = $_POST['id_produto'] ?? null;
+
+    if (!$id_produto) {
+        header("Location: ../html/cardapio.html");
         exit;
     }
-    $stmt = $pdo->prepare("
-        SELECT
-            id_produto,
-            nome,
-            preco,
-            imagem
-        FROM produto
-        WHERE id_produto = ?
-          AND status = 'Ativo'
-        LIMIT 1
-    ");
-    $stmt->execute([$idProduto]);
-    $produtoBanco = $stmt->fetch();
-    if (!$produtoBanco) {
-        echo json_encode([
-            'sucesso' => false,
-            'mensagem' => 'Produto não encontrado no banco de dados.'
-        ], JSON_UNESCAPED_UNICODE);
-        exit;
-    }
-    $produtoEncontrado = false;
-    foreach ($_SESSION['carrinho'] as &$produto) {
-        if (
-            isset($produto['id_produto']) &&
-            $produto['id_produto'] == $produtoBanco['id_produto']
-        ) {
-            $produto['quantidade']++;
-            $produtoEncontrado = true;
-            break;
-        }
-    }
-    unset($produto);
-    if (!$produtoEncontrado) {
-        $_SESSION['carrinho'][] = [
-            'id_produto' => (int) $produtoBanco['id_produto'],
-            'nome' => $produtoBanco['nome'],
-            'preco' => (float) $produtoBanco['preco'],
-            'imagem' => $produtoBanco['imagem'],
-            'quantidade' => 1
-        ];
-    }
-    echo json_encode([
-        'sucesso' => true,
-        'mensagem' => 'Produto adicionado ao carrinho.',
-        'nome' => $produtoBanco['nome'],
-        'carrinho' => $_SESSION['carrinho']
-    ], JSON_UNESCAPED_UNICODE);
-    exit;
-}
-if ($acao === 'aumentar') {
-    $indice = isset($_POST['indice'])
-        ? (int) $_POST['indice']
-        : -1;
-    if (isset($_SESSION['carrinho'][$indice])) {
-        $_SESSION['carrinho'][$indice]['quantidade']++;
-    }
-    echo json_encode([
-        'sucesso' => true,
-        'carrinho' => $_SESSION['carrinho']
-    ], JSON_UNESCAPED_UNICODE);
-    exit;
-}
-if ($acao === 'diminuir') {
-    $indice = isset($_POST['indice'])
-        ? (int) $_POST['indice']
-        : -1;
-    if (isset($_SESSION['carrinho'][$indice])) {
-        $_SESSION['carrinho'][$indice]['quantidade']--;
-        if ($_SESSION['carrinho'][$indice]['quantidade'] <= 0) {
-            array_splice(
-                $_SESSION['carrinho'],
-                $indice,
-                1
-            );
-        }
-    }
-    echo json_encode([
-        'sucesso' => true,
-        'carrinho' => $_SESSION['carrinho']
-    ], JSON_UNESCAPED_UNICODE);
-    exit;
-}
-if ($acao === 'excluir') {
-    $indice = isset($_POST['indice'])
-        ? (int) $_POST['indice']
-        : -1;
-    if (isset($_SESSION['carrinho'][$indice])) {
-        array_splice(
-            $_SESSION['carrinho'],
-            $indice,
-            1
-        );
-    }
-    echo json_encode([
-        'sucesso' => true,
-        'carrinho' => $_SESSION['carrinho']
-    ], JSON_UNESCAPED_UNICODE);
-    exit;
-}
-if ($acao === 'observacao') {
-    $observacao = trim(
-        $_POST['observacao'] ?? ''
+
+    $stmt = $pdo->prepare(
+        "SELECT id_produto, preco FROM produto
+         WHERE id_produto = ? AND status = 'Ativo'"
     );
-    $_SESSION['observacao'] = $observacao;
-    echo json_encode([
-        'sucesso' => true
-    ], JSON_UNESCAPED_UNICODE);
-    exit;
-}
-if ($acao === 'limpar') {
-    $_SESSION['carrinho'] = [];
-    $_SESSION['observacao'] = '';
-    echo json_encode([
-        'sucesso' => true,
-        'carrinho' => []
-    ], JSON_UNESCAPED_UNICODE);
-    exit;
-}
-if ($acao === 'listar' || $acao === '') {
-    $subtotal = 0;
-    foreach ($_SESSION['carrinho'] as $produto) {
-        $subtotal +=
-            (float) $produto['preco'] *
-            (int) $produto['quantidade'];
+    $stmt->execute([$id_produto]);
+    $produto = $stmt->fetch();
+
+    if (!$produto) {
+        die("Produto não encontrado.");
     }
-    $valorEntrega = 5.00;
-    $entrega =
-        count($_SESSION['carrinho']) > 0
-            ? $valorEntrega
-            : 0;
-    $total = $subtotal + $entrega;
-    echo json_encode([
-        'sucesso' => true,
-        'carrinho' =>
-            $_SESSION['carrinho'],
-        'subtotal' =>
-            $subtotal,
-        'entrega' =>
-            $entrega,
-        'total' =>
-            $total,
-        'observacao' =>
-            $_SESSION['observacao']
-    ], JSON_UNESCAPED_UNICODE);
+
+    if (!$carrinho) {
+        $stmt = $pdo->prepare(
+            "INSERT INTO pedido
+             (id_usuario, subtotal, valor_entrega, total, status)
+             VALUES (?, 0, 0, 0, 'Carrinho')"
+        );
+        $stmt->execute([$id_usuario]);
+        $id_pedido = $pdo->lastInsertId();
+    } else {
+        $id_pedido = $carrinho['id_pedido'];
+    }
+
+    $stmt = $pdo->prepare(
+        "SELECT id_item_pedidos FROM itens_pedidos
+         WHERE id_pedido = ? AND id_produto = ?"
+    );
+    $stmt->execute([$id_pedido, $id_produto]);
+    $item = $stmt->fetch();
+
+    if ($item) {
+        $stmt = $pdo->prepare(
+            "UPDATE itens_pedidos
+             SET quantidade = quantidade + 1
+             WHERE id_item_pedidos = ?"
+        );
+        $stmt->execute([$item['id_item_pedidos']]);
+    } else {
+        $stmt = $pdo->prepare(
+            "INSERT INTO itens_pedidos
+             (id_produto, id_pedido, quantidade, preco_unitario)
+             VALUES (?, ?, 1, ?)"
+        );
+        $stmt->execute([
+            $id_produto,
+            $id_pedido,
+            $produto['preco']
+        ]);
+    }
+
+    header("Location: ../html/cardapio.html");
+    exit;
+}
+
+if ($acao === 'aumentar') {
+
+    if ($carrinho) {
+        $stmt = $pdo->prepare(
+            "UPDATE itens_pedidos
+             SET quantidade = quantidade + 1
+             WHERE id_pedido = ? AND id_produto = ?"
+        );
+        $stmt->execute([
+            $carrinho['id_pedido'],
+            $_POST['id_produto']
+        ]);
+    }
+
+    header("Location: ../html-carrinho/carrinho.php");
+    exit;
+}
+
+if ($acao === 'diminuir') {
+
+    if ($carrinho) {
+        $stmt = $pdo->prepare(
+            "UPDATE itens_pedidos
+             SET quantidade = quantidade - 1
+             WHERE id_pedido = ?
+             AND id_produto = ?
+             AND quantidade > 1"
+        );
+        $stmt->execute([
+            $carrinho['id_pedido'],
+            $_POST['id_produto']
+        ]);
+
+        if ($stmt->rowCount() === 0) {
+            $stmt = $pdo->prepare(
+                "DELETE FROM itens_pedidos
+                 WHERE id_pedido = ? AND id_produto = ?"
+            );
+            $stmt->execute([
+                $carrinho['id_pedido'],
+                $_POST['id_produto']
+            ]);
+        }
+    }
+
+    header("Location: ../html-carrinho/carrinho.php");
+    exit;
+}
+
+if ($acao === 'excluir') {
+
+    if ($carrinho) {
+        $stmt = $pdo->prepare(
+            "DELETE FROM itens_pedidos
+             WHERE id_pedido = ? AND id_produto = ?"
+        );
+        $stmt->execute([
+            $carrinho['id_pedido'],
+            $_POST['id_produto']
+        ]);
+    }
+
+    header("Location: ../html-carrinho/carrinho.php");
+    exit;
+}
+
+if ($acao === 'observacao') {
+
+    if ($carrinho) {
+        $stmt = $pdo->prepare(
+            "UPDATE pedido
+             SET observacao = ?
+             WHERE id_pedido = ? AND id_usuario = ?"
+        );
+        $stmt->execute([
+            trim($_POST['observacao'] ?? ''),
+            $carrinho['id_pedido'],
+            $id_usuario
+        ]);
+    }
+
+    header("Location: ../html-carrinho/endereco.php");
+    exit;
+}
+
+if ($acao === 'limpar') {
+
+    if ($carrinho) {
+        $id_pedido = $carrinho['id_pedido'];
+
+        $pdo->prepare(
+            "DELETE FROM itens_pedidos
+             WHERE id_pedido = ?"
+        )->execute([$id_pedido]);
+
+        $pdo->prepare(
+            "DELETE FROM pedido
+             WHERE id_pedido = ?
+             AND id_usuario = ?
+             AND status = 'Carrinho'"
+        )->execute([$id_pedido, $id_usuario]);
+    }
+
+    header("Location: ../html/cardapio.html");
     exit;
 }

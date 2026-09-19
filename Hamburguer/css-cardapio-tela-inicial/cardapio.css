@@ -1,182 +1,254 @@
+/* ==============================
+   CONFIGURAÇÕES GERAIS
+============================== */
+
 html {
-    scroll-behavior: smooth; }
+    scroll-behavior: smooth;
+}
 
 body {
     background-color: #fdf3dd;
-     margin: 0; 
-     font-family: Georgia, Arial, Helvetica, sans-serif; }
+    margin: 0;
+    font-family: Georgia, Arial, Helvetica, sans-serif;
+}
 
-.icons a img {
-    cursor: pointer; }
+
+/* ==============================
+   CABEÇALHO
+============================== */
 
 .topo {
     background-color: #fdf3dd;
-    display: flex; 
+
+    display: flex;
     align-items: center;
     justify-content: center;
+
     gap: 40px;
+
     padding: 5px 50px;
+
     position: fixed;
-    width: 100%; 
-    z-index: 1000; }
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    z-index: 1000;
+
+    box-sizing: border-box;
+}
+
+
+/* LOGO */
 
 .logo {
-    width: 100px; }
+    width: 100px;
+    height: auto;
+}
+
+
+/* ==============================
+   MENU
+============================== */
 
 .menu {
-    display: flex; 
-    gap: 70px; }
-
+    display: flex;
+    gap: 70px;
+    align-items: center;
+}
 
 .menu a {
-    text-decoration: none; 
+    text-decoration: none;
+
     color: #481c11;
-     font-size: 20px; }
+
+    font-size: 20px;
+
+    transition: 0.2s;
+}
 
 .menu a:hover {
-    color: #f36f40; }
+    color: #8b4513;
+}
+
+
+/* ==============================
+   ÍCONES
+============================== */
 
 .icons {
-    display: flex; 
-    gap: 10px; }
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
 
 .icons img {
-    width: 45px; }
+    width: 45px;
+    height: 45px;
 
-section {
-    min-height: 100vh;
-     padding: 120px 40px 40px;
-     display: flex;
-     justify-content: center;
-      align-items: center; 
-      flex-direction:column; }
+    object-fit: contain;
+}
 
-     
-#promocoes {
-    background-color: #f1dfb6; }
+.icone-img {
+    width: 45px;
+    height: 45px;
+}
 
-.proms {
-    display: flex; gap: 26px;
-     max-width: 1300px; 
-     margin: 0 auto; }
 
-.promocoes h3 {
-    text-align: center; }
-
-.promo-card {
-    width: 220px; 
-    padding: 15px;
-    border-radius: 15px; 
-    border: 2px solid #333; 
-    position: relative;
-    font-size: 18px;
-    margin-top: -100px; }
-
-.claro {
-    background: #f3e7d3; }
-
-.marrom {
-    background: #8b4a20;
-    color: white; }
-
-.amarelo {
-    background: #cb962e; }
-
-.promo-card img {
-    width: 80px; 
-    display: block; 
-    margin: 10px auto; }
-
-.promo-card ul {
-    padding-left: 20px; }
-
-.preco-antigo {
-    text-decoration: line-through; 
-    font-weight: bold; 
-    text-align: center; }
-
-.preco-novo {
-    color: #ff5a1f; 
-    font-weight: bold; 
-    text-align: center; 
-    font-size: 18px; }
+/* ==============================
+   ÁREA DO CARDÁPIO
+============================== */
 
 #cardapio {
-    background-color: #f1dfb6; }
+    background-color: #f1dfb6;
+
+    min-height: 100vh;
+
+    padding: 120px 40px 40px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-direction: column;
+
+    box-sizing: border-box;
+}
+
+
+/* ==============================
+   CARDS
+============================== */
 
 .cards {
-    display: flex; 
-    gap: 40px; }
+    display: flex;
+
+    gap: 40px;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+
+/* CARD INDIVIDUAL */
 
 .card {
-    width: 200px; 
-    height: 340px; 
-    border-radius: 25px; 
+    width: 200px;
+
+    height: 340px;
+
+    border-radius: 25px;
+
     border: 3px solid black;
-    display: flex; 
-    flex-direction: column; 
-    align-items:center; 
-    padding: 28px; 
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 28px;
+
+    box-sizing: border-box;
+
     margin-top: -100px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25); 
-    transition: 0.3s; }
+
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
+
+    transition: 0.3s;
+
+    text-decoration: none;
+}
+
+
+/* EFEITO AO PASSAR O MOUSE */
 
 .card:hover {
-    transform: scale(1.05); }
+    transform: scale(1.05);
+}
 
-.card h3 {
-    font-size: 18px; 
-    font-weight: bold;
-     text-decoration: underline; 
-     color: white; }
 
-.card1 {
-    background: #8b4a20; }
-
-.card2 {
-    background: #c69a73; }
-
-.card3 {
-    background: #d6781e; }
-
-.card4 {
-    background: #6b1f00; }
+/* IMAGEM DOS CARDS */
 
 .card img {
-    width: 200px; 
-    height: 200px; 
-    object-fit: contain; }
+    width: 150px;
 
-.pao {
-    background: #cb962e; }
+    height: 150px;
 
-.carne {
-    background: #884927; }
+    object-fit: contain;
 
-.add {
-    position: absolute; 
-    bottom: 10px; 
-    right: 5px; 
-    background: black; 
-    color: white;
-     width: 25px; 
-     height: 25px; 
-     border-radius:50%; 
-     display: flex; 
-     justify-content: center;
-      align-items: center; 
+    margin-bottom: 20px;
 }
+
+
+/* TEXTO DOS CARDS */
+
+.card h3 {
+    font-size: 18px;
+
+    font-weight: bold;
+
+    text-decoration: underline;
+
+    color: white;
+
+    text-align: center;
+
+    margin: 0;
+}
+
+
+/* ==============================
+   CORES DOS CARDS
+============================== */
+
+.card1 {
+    background: #8b4a20;
+}
+
+.card2 {
+    background: #c69a73;
+}
+
+.card3 {
+    background: #d6781e;
+}
+
+.card4 {
+    background: #6b1f00;
+}
+
+
+/* ==============================
+   BOTÃO VOLTAR
+============================== */
 
 .linha-voltar {
     width: 1000px;
+
+    max-width: 100%;
+
     display: flex;
+
     justify-content: flex-end;
+
     margin-top: 25px;
 }
 
 .btn-voltar {
     background: #8B4513;
+
     color: #fff;
+
     text-decoration: none;
 
     padding: 8px 18px;
@@ -190,4 +262,95 @@ section {
 
 .btn-voltar:hover {
     background: #A0522D;
+}
+
+
+/* ==============================
+   RESPONSIVIDADE
+============================== */
+
+@media (max-width: 1200px) {
+
+    .menu {
+        gap: 30px;
+    }
+
+    .topo {
+        gap: 25px;
+    }
+
+}
+
+
+@media (max-width: 1000px) {
+
+    .cards {
+        flex-wrap: wrap;
+
+        gap: 30px;
+    }
+
+    .card {
+        margin-top: 0;
+    }
+
+    .menu {
+        gap: 20px;
+    }
+
+    .menu a {
+        font-size: 17px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .topo {
+        padding: 8px 20px;
+
+        gap: 15px;
+    }
+
+    .logo {
+        width: 75px;
+    }
+
+    .menu {
+        gap: 12px;
+    }
+
+    .menu a {
+        font-size: 14px;
+    }
+
+    .icons img,
+    .icone-img {
+        width: 35px;
+        height: 35px;
+    }
+
+    #cardapio {
+        padding: 110px 20px 40px;
+    }
+
+    .cards {
+        flex-direction: column;
+
+        gap: 25px;
+    }
+
+    .card {
+        width: 200px;
+
+        height: 250px;
+    }
+
+    .card img {
+        width: 120px;
+
+        height: 120px;
+    }
+
 }

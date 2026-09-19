@@ -1,101 +1,237 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
+
     <meta charset="UTF-8">
-    <title>Cardápio - Cerrado Burguer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bebidas - Cerrado Burguer</title>
 
     <link rel="stylesheet" href="../css-cardapio-tela-inicial/bebidas.css">
-   
+    <link rel="stylesheet" href="../css/menu_perfil.css">
+
 </head>
 
 <body>
 
-<header class="topo">
-    <a href="../html/tela-inicial.html">
-    <img src="../imagens/logo.png" class="logo">
-    </a>
+    <header class="topo">
+
+        <a href="tela-inicial.html">
+            <img src="../imagens/logo.png" class="logo" alt="Cerrado Burguer">
+        </a>
+
         <nav class="menu">
+
             <a href="tela-inicial.html">Inicio</a>
-            <a href="#promocoes">Promoções</a>
+
+            <a href="tela-inicial.html#promocoes">Promoções</a>
+
             <a href="cardapio.html">Cardápio</a>
+
             <a href="tela-inicial.html">Contato</a>
-            <a href="#avaliacao">Avaliações</a>
-            
+
+            <a href="tela-inicial.html#avaliacao">Avaliações</a>
+
         </nav>
 
         <div class="icons" id="area-perfil">
-          
+
             <a href="../crud/perfil.php">
                 <img src="../imagens/Perfil.png" alt="Perfil">
             </a>
 
-            <a href="../html-carrinho/carrinho.html">
-                <img src="../imagens/carrinho.png" class="icone-img">
+            <a href="../html-carrinho/carrinho.php">
+                <img src="../imagens/carrinho.png" class="icone-img" alt="Carrinho">
             </a>
-        </div>
-</header>
 
-<section id="bebidas">
-    <h3>Bebidas</h3>
-
-    <div class="lista-bebidas">
-
-        <div class="bebida-item bebida-escura" data-produto-id="8">
-            <img src="../imagens/coca.png">
-            <p>Coca Cola – 1L</p>
-            <span>R$ 8,99</span>
-            <div class="add">+</div>
         </div>
 
-        <div class="bebida-item bebida-escura" data-produto-id="9">
-            <img src="../imagens/Sucocaju.png">
-            <p>Suco natural de caju – 500ml</p>
-            <span>R$ 5,99</span>
-            <div class="add">+</div>
+    </header>
+
+
+    <section id="bebidas">
+
+        <h3>Bebidas</h3>
+
+
+        <div class="lista-bebidas">
+
+
+            <!-- PRODUTO 8 -->
+
+            <div class="bebida-item bebida-escura">
+
+                <img src="../imagens/coca.png" alt="Coca Cola">
+
+                <p>Coca Cola - 1L</p>
+
+                <span>R$ 8,99</span>
+
+                <form action="../php/carrinho.php" method="POST">
+
+                    <input type="hidden" name="acao" value="adicionar">
+
+                    <input type="hidden" name="id_produto" value="8">
+
+                    <button type="submit" class="add">+</button>
+
+                </form>
+
+            </div>
+
+
+            <!-- PRODUTO 9 -->
+
+            <div class="bebida-item bebida-escura">
+
+                <img src="../imagens/Sucocaju.png" alt="Suco de caju">
+
+                <p>Suco natural de caju - 500ml</p>
+
+                <span>R$ 5,99</span>
+
+                <form action="../php/carrinho.php" method="POST">
+
+                    <input type="hidden" name="acao" value="adicionar">
+
+                    <input type="hidden" name="id_produto" value="9">
+
+                    <button type="submit" class="add">+</button>
+
+                </form>
+
+            </div>
+
+
+            <!-- PRODUTO 10 -->
+
+            <div class="bebida-item bebida-clara">
+
+                <img src="../imagens/Slaranja.png" alt="Suco de laranja">
+
+                <p>Suco natural de laranja - 500ml</p>
+
+                <span>R$ 6,99</span>
+
+                <form action="../php/carrinho.php" method="POST">
+
+                    <input type="hidden" name="acao" value="adicionar">
+
+                    <input type="hidden" name="id_produto" value="10">
+
+                    <button type="submit" class="add">+</button>
+
+                </form>
+
+            </div>
+
+
+            <!-- PRODUTO 11 -->
+
+            <div class="bebida-item bebida-clara">
+
+                <img src="../imagens/pepsi.png" alt="Pepsi">
+
+                <p>Pepsi - 500ml</p>
+
+                <span>R$ 8,99</span>
+
+                <form action="../php/carrinho.php" method="POST">
+
+                    <input type="hidden" name="acao" value="adicionar">
+
+                    <input type="hidden" name="id_produto" value="11">
+
+                    <button type="submit" class="add">+</button>
+
+                </form>
+
+            </div>
+
+
+            <!-- PRODUTO 12 -->
+
+            <div class="bebida-item bebida-clara">
+
+                <img src="../imagens/Fanta.png" alt="Fanta">
+
+                <p>Fanta - 1L</p>
+
+                <span>R$ 10,99</span>
+
+                <form action="../php/carrinho.php" method="POST">
+
+                    <input type="hidden" name="acao" value="adicionar">
+
+                    <input type="hidden" name="id_produto" value="12">
+
+                    <button type="submit" class="add">+</button>
+
+                </form>
+
+            </div>
+
+
+            <!-- PRODUTO 13 -->
+
+            <div class="bebida-item bebida-clara">
+
+                <img src="../imagens/sucoUva.png" alt="Suco de uva">
+
+                <p>Suco de Uva - 500ml</p>
+
+                <span>R$ 5,99</span>
+
+                <form action="../php/carrinho.php" method="POST">
+
+                    <input type="hidden" name="acao" value="adicionar">
+
+                    <input type="hidden" name="id_produto" value="13">
+
+                    <button type="submit" class="add">+</button>
+
+                </form>
+
+            </div>
+
+
+            <!-- PRODUTO 14 -->
+
+            <div class="bebida-item bebida-escura">
+
+                <img src="../imagens/guarana.png" alt="Guaraná">
+
+                <p>Guaraná - 1L</p>
+
+                <span>R$ 12,99</span>
+
+                <form action="../php/carrinho.php" method="POST">
+
+                    <input type="hidden" name="acao" value="adicionar">
+
+                    <input type="hidden" name="id_produto" value="14">
+
+                    <button type="submit" class="add">+</button>
+
+                </form>
+
+            </div>
+
+
         </div>
 
-        <div class="bebida-item bebida-clara" data-produto-id="10">
-            <img src="../imagens/Slaranja.png">
-            <p>Suco natural de laranja – 500ml</p>
-            <span>R$ 6,99</span>
-            <div class="add">+</div>
+
+        <div class="linha-voltar">
+
+            <a href="cardapio.html" class="btn-voltar">
+                ← Voltar
+            </a>
+
         </div>
 
-        <div class="bebida-item bebida-clara" data-produto-id="11">
-            <img src="../imagens/pepsi.png">
-            <p>Pepsi – 500ml</p>
-            <span>R$ 8,99</span>
-            <div class="add">+</div>
-        </div>
+    </section>
 
-        <div class="bebida-item bebida-clara" data-produto-id="12">
-            <img src="../imagens/Fanta.png">
-            <p>Fanta – 1L</p>
-            <span>R$ 10,99</span>
-            <div class="add">+</div>
-        </div>
+</body>
 
-        <div class="bebida-item bebida-clara" data-produto-id="13">
-            <img src="../imagens/sucoUva.png">
-            <p>Suco de Uva – 500ml</p>
-            <span>R$ 5,99</span>
-            <div class="add">+</div>
-        </div>
-
-        <div class="bebida-item bebida-escura" data-produto-id="14">
-            <img src="../imagens/guarana.png">
-            <p>Guaraná – 1L</p>
-            <span>R$ 12,99</span>
-            <div class="add">+</div>
-        </div>
-
-    </div>
-
-    <div class="linha-voltar">
-        <a href="cardapio.html" class="btn-voltar">
-            ← Voltar
-        </a>
-    </div>
-
-</section>
-<script src="../js/carrinho.js"></script>
+</html>

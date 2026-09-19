@@ -1,96 +1,237 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
+
     <meta charset="UTF-8">
-    <title>Cardápio - Cerrado Burguer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Acompanhamentos - Cerrado Burguer</title>
 
     <link rel="stylesheet" href="../css-cardapio-tela-inicial/acompanhamentos.css">
+    <link rel="stylesheet" href="../css/menu_perfil.css">
+
 </head>
 
 <body>
 
-<header class="topo">
-    <a href="../html/tela-inicial.html">
-    <img src="../imagens/logo.png" class="logo">
-    </a>
-       <nav class="menu">
+    <header class="topo">
+
+        <a href="tela-inicial.html">
+            <img src="../imagens/logo.png" class="logo" alt="Cerrado Burguer">
+        </a>
+
+        <nav class="menu">
+
             <a href="tela-inicial.html">Inicio</a>
-            <a href="#promocoes">Promoções</a>
+
+            <a href="tela-inicial.html#promocoes">Promoções</a>
+
             <a href="cardapio.html">Cardápio</a>
+
             <a href="tela-inicial.html">Contato</a>
-            <a href="#avaliacao">Avaliações</a>
-            
+
+            <a href="tela-inicial.html#avaliacao">Avaliações</a>
+
         </nav>
 
         <div class="icons" id="area-perfil">
-          
+
             <a href="../crud/perfil.php">
                 <img src="../imagens/Perfil.png" alt="Perfil">
             </a>
 
-            <a href="../html-carrinho/carrinho.html">
-                <img src="../imagens/carrinho.png" class="icone-img">
+            <a href="../html-carrinho/carrinho.php">
+                <img src="../imagens/carrinho.png" class="icone-img" alt="Carrinho">
             </a>
-        </div>
-</header>
-<section id="acompanhamentos">
-    <h1>Acompanhamentos</h1>
 
-    <div class="lista-acompanhamentos">
-
-        <div class="acompanhamento-item acompanhamento-claro" data-produto-id="1">
-            <img src="../imagens/batatafrita.png">
-            <p>Batata Frita - 500g</p>
-            <span>R$ 7,80</span>
-            <div class="add">+</div>
         </div>
 
-        <div class="acompanhamento-item acompanhamento-claro" data-produto-id="2">
-            <img src="../imagens/Anelcebola.png">
-            <p>Porção de anéis de cebola – 500g</p>
-            <span>R$ 8,99</span>
-            <div class="add">+</div>
+    </header>
+
+
+    <section id="acompanhamentos">
+
+        <h1>Acompanhamentos</h1>
+
+
+        <div class="lista-acompanhamentos">
+
+
+            <!-- PRODUTO 1 -->
+
+            <div class="acompanhamento-item acompanhamento-claro">
+
+                <img src="../imagens/batatafrita.png" alt="Batata Frita">
+
+                <p>Batata Frita - 500g</p>
+
+                <span>R$ 7,80</span>
+
+                <form action="../php/carrinho.php" method="POST">
+
+                    <input type="hidden" name="acao" value="adicionar">
+
+                    <input type="hidden" name="id_produto" value="1">
+
+                    <button type="submit" class="add">+</button>
+
+                </form>
+
+            </div>
+
+
+            <!-- PRODUTO 2 -->
+
+            <div class="acompanhamento-item acompanhamento-claro">
+
+                <img src="../imagens/Anelcebola.png" alt="Anéis de cebola">
+
+                <p>Porção de anéis de cebola - 500g</p>
+
+                <span>R$ 8,99</span>
+
+                <form action="../php/carrinho.php" method="POST">
+
+                    <input type="hidden" name="acao" value="adicionar">
+
+                    <input type="hidden" name="id_produto" value="2">
+
+                    <button type="submit" class="add">+</button>
+
+                </form>
+
+            </div>
+
+
+            <!-- PRODUTO 3 -->
+
+            <div class="acompanhamento-item acompanhamento-escuro">
+
+                <img src="../imagens/bolinhoM.png" alt="Bolinho de mandioca">
+
+                <p>Bolinho de mandioca com carne seca - 500g</p>
+
+                <span>R$ 12,90</span>
+
+                <form action="../php/carrinho.php" method="POST">
+
+                    <input type="hidden" name="acao" value="adicionar">
+
+                    <input type="hidden" name="id_produto" value="3">
+
+                    <button type="submit" class="add">+</button>
+
+                </form>
+
+            </div>
+
+
+            <!-- PRODUTO 4 -->
+
+            <div class="acompanhamento-item acompanhamento-escuro">
+
+                <img src="../imagens/Barbecue.png" alt="Molho barbecue">
+
+                <p>Molho barbecue - 150g</p>
+
+                <span>R$ 4,99</span>
+
+                <form action="../php/carrinho.php" method="POST">
+
+                    <input type="hidden" name="acao" value="adicionar">
+
+                    <input type="hidden" name="id_produto" value="4">
+
+                    <button type="submit" class="add">+</button>
+
+                </form>
+
+            </div>
+
+
+            <!-- PRODUTO 5 -->
+
+            <div class="acompanhamento-item acompanhamento-escuro">
+
+                <img src="../imagens/temperada.png" alt="Maionese temperada">
+
+                <p>Maionese Temperada - 150g</p>
+
+                <span>R$ 2,99</span>
+
+                <form action="../php/carrinho.php" method="POST">
+
+                    <input type="hidden" name="acao" value="adicionar">
+
+                    <input type="hidden" name="id_produto" value="5">
+
+                    <button type="submit" class="add">+</button>
+
+                </form>
+
+            </div>
+
+
+            <!-- PRODUTO 6 -->
+
+            <div class="acompanhamento-item acompanhamento-claro">
+
+                <img src="../imagens/MdeAlho.png" alt="Maionese de alho">
+
+                <p>Maionese de alho - 150g</p>
+
+                <span>R$ 2,50</span>
+
+                <form action="../php/carrinho.php" method="POST">
+
+                    <input type="hidden" name="acao" value="adicionar">
+
+                    <input type="hidden" name="id_produto" value="6">
+
+                    <button type="submit" class="add">+</button>
+
+                </form>
+
+            </div>
+
+
+            <!-- PRODUTO 7 -->
+
+            <div class="acompanhamento-item acompanhamento-claro">
+
+                <img src="../imagens/Gpimenta.png" alt="Geleia de pimenta">
+
+                <p>Geleia de pimenta - 150g</p>
+
+                <span>R$ 5,00</span>
+
+                <form action="../php/carrinho.php" method="POST">
+
+                    <input type="hidden" name="acao" value="adicionar">
+
+                    <input type="hidden" name="id_produto" value="7">
+
+                    <button type="submit" class="add">+</button>
+
+                </form>
+
+            </div>
+
+
         </div>
 
-        <div class="acompanhamento-item acompanhamento-escuro" data-produto-id="3">
-            <img src="../imagens/bolinhoM.png">
-            <p>Bolinho de mandioca com carne seca – 500g</p>
-            <span>R$ 12,90</span>
-            <div class="add">+</div>
+
+        <div class="linha-voltar">
+
+            <a href="cardapio.html" class="btn-voltar">
+                ← Voltar
+            </a>
+
         </div>
 
-        <div class="acompanhamento-item acompanhamento-escuro" data-produto-id="4">
-            <img src="../imagens/Barbecue.png">
-            <p>Molho barbecue – 150g</p>
-            <span>R$ 4,99</span>
-            <div class="add">+</div>
-        </div>
+    </section>
 
-        <div class="acompanhamento-item acompanhamento-escuro" data-produto-id="5">
-            <img src="../imagens/temperada.png">
-            <p>Maionese Temperada – 150g</p>
-            <span>R$ 2,99</span>
-            <div class="add">+</div>
-        </div>
+</body>
 
-        <div class="acompanhamento-item acompanhamento-claro" data-produto-id="6">
-            <img src="../imagens/MdeAlho.png">
-            <p>Maionese de alho – 150g</p>
-            <span>R$ 2,50</span>
-            <div class="add">+</div>
-        </div>
-
-        <div class="acompanhamento-item acompanhamento-claro" data-produto-id="7">
-            <img src="../imagens/Gpimenta.png">
-            <p>Geleia de pimenta – 150g</p>
-            <span>R$ 5,00</span>
-            <div class="add">+</div>
-        </div>
-
-    </div>
-
-    <a href="cardapio.html" class="btn-voltar">
-        ← Voltar
-    </a>
-</section>
-<script src="../js/carrinho.js"></script>
+</html>
