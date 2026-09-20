@@ -2,451 +2,840 @@
 <html lang="pt-br">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Painel Administrativo</title>
 
-    <link rel="stylesheet" href="../Adm.css/inicio.css">
+    <link
+        rel="stylesheet"
+        href="../Adm.css/inicio.css"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
 </head>
+
 
 <body>
 
-    <div class="sidebar">
 
-        <div class="logo-area">
-            <img src="../../imagens/logo.png" alt="Logo">
+<!-- =========================================================
+     BARRA LATERAL
+========================================================= -->
 
-            <div>
-                <h2>Cerrado Burguer</h2>
-                <span>Painel Administrativo</span>
-            </div>
+<aside class="sidebar">
+
+
+    <!-- LOGO -->
+
+    <div class="logo">
+
+        <img
+            src="../../imagens/logo.png"
+            alt="Logo CerradoBurguer"
+        >
+
+        <div class="logo-text">
+
+            <h2>CerradoBurguer</h2>
+
+            <p>ADMINISTRAÇÃO</p>
+
         </div>
-
-        <nav>
-
-            <a href="adm-inicio.html">
-                <img src="../../imagens/icon-inicio.png">
-                Início
-            </a>
-
-            <a href="pedidos.html">
-                <img src="../../imagens/icon-pedidos.png">
-                Pedidos
-            </a>
-
-            <a href="cadastro.html">
-                <img src="../../imagens/icon-hamburguerpng.png">
-                Cadastro
-            </a>
-
-            <a href="categorias.html">
-                <img src="../../imagens/icon-categorias.png">
-                Categorias
-            </a>
-
-            <a href="relatorio.html">
-                <img src="../../imagens/icon-relatorio.png">
-                Relatório
-            </a>
-
-            <a href="promocoes.html">
-                <img src="../../imagens/icon-promocoes.png">
-                Promoção
-            </a>
-
-            <a href="clientes.html">
-                <img src="../../imagens/icon-clientes.png">
-                Clientes
-            </a>
-
-            <a href="entregas.html">
-                <img src="../../imagens/icon-entrega.png">
-                Entregas
-            </a>
-
-            <a href="avaliacoes.html">
-                <img src="../../imagens/icon-avaliacoes.png">
-                Avaliação
-            </a>
-
-            <a href="configuracoes.html">
-                <img src="../../imagens/icon-configuracoes.png">
-                Configurações
-            </a>
-
-        </nav>
-
-        <a href="sair.html" class="sair">
-            <img src="../../imagens/icon-sair.png">
-            Sair
-        </a>
 
     </div>
 
 
-    <main class="conteudo">
+    <!-- MENU -->
 
-        <div class="topo">
+    <nav class="menu">
 
-            <h1>Relatório de Hoje</h1>
 
-            <div class="acoes-topo">
-                <button class="data">20 de Maio de 2026 ▼</button>
-                <button class="atualizar">⟳ Atualizar</button>
+        <!-- INÍCIO -->
+
+        <a
+            href="adm-inicio.html"
+            class="ativo"
+        >
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>Início</span>
+
+        </a>
+
+
+        <!-- PEDIDOS -->
+
+        <a href="pedidos.html">
+
+            <i class="fa-solid fa-clipboard-list"></i>
+
+            <span>Pedidos</span>
+
+        </a>
+
+
+        <!-- CADASTRO -->
+
+        <a href="cadastro.php">
+
+            <i class="fa-solid fa-user-plus"></i>
+
+            <span>Cadastro</span>
+
+        </a>
+
+
+        <!-- CATEGORIAS -->
+
+        <a href="categorias.php">
+
+            <i class="fa-solid fa-layer-group"></i>
+
+            <span>Categorias</span>
+
+        </a>
+
+
+        <!-- RELATÓRIO -->
+
+        <a href="relatorio.html">
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            <span>Relatório</span>
+
+        </a>
+
+
+        <!-- PROMOÇÃO -->
+
+        <a href="promocoes.html">
+
+            <i class="fa-solid fa-tag"></i>
+
+            <span>Promoção</span>
+
+        </a>
+
+
+        <!-- CLIENTES -->
+
+        <a href="clientes.php">
+
+            <i class="fa-solid fa-users"></i>
+
+            <span>Clientes</span>
+
+        </a>
+
+
+        <!-- ENTREGAS -->
+
+        <a href="entregas.html">
+
+            <i class="fa-solid fa-truck"></i>
+
+            <span>Entregas</span>
+
+        </a>
+
+
+        <!-- AVALIAÇÃO -->
+
+        <a href="avaliacoes.html">
+
+            <i class="fa-solid fa-star"></i>
+
+            <span>Avaliação</span>
+
+        </a>
+
+
+        <!-- CONFIGURAÇÕES -->
+
+        <a href="configuracoes.html">
+
+            <i class="fa-solid fa-gear"></i>
+
+            <span>Configurações</span>
+
+        </a>
+
+
+        <!-- ENCOMENDA -->
+
+        <a href="encomenda.php">
+
+            <i class="fa-solid fa-box"></i>
+
+            <span>Encomenda</span>
+
+        </a>
+
+
+        <!-- SAIR -->
+
+        <a href="sair.html">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            <span>Sair</span>
+
+        </a>
+
+
+    </nav>
+
+</aside>
+
+
+<!-- =========================================================
+     CONTEÚDO PRINCIPAL
+========================================================= -->
+
+<main class="conteudo">
+
+
+    <!-- TOPO -->
+
+    <div class="topo">
+
+        <h1>Relatório de Hoje</h1>
+
+
+        <div class="acoes-topo">
+
+            <button class="data">
+                20 de Maio de 2026 ▼
+            </button>
+
+            <button class="atualizar">
+                ⟳ Atualizar
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         CARDS PRINCIPAIS
+    ====================================================== -->
+
+    <section class="cards">
+
+
+        <!-- VENDAS -->
+
+        <div class="card">
+
+            <div class="icone-card">
+                ＄
+            </div>
+
+            <div>
+
+                <span>
+                    Vendas de Hoje
+                </span>
+
+                <strong>
+                    R$ 2.450,00
+                </strong>
+
+                <small>
+                    + 12,5% acima de ontem
+                </small>
+
             </div>
 
         </div>
 
 
-        <!-- CARDS PRINCIPAIS -->
+        <!-- PEDIDOS -->
 
-        <section class="cards">
+        <div class="card">
 
-            <div class="card">
+            <img
+                class="icone-card"
+                src="../../imagens/icon-pedidos.png"
+                alt="Pedidos"
+            >
 
-                <div class="icone-card">＄</div>
+            <div>
+
+                <span>
+                    Pedidos de Hoje
+                </span>
+
+                <strong>
+                    86
+                </strong>
+
+                <small>
+                    8,2% acima de ontem
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- CLIENTES -->
+
+        <div class="card">
+
+            <img
+                class="icone-card"
+                src="../../imagens/icon-clientes.png"
+                alt="Clientes"
+            >
+
+            <div>
+
+                <span>
+                    Clientes Atendidos
+                </span>
+
+                <strong>
+                    72
+                </strong>
+
+                <small>
+                    6,5% acima de ontem
+                </small>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =====================================================
+         GRÁFICOS
+    ====================================================== -->
+
+    <section class="graficos">
+
+
+        <!-- VENDAS -->
+
+        <div class="grafico-vendas painel">
+
+            <div class="titulo-painel">
+
+                <span>
+                    Vendas por Período de Hoje
+                </span>
+
+            </div>
+
+
+            <div class="grafico">
+
+                <div class="linha linha1"></div>
+
+                <div class="linha linha2"></div>
+
+                <div class="linha linha3"></div>
+
+                <div class="linha linha4"></div>
+
+
+                <div class="barras">
+
+
+                    <div class="barra-coluna">
+
+                        <div class="barra b1"></div>
+
+                        <span>15:00</span>
+
+                    </div>
+
+
+                    <div class="barra-coluna">
+
+                        <div class="barra b2"></div>
+
+                        <span>18:00</span>
+
+                    </div>
+
+
+                    <div class="barra-coluna">
+
+                        <div class="barra b3"></div>
+
+                        <span>20:00</span>
+
+                    </div>
+
+
+                    <div class="barra-coluna">
+
+                        <div class="barra b4"></div>
+
+                        <span>21:00</span>
+
+                    </div>
+
+
+                    <div class="barra-coluna">
+
+                        <div class="barra b5"></div>
+
+                        <span>22:00</span>
+
+                    </div>
+
+
+                    <div class="barra-coluna">
+
+                        <div class="barra b6"></div>
+
+                        <span>23:00</span>
+
+                    </div>
+
+
+                    <div class="barra-coluna">
+
+                        <div class="barra b7"></div>
+
+                        <span>00:00</span>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PEDIDOS POR TIPO -->
+
+        <div class="painel grafico-tipo">
+
+            <div class="titulo-painel">
+
+                <span>
+                    Pedidos por Tipo
+                </span>
+
+            </div>
+
+
+            <div class="donut donut-pedidos">
+
+                <div class="donut-centro"></div>
+
+            </div>
+
+
+            <div class="legenda">
+
+                <span>
+                    <i class="delivery"></i>
+                    Delivery 70%
+                </span>
+
+                <span>
+                    <i class="retirada"></i>
+                    Retirada 30%
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- STATUS DA ENTREGA -->
+
+        <div class="painel grafico-status">
+
+            <div class="titulo-painel">
+
+                <span>
+                    Status da Entrega
+                </span>
+
+            </div>
+
+
+            <div class="donut donut-status">
+
+                <div class="donut-centro"></div>
+
+            </div>
+
+
+            <div class="legenda">
+
+                <span>
+                    <i class="entregue"></i>
+                    Entregues 45%
+                </span>
+
+                <span>
+                    <i class="rota"></i>
+                    Em rota 35%
+                </span>
+
+                <span>
+                    <i class="atrasado"></i>
+                    Atrasado 20%
+                </span>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =====================================================
+         PARTE INFERIOR
+    ====================================================== -->
+
+    <section class="inferior">
+
+
+        <!-- PRODUTOS -->
+
+        <div class="painel produtos">
+
+            <div class="titulo-painel">
+
+                <span>
+                    Itens Mais Vendidos Hoje
+                </span>
+
+            </div>
+
+
+            <div class="produto">
+
+                <img
+                    class="produto-img"
+                    src="../../imagens/burguer3.png"
+                    alt="X-Burguer"
+                >
 
                 <div>
-                    <span>Vendas de Hoje</span>
-                    <strong>R$ 2.450,00</strong>
-                    <small>+ 12,5% acima de ontem</small>
+
+                    <strong>
+                        X-Burguer
+                    </strong>
+
+                    <span>
+                        24 unidades
+                    </span>
+
                 </div>
 
             </div>
 
 
-            <div class="card">
+            <div class="produto">
 
-                <img class="icone-card" src="../../imagens/icon-pedidos.png">
+                <img
+                    class="produto-img"
+                    src="../../imagens/amburgueres.png"
+                    alt="Combo Supremo Burguer"
+                >
 
                 <div>
-                    <span>Pedidos de Hoje</span>
-                    <strong>86</strong>
-                    <small>8,2% acima de ontem</small>
+
+                    <strong>
+                        Combo Supremo Burguer
+                    </strong>
+
+                    <span>
+                        18 unidades
+                    </span>
+
                 </div>
 
             </div>
 
 
-            <div class="card">
+            <div class="produto">
 
-                <img class="icone-card" src="../../imagens/icon-clientes.png">
+                <img
+                    class="produto-img"
+                    src="../../imagens/batatafrita.png"
+                    alt="Batata Frita"
+                >
 
                 <div>
-                    <span>Clientes Atendidos</span>
-                    <strong>72</strong>
-                    <small>6,5% acima de ontem</small>
-                </div>
 
-            </div>
+                    <strong>
+                        Batata Frita
+                    </strong>
 
-        </section>
-
-
-        <!-- GRÁFICOS -->
-
-        <section class="graficos">
-
-            <div class="grafico-vendas painel">
-
-                <div class="titulo-painel">
-                    <span>Vendas por Período de Hoje</span>
-                </div>
-
-                <div class="grafico">
-
-                    <div class="linha linha1"></div>
-                    <div class="linha linha2"></div>
-                    <div class="linha linha3"></div>
-                    <div class="linha linha4"></div>
-
-                    <div class="barras">
-
-                        <div class="barra-coluna">
-                            <div class="barra b1"></div>
-                            <span>15:00</span>
-                        </div>
-
-                        <div class="barra-coluna">
-                            <div class="barra b2"></div>
-                            <span>18:00</span>
-                        </div>
-
-                        <div class="barra-coluna">
-                            <div class="barra b3"></div>
-                            <span>20:00</span>
-                        </div>
-
-                        <div class="barra-coluna">
-                            <div class="barra b4"></div>
-                            <span>21:00</span>
-                        </div>
-
-                        <div class="barra-coluna">
-                            <div class="barra b5"></div>
-                            <span>22:00</span>
-                        </div>
-
-                        <div class="barra-coluna">
-                            <div class="barra b6"></div>
-                            <span>23:00</span>
-                        </div>
-
-                        <div class="barra-coluna">
-                            <div class="barra b7"></div>
-                            <span>00:00</span>
-                        </div>
-
-                    </div>
+                    <span>
+                        15 unidades
+                    </span>
 
                 </div>
 
             </div>
 
 
-            <div class="painel grafico-tipo">
+            <div class="produto">
 
-                <div class="titulo-painel">
-                    <span>Pedidos por Tipo</span>
-                </div>
+                <img
+                    class="produto-img"
+                    src="../../imagens/Bebi.png"
+                    alt="Coca-Cola 1L"
+                >
 
-                <div class="donut donut-pedidos">
-                    <div class="donut-centro"></div>
-                </div>
+                <div>
 
-                <div class="legenda">
-                    <span><i class="delivery"></i>Delivery 70%</span>
-                    <span><i class="retirada"></i>Retirada 30%</span>
-                </div>
+                    <strong>
+                        Coca-Cola 1L
+                    </strong>
 
-            </div>
-
-
-            <div class="painel grafico-status">
-
-                <div class="titulo-painel">
-                    <span>Status da Entrega</span>
-                </div>
-
-                <div class="donut donut-status">
-                    <div class="donut-centro"></div>
-                </div>
-
-                <div class="legenda">
-                    <span><i class="entregue"></i>Entregues 45%</span>
-                    <span><i class="rota"></i>Em rota 35%</span>
-                    <span><i class="atrasado"></i>Atrasado 20%</span>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- PARTE INFERIOR -->
-
-        <section class="inferior">
-
-
-            <!-- PRODUTOS -->
-
-            <div class="painel produtos">
-
-                <div class="titulo-painel">
-                    <span>Itens Mais Vendidos Hoje</span>
-                </div>
-
-
-                <div class="produto">
-
-                   <img class="produto-img" src="../../imagens/burguer3.png">
-
-                    <div>
-                        <strong>X-Burguer</strong>
-                        <span>24 unidades</span>
-                    </div>
-
-                </div>
-
-
-                <div class="produto">
-
-                <img class="produto-img" src="../../imagens/amburgueres.png">
-
-                    <div>
-                        <strong>Combo Supremo Burguer</strong>
-                        <span>18 unidades</span>
-                    </div>
-
-                </div>
-
-
-                <div class="produto">
-
-                <img class="produto-img" src="../../imagens/batatafrita.png">
-                    <div>
-                        <strong>Batata Frita</strong>
-                        <span>15 unidades</span>
-                    </div>
-
-                </div>
-
-
-                <div class="produto">
-
-                <img class="produto-img" src="../../imagens/bebi.png">
-                    <div>
-                        <strong>Coca-Cola 1L</strong>
-                        <span>24 unidades</span>
-                    </div>
+                    <span>
+                        24 unidades
+                    </span>
 
                 </div>
 
             </div>
 
 
-            <!-- RESUMO -->
+        </div>
 
-            <div class="painel resumo">
 
-                <div class="titulo-painel">
-                    <span>Resumo da Entrega</span>
+        <!-- RESUMO -->
+
+        <div class="painel resumo">
+
+            <div class="titulo-painel">
+
+                <span>
+                    Resumo da Entrega
+                </span>
+
+            </div>
+
+
+            <div class="resumo-item">
+
+                <div class="resumo-icone">
+                    ◷
                 </div>
 
+                <div>
 
-                <div class="resumo-item">
+                    <span>
+                        Tempo de entrega
+                    </span>
 
-                    <div class="resumo-icone">◷</div>
-
-                    <div>
-                        <span>Tempo de entrega</span>
-                        <strong>31 minutos</strong>
-                    </div>
-
-                </div>
-
-
-                <div class="resumo-item">
-
-                    <div class="resumo-icone">🚚</div>
-
-                    <div>
-                        <span>Entregas realizadas</span>
-                        <strong>38</strong>
-                    </div>
-
-                </div>
-
-
-                <div class="resumo-item">
-
-                    <div class="resumo-icone">★</div>
-
-                    <div>
-                        <span>Avaliação da entrega</span>
-                        <strong>4,8 / 5</strong>
-                    </div>
+                    <strong>
+                        31 minutos
+                    </strong>
 
                 </div>
 
             </div>
 
 
-            <!-- ÚLTIMAS ENTREGAS -->
+            <div class="resumo-item">
 
-            <div class="painel entregas">
-
-                <div class="titulo-painel">
-                    <span>Últimas Entregas</span>
+                <div class="resumo-icone">
+                    🚚
                 </div>
 
+                <div>
 
-                <div class="entrega">
+                    <span>
+                        Entregas realizadas
+                    </span>
 
-                    <img class="cliente-icone" src="../../imagens/Perfil.png">
-
-                    <div class="cliente">
-                        <strong>Esther</strong>
-                    </div>
-
-                    <span class="horario">18:32</span>
-
-                    <div class="status verde"></div>
+                    <strong>
+                        38
+                    </strong>
 
                 </div>
-
-
-                <div class="entrega">
-
-                <img class="cliente-icone" src="../../imagens/Perfil.png">
-
-                    <div class="cliente">
-                        <strong>Allana</strong>
-                    </div>
-
-                    <span class="horario">18:37</span>
-
-                    <div class="status verde"></div>
-
-                </div>
-
-
-                <div class="entrega">
-
-                    <img class="cliente-icone" src="../../imagens/Perfil.png">
-
-                    <div class="cliente">
-                        <strong>Davi Sousa</strong>
-                    </div>
-
-                    <span class="horario">18:42</span>
-
-                    <div class="status vermelho"></div>
-
-                </div>
-
-
-                <div class="entrega">
-
-                    <img class="cliente-icone" src="../../imagens/Perfil.png">
-
-                    <div class="cliente">
-                        <strong>Felipe </strong>
-                    </div>
-
-                    <span class="horario">18:45</span>
-
-                    <div class="status amarelo"></div>
-
-                </div>
-
-
-                <a href="#" class="ver-entregas">
-                    Ver todas as entregas ▼
-                </a>
 
             </div>
 
-        </section>
 
-    </main>
+            <div class="resumo-item">
+
+                <div class="resumo-icone">
+                    ★
+                </div>
+
+                <div>
+
+                    <span>
+                        Avaliação da entrega
+                    </span>
+
+                    <strong>
+                        4,8 / 5
+                    </strong>
+
+                </div>
+
+            </div>
 
 
-    <script>
+        </div>
 
-        const links = document.querySelectorAll("nav a");
 
-        links.forEach(link => {
+        <!-- ÚLTIMAS ENTREGAS -->
 
-            if (link.href === window.location.href) {
+        <div class="painel entregas">
 
-                link.classList.add("ativo");
+            <div class="titulo-painel">
 
-            }
+                <span>
+                    Últimas Entregas
+                </span>
 
-        });
+            </div>
 
-    </script>
+
+            <div class="entrega">
+
+                <img
+                    class="cliente-icone"
+                    src="../../imagens/Perfil.png"
+                    alt="Cliente"
+                >
+
+                <div class="cliente">
+
+                    <strong>
+                        Esther
+                    </strong>
+
+                </div>
+
+                <span class="horario">
+                    18:32
+                </span>
+
+                <div class="status verde"></div>
+
+            </div>
+
+
+            <div class="entrega">
+
+                <img
+                    class="cliente-icone"
+                    src="../../imagens/Perfil.png"
+                    alt="Cliente"
+                >
+
+                <div class="cliente">
+
+                    <strong>
+                        Allana
+                    </strong>
+
+                </div>
+
+                <span class="horario">
+                    18:37
+                </span>
+
+                <div class="status verde"></div>
+
+            </div>
+
+
+            <div class="entrega">
+
+                <img
+                    class="cliente-icone"
+                    src="../../imagens/Perfil.png"
+                    alt="Cliente"
+                >
+
+                <div class="cliente">
+
+                    <strong>
+                        Davi Sousa
+                    </strong>
+
+                </div>
+
+                <span class="horario">
+                    18:42
+                </span>
+
+                <div class="status vermelho"></div>
+
+            </div>
+
+
+            <div class="entrega">
+
+                <img
+                    class="cliente-icone"
+                    src="../../imagens/Perfil.png"
+                    alt="Cliente"
+                >
+
+                <div class="cliente">
+
+                    <strong>
+                        Felipe
+                    </strong>
+
+                </div>
+
+                <span class="horario">
+                    18:45
+                </span>
+
+                <div class="status amarelo"></div>
+
+            </div>
+
+
+            <a
+                href="entregas.html"
+                class="ver-entregas"
+            >
+
+                Ver todas as entregas ▼
+
+            </a>
+
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
 
 </body>
 

@@ -12,107 +12,155 @@ body {
 }
 
 
-/* =========================
+/* =========================================================
    SIDEBAR
-========================= */
+========================================================= */
 
 .sidebar {
-    width: 225px;
+    width: 208px;
     min-height: 100vh;
-    background: #fff4df;
-    border-right: 1px solid #ead3ab;
+
+    background: #fff3d8;
+    border-right: 1px solid #ead7ae;
 
     display: flex;
     flex-direction: column;
+
     flex-shrink: 0;
 }
 
-.logo-area {
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 18px;
+
+    gap: 10px;
+    padding: 18px 15px 14px;
 }
 
-.logo-area img {
-    width: 45px;
-}
-
-.logo-area h2 {
-    font-size: 18px;
-    color: #d05c0c;
-    line-height: 18px;
-}
-
-.logo-area span {
-    font-size: 11px;
-    color: #777;
-}
-
-nav { 
-    margin-top: 15px; 
-}
-
-nav a {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    height: 43px;
-    text-decoration: none;
-    color: #603813;
-    padding: 0 20px;
-}
-
-.sair { 
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 10px 20px;
-    text-decoration: none;
-    color: #603813;
-}
-
-nav a img {
-    width: 20px;
-    height: 20px;
+.logo img {
+    width: 42px;
+    height: 42px;
     object-fit: contain;
 }
 
-nav a:hover,
-nav a.ativo {
+.logo-text h2 {
+    font-size: 17px;
+    line-height: 18px;
+    color: #d05c0c;
+    font-weight: 600;
+}
+
+.logo-text p {
+    margin-top: 2px;
+
+    font-size: 9px;
+    color: #777;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   MENU
+========================================================= */
+
+.menu {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 10px;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    height: 42px;
+
+    padding: 0 18px;
+
+    gap: 13px;
+
+    text-decoration: none;
+
+    color: #603813;
+
+    font-size: 11px;
+
+    transition: background 0.2s ease;
+}
+
+
+/* ÍCONES FONT AWESOME */
+
+.menu a i {
+    width: 20px;
+
+    text-align: center;
+
+    font-size: 16px;
+
+    color: #603813;
+}
+
+
+/* TEXTO */
+
+.menu a span {
+    font-size: 11px;
+    color: #603813;
+}
+
+
+/* HOVER */
+
+.menu a:hover {
+    background: #edd3af;
+}
+
+
+/* ITEM ATIVO */
+
+.menu a.ativo {
     background: #e9ad78;
 }
 
-.sair:hover{
-    background:#edd3af;
-}
-
-.sair img{
-
-    width:20px;
+.menu a.ativo i,
+.menu a.ativo span {
+    color: #603813;
 }
 
 
-
-/* =========================
+/* =========================================================
    CONTEÚDO
-========================= */
+========================================================= */
 
 .conteudo {
     flex: 1;
+
     min-width: 0;
+
     padding: 18px 20px;
 
     background: #ecd6a6;
+
+    overflow-x: hidden;
 }
 
 
-/* =========================
+/* =========================================================
    TOPO
-========================= */
+========================================================= */
 
 .topo {
     display: flex;
+
     justify-content: space-between;
     align-items: flex-start;
 
@@ -121,22 +169,29 @@ nav a.ativo {
 
 .topo h1 {
     font-size: 25px;
+
     font-weight: 500;
+
     color: #603813;
 }
 
 .acoes-topo {
     display: flex;
+
     flex-direction: column;
+
     align-items: flex-end;
+
     gap: 5px;
 }
 
 .acoes-topo button {
     border: none;
+
     border-radius: 4px;
 
     color: white;
+
     background: #8b664e;
 
     cursor: pointer;
@@ -146,11 +201,13 @@ nav a.ativo {
 
 .data {
     padding: 7px 12px;
+
     font-size: 12px;
 }
 
 .atualizar {
     padding: 4px 10px;
+
     font-size: 11px;
 }
 
@@ -159,13 +216,15 @@ nav a.ativo {
 }
 
 
-/* =========================
+/* =========================================================
    CARDS
-========================= */
+========================================================= */
 
 .cards {
     display: grid;
+
     grid-template-columns: repeat(3, 1fr);
+
     gap: 14px;
 
     margin-bottom: 10px;
@@ -175,9 +234,11 @@ nav a.ativo {
     min-height: 58px;
 
     background: #fff;
+
     border-radius: 13px;
 
     display: flex;
+
     align-items: center;
 
     padding: 9px 13px;
@@ -190,9 +251,11 @@ nav a.ativo {
     height: 34px;
 
     border: 1px solid #8d6c52;
+
     border-radius: 50%;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -205,6 +268,7 @@ nav a.ativo {
     display: block;
 
     font-size: 10px;
+
     color: #603813;
 }
 
@@ -212,6 +276,7 @@ nav a.ativo {
     display: block;
 
     font-size: 15px;
+
     color: #d05c0c;
 }
 
@@ -219,13 +284,14 @@ nav a.ativo {
     display: block;
 
     font-size: 8px;
+
     color: #603813;
 }
 
 
-/* =========================
+/* =========================================================
    PAINÉIS
-========================= */
+========================================================= */
 
 .painel {
     background: #fff;
@@ -239,6 +305,7 @@ nav a.ativo {
     height: 27px;
 
     display: flex;
+
     align-items: center;
 
     padding: 0 12px;
@@ -251,9 +318,9 @@ nav a.ativo {
 }
 
 
-/* =========================
+/* =========================================================
    GRÁFICOS
-========================= */
+========================================================= */
 
 .graficos {
     display: grid;
@@ -312,7 +379,9 @@ nav a.ativo {
     height: 92px;
 
     display: flex;
+
     align-items: flex-end;
+
     justify-content: space-around;
 }
 
@@ -320,8 +389,11 @@ nav a.ativo {
     height: 100%;
 
     display: flex;
+
     flex-direction: column;
+
     justify-content: flex-end;
+
     align-items: center;
 
     gap: 4px;
@@ -329,6 +401,7 @@ nav a.ativo {
 
 .barra-coluna span {
     font-size: 7px;
+
     color: #603813;
 }
 
@@ -376,15 +449,16 @@ nav a.ativo {
 }
 
 
-/* =========================
+/* =========================================================
    DONUTS
-========================= */
+========================================================= */
 
 .grafico-tipo,
 .grafico-status {
     min-height: 140px;
 
     display: flex;
+
     flex-direction: column;
 }
 
@@ -397,6 +471,7 @@ nav a.ativo {
     border-radius: 50%;
 
     display: flex;
+
     justify-content: center;
     align-items: center;
 }
@@ -427,8 +502,10 @@ nav a.ativo {
 
 .legenda {
     display: flex;
+
     justify-content: center;
     align-items: center;
+
     gap: 7px;
 
     flex-wrap: wrap;
@@ -436,12 +513,15 @@ nav a.ativo {
     padding: 0 5px 7px;
 
     font-size: 6px;
+
     color: #603813;
 }
 
 .legenda span {
     display: flex;
+
     align-items: center;
+
     gap: 2px;
 }
 
@@ -475,9 +555,9 @@ nav a.ativo {
 }
 
 
-/* =========================
+/* =========================================================
    PARTE INFERIOR
-========================= */
+========================================================= */
 
 .inferior {
     display: grid;
@@ -488,9 +568,9 @@ nav a.ativo {
 }
 
 
-/* =========================
+/* =========================================================
    PRODUTOS
-========================= */
+========================================================= */
 
 .produtos {
     min-height: 210px;
@@ -500,6 +580,7 @@ nav a.ativo {
     height: 45px;
 
     display: flex;
+
     align-items: center;
 
     padding: 4px 10px;
@@ -516,18 +597,29 @@ nav a.ativo {
     background: #f2e3c5;
 
     display: flex;
+
     justify-content: center;
     align-items: center;
 
     margin-right: 8px;
 
     font-size: 17px;
+
+    overflow: hidden;
+}
+
+.produto-img img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
 }
 
 .produto strong {
     display: block;
 
     font-size: 9px;
+
     font-weight: 500;
 
     color: #603813;
@@ -542,9 +634,9 @@ nav a.ativo {
 }
 
 
-/* =========================
+/* =========================================================
    RESUMO
-========================= */
+========================================================= */
 
 .resumo {
     min-height: 210px;
@@ -562,6 +654,7 @@ nav a.ativo {
     background: #bd6b3b;
 
     display: flex;
+
     align-items: center;
 
     padding: 7px 10px;
@@ -592,9 +685,9 @@ nav a.ativo {
 }
 
 
-/* =========================
+/* =========================================================
    ENTREGAS
-========================= */
+========================================================= */
 
 .entregas {
     min-height: 210px;
@@ -604,6 +697,7 @@ nav a.ativo {
     height: 39px;
 
     display: flex;
+
     align-items: center;
 
     padding: 3px 10px;
@@ -616,6 +710,7 @@ nav a.ativo {
     height: 29px;
 
     display: flex;
+
     justify-content: center;
     align-items: center;
 
@@ -632,6 +727,7 @@ nav a.ativo {
 
 .cliente strong {
     font-size: 9px;
+
     font-weight: 500;
 
     color: #603813;
@@ -683,14 +779,14 @@ nav a.ativo {
 }
 
 
-/* =========================
+/* =========================================================
    RESPONSIVIDADE
-========================= */
+========================================================= */
 
 @media (max-width: 1100px) {
 
     .sidebar {
-        width: 200px;
+        width: 208px;
     }
 
     .graficos {
@@ -715,6 +811,32 @@ nav a.ativo {
 
     .sidebar {
         width: 180px;
+    }
+
+    .logo {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .logo-text h2 {
+        font-size: 14px;
+    }
+
+    .logo-text p {
+        font-size: 8px;
+    }
+
+    .menu a {
+        padding: 0 12px;
+        gap: 10px;
+    }
+
+    .menu a i {
+        font-size: 14px;
+    }
+
+    .menu a span {
+        font-size: 10px;
     }
 
     .cards {
@@ -750,23 +872,23 @@ nav a.ativo {
         min-height: auto;
     }
 
-    .logo-area {
+    .logo {
         justify-content: center;
     }
 
-    nav {
+    .menu {
         display: grid;
+
         grid-template-columns: repeat(2, 1fr);
 
         margin: 0;
     }
 
-    nav a {
-        padding: 10px;
-        justify-content: center;
-    }
+    .menu a {
+        height: 40px;
 
-    .sair {
+        padding: 8px;
+
         justify-content: center;
     }
 
@@ -776,6 +898,7 @@ nav a.ativo {
 
     .topo {
         flex-direction: column;
+
         gap: 10px;
     }
 

@@ -24,7 +24,7 @@ if ($acao === 'adicionar') {
     $id_produto = $_POST['id_produto'] ?? null;
 
     if (!$id_produto) {
-        header("Location: ../html/cardapio.html");
+        header("Location: ../html/cardapio.php");
         exit;
     }
 
@@ -78,7 +78,7 @@ if ($acao === 'adicionar') {
         ]);
     }
 
-    header("Location: ../html/cardapio.html");
+    header("Location: ../html/cardapio.php");
     exit;
 }
 
@@ -185,6 +185,6 @@ if ($acao === 'limpar') {
         )->execute([$id_pedido, $id_usuario]);
     }
 
-    header("Location: ../html/cardapio.html");
+    header("Location: ../html/cardapio.php");
     exit;
 }

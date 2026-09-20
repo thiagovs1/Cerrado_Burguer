@@ -64,9 +64,9 @@ $tipoEntrega = $pedido['tipo_entrega'] ?? 'Entrega';
     <nav>
         <a href="../html/tela-inicial.html">Inicio</a>
         <a href="../html/tela-inicial.html">Promoções do dia</a>
-        <a href="../html/cardapio.html">Cardápio</a>
-        <a href="../html/contato.html">Contato</a>
-        <a href="../html/avaliacoes.html">Avaliações</a>
+        <a href="../html/cardapio.php">Cardápio</a>
+        <a href="../html/tela-inicial.html#contato">Contato</a>
+        <a href="../html/tela-inicial.html#avaliacoes">Avaliações</a>
     </nav>
 
     <div class="icones">

@@ -27,7 +27,7 @@ $stmt->execute([$id_usuario]);
 $pedido = $stmt->fetch();
 
 if (!$pedido) {
-    header("Location: ../html/cardapio.html");
+    header("Location: ../html/cardapio.php");
     exit;
 }
 
@@ -107,15 +107,15 @@ $total = $pedido['total'];
             Promoções do dia
         </a>
 
-        <a href="../html/cardapio.html">
+        <a href="../html/cardapio.php">
             Cardápio
         </a>
 
-        <a href="../html/contato.html">
+        <a href="../html/tela-inicial.html#contato">
             Contato
         </a>
 
-        <a href="../html/avaliacoes.html">
+        <a href="../html/tela-inicial.html#avaliacoes">
             Avaliações
         </a>
 

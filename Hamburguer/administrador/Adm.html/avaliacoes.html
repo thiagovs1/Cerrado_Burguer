@@ -4,99 +4,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Administrativo</title>
+
+    <title>Avaliações - CerradoBurguer</title>
 
     <link rel="stylesheet" href="../Adm.css/avaliacoes.css">
 
-   
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
 
-    <div class="sidebar">
+    <aside class="sidebar">
 
-        <div class="logo-area">
-            <img src="../../imagens/logo.png" alt="Logo">
+        <!-- LOGO -->
+        <div class="logo">
 
-            <div>
-                <h2>Cerrado Burguer</h2>
-                <span>Painel Administrativo</span>
+            <img src="../../imagens/logo.png"
+                 alt="Logo CerradoBurguer">
+
+            <div class="logo-text">
+
+                <h2>CerradoBurguer</h2>
+
+                <p>ADMINISTRAÇÃO</p>
+
             </div>
+
         </div>
 
-        <nav>
+
+        <!-- MENU -->
+        <nav class="menu">
 
             <a href="adm-inicio.html">
-                <img src="../../imagens/icon-inicio.png">
-                Início
+                <i class="fa-solid fa-house"></i>
+                <span>Início</span>
             </a>
 
             <a href="pedidos.html">
-                <img src="../../imagens/icon-pedidos.png">
-                Pedidos
+                <i class="fa-solid fa-clipboard-list"></i>
+                <span>Pedidos</span>
             </a>
 
-            <a href="cadastro.html">
-                <img src="../../imagens/icon-hamburguerpng.png">
-                Cadastro
+            <a href="cadastro.php">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>Cadastro</span>
             </a>
 
-            <a href="categorias.html">
-                <img src="../../imagens/icon-categorias.png">
-                Categorias
+            <a href="categorias.php">
+                <i class="fa-solid fa-layer-group"></i>
+                <span>Categorias</span>
             </a>
 
             <a href="relatorio.html">
-                <img src="../../imagens/icon-relatorio.png">
-                Relatório
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Relatório</span>
             </a>
 
             <a href="promocoes.html">
-                <img src="../../imagens/icon-promocoes.png">
-                Promoção
+                <i class="fa-solid fa-tag"></i>
+                <span>Promoção</span>
             </a>
 
-            <a href="clientes.html">
-                <img src="../../imagens/icon-clientes.png">
-                Clientes
+            <a href="clientes.php">
+                <i class="fa-solid fa-users"></i>
+                <span>Clientes</span>
             </a>
 
             <a href="entregas.html">
-                <img src="../../imagens/icon-entrega.png">
-                Entregas
+                <i class="fa-solid fa-truck"></i>
+                <span>Entregas</span>
             </a>
 
-            <a href="avaliacoes.html">
-                <img src="../../imagens/icon-avaliacoes.png">
-                Avaliação
+            <a href="avaliacoes.html" class="ativo">
+                <i class="fa-solid fa-star"></i>
+                <span>Avaliação</span>
             </a>
 
             <a href="configuracoes.html">
-                <img src="../../imagens/icon-configuracoes.png">
-                Configurações
+                <i class="fa-solid fa-gear"></i>
+                <span>Configurações</span>
+            </a>
+
+            <a href="encomenda.php">
+                <i class="fa-solid fa-box"></i>
+                <span>Encomenda</span>
+            </a>
+
+            <a href="sair.html">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Sair</span>
             </a>
 
         </nav>
 
-        <a href="sair.html" class="sair">
-            <img src="../../imagens/icon-sair.png">
-            Sair
-        </a>
+    </aside>
 
-    </div>
 
+    <!-- CONTEÚDO DA PÁGINA -->
     <main class="conteudo">
 
-    </main>
-<script>
-const links = document.querySelectorAll("nav a");
+        <!-- Seu conteúdo de avaliações entra aqui -->
 
-links.forEach(link => {
-    if (link.href === window.location.href) {
-        link.classList.add("ativo");
-    }
-});
-</script>
+    </main>
+
+
+    <script>
+        const links = document.querySelectorAll(".menu a");
+
+        links.forEach(link => {
+
+            if (link.pathname === window.location.pathname) {
+                link.classList.add("ativo");
+            }
+
+        });
+    </script>
+
 </body>
 
 </html>

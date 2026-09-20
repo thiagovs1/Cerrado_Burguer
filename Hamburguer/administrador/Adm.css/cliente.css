@@ -1,731 +1,528 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif
 }
 
-body {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    overflow: hidden;
-    background: #ead5a5;
-    color: #4a2114;
+body{
+    width:100%;
+    height:100vh;
+    display:flex;
+    overflow:hidden;
+    background:#ead5a5;
+    color:#4a2114
 }
 
-
-/* =========================
-SIDEBAR
-========================= */
-
-.sidebar {
-    width: 100px;
-    min-width: 120px;
-    height: 100vh;
-    background: #fff0d2;
-    border-right: 1px solid #e4c995;
-    display: flex;
-    flex-direction: column;
+/* SIDEBAR */
+.sidebar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:208px;
+    height:100vh;
+    background:#fff3d8;
+    border-right:1px solid #ead7ae;
+    z-index:1000
 }
 
-.logo-area {
-    height: 43px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 6px 7px;
+.logo{
+    height:75px;
+    display:flex;
+    align-items:center;
+    padding:10px 15px;
+    gap:10px
 }
 
-.logo-area img {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
+.logo img{
+    width:43px;
+    height:43px;
+    object-fit:contain
 }
 
-.logo-texto h2 {
-    color: #c55a14;
-    font-size: 7px;
-    line-height: 8px;
-    white-space: nowrap;
+.logo-text h2{
+    font-size:15px;
+    color:#a85228;
+    line-height:18px
 }
 
-.logo-texto span {
-    color: #7e6c5b;
-    font-size: 4px;
-    line-height: 5px;
-    display: block;
-    white-space: nowrap;
+.logo-text p{
+    font-size:8px;
+    color:#714c3b;
+    margin-top:1px
 }
 
-nav {
-    flex: 1;
-    margin-top: 3px;
+.menu{
+    display:flex;
+    flex-direction:column;
+    margin-top:7px
 }
 
-nav a {
-    height: 28px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 0 9px;
-    text-decoration: none;
-    color: #633d28;
-    font-size: 7px;
+.menu a{
+    height:39px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:0 17px;
+    text-decoration:none;
+    color:#5d3a2d;
+    font-size:11px;
+    transition:.2s
 }
 
-nav a img {
-    width: 12px;
-    height: 12px;
-    object-fit: contain;
+.menu a i{
+    width:18px;
+    text-align:center;
+    font-size:14px
 }
 
-nav a:hover {
-    background: #f0d9b0;
+.menu a:hover{
+    background:#f7dfbd
 }
 
-nav a.ativo {
-    background: #e4ad7e;
-    color: #4d2113;
+.menu a.ativo{
+    background:#eeb47e;
+    color:#542c1f;
+    font-weight:bold
 }
 
-.sair {
-    height: 29px;
-    margin-bottom: 7px;
-    padding: 0 9px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    color: #633d28;
-    font-size: 7px;
+/* CONTEÚDO */
+.conteudo{
+    margin-left:208px;
+    width:calc(100% - 208px);
+    height:100vh;
+    padding:22px 25px;
+    background:#ead5a5;
+    overflow:hidden
 }
 
-.sair img {
-    width: 12px;
-    height: 12px;
+.conteudo h1{
+    margin:0 0 18px 4px;
+    color:#4b2113;
+    font-size:28px;
+    font-weight:700
 }
 
-
-/* =========================
-CONTEÚDO PRINCIPAL
-========================= */
-
-.conteudo {
-    flex: 1;
-    min-width: 0;
-    height: 100vh;
-    padding: 12px 16px;
-    background: #ead5a5;
-    overflow: hidden;
+/* CARDS */
+.cards-resumo{
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:18px
 }
 
-.conteudo h1 {
-    margin: 0 0 12px 4px;
-    color: #4b2113;
-    font-size: 18px;
-    font-weight: 700;
+.card-resumo{
+    height:92px;
+    background:#fff;
+    border-radius:14px;
+    padding:14px 18px;
+    display:flex;
+    align-items:center;
+    gap:10px
 }
 
-
-/* =========================
-CARDS
-========================= */
-
-.cards-resumo {
-    width: 100%;
-    height: 75px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    padding: 0;
-    margin-bottom: 14px;
+.card-icone{
+    width:45px;
+    height:45px;
+    min-width:45px;
+    border-radius:50%;
+    background:#f0dfc1;
+    display:flex;
+    align-items:center;
+    justify-content:center
 }
 
-.card-resumo {
-    height: 75px;
-    background: #fffdf8;
-    border-radius: 9px;
-    padding: 10px 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    box-shadow: none;
+.card-icone img{
+    width:22px;
+    height:22px;
+    object-fit:contain
 }
 
-.card-icone {
-    width: 34px;
-    height: 34px;
-    min-width: 34px;
-    border-radius: 50%;
-    background: #f0dfc1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.card-info{
+    min-width:0
 }
 
-.card-icone img {
-    width: 18px;
-    height: 18px;
-    object-fit: contain;
+.card-info span{
+    display:block;
+    color:#755a43;
+    font-size:11px
 }
 
-.card-info {
-    min-width: 0;
+.card-info strong{
+    display:block;
+    color:#9a3f20;
+    font-size:19px;
+    margin:3px 0
 }
 
-.card-info span {
-    display: block;
-    color: #755a43;
-    font-size: 9px;
-    line-height: 11px;
-    white-space: nowrap;
+.card-info small{
+    display:block;
+    color:#806a56;
+    font-size:9px
 }
 
-.card-info strong {
-    display: block;
-    color: #9a3f20;
-    font-size: 19px;
-    line-height: 22px;
-    font-weight: 400;
+/* CLIENTES */
+.area-clientes{
+    width:100%;
+    height:calc(100vh - 150px);
+    padding:10px;
+    background:#fffdf8;
+    border-radius:14px;
+    overflow:hidden
 }
 
-.card-info small {
-    display: block;
-    color: #806a56;
-    font-size: 8px;
-    line-height: 10px;
-    white-space: nowrap;
+.tabela-container{
+    width:100%;
+    height:calc(100% - 25px);
+    overflow:auto
 }
 
-
-/* =========================
-ÁREA DOS CLIENTES
-========================= */
-
-.area-clientes {
-    width: 100%;
-    height: calc(100vh - 125px);
-    margin: 0;
-    padding: 8px;
-    background: #fffdf8;
-    border-radius: 10px;
-    overflow: hidden;
+/* TABELA */
+table{
+    width:100%;
+    table-layout:fixed;
+    border-collapse:collapse
 }
 
-
-/* =========================
-TABELA
-========================= */
-
-.tabela-container {
-    width: 100%;
-    height: calc(100% - 25px);
-    overflow: hidden;
+thead{
+    background:#f1dfbd
 }
 
-table {
-    width: 100%;
-    table-layout: fixed;
-    border-collapse: collapse;
+th{
+    height:34px;
+    padding:5px 8px;
+    color:#68442c;
+    text-align:left;
+    font-size:10px;
+    font-weight:700
 }
 
-thead {
-    background: #f1dfbd;
+th:nth-child(1){width:23%}
+th:nth-child(2){width:19%}
+th:nth-child(3){width:9%;text-align:center}
+th:nth-child(4){width:13%}
+th:nth-child(5){width:15%}
+th:nth-child(6){width:9%}
+th:nth-child(7){width:12%}
+
+td{
+    height:48px;
+    padding:5px 8px;
+    border-bottom:1px solid #ead8bb;
+    color:#67422c;
+    font-size:10px;
+    vertical-align:middle
 }
 
-th {
-    height: 30px;
-    padding: 5px 8px;
-    color: #68442c;
-    text-align: left;
-    font-size: 8px;
-    font-weight: 700;
-    white-space: nowrap;
+tbody tr:last-child td{
+    border-bottom:0
 }
 
-th:nth-child(1) {
-    width: 23%;
+/* CLIENTE */
+.cliente{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    min-width:0
 }
 
-th:nth-child(2) {
-    width: 19%;
+.avatar{
+    width:30px;
+    height:30px;
+    min-width:30px;
+    border-radius:50%;
+    background:#efcfaa;
+    border:1px solid #b9572f;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#a64324;
+    font-size:10px;
+    font-weight:700
 }
 
-th:nth-child(3) {
-    width: 9%;
-    text-align: center;
+.cliente strong{
+    display:block;
+    color:#4d2214;
+    font-size:10px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis
 }
 
-th:nth-child(4) {
-    width: 13%;
+.cliente small{
+    display:block;
+    color:#966d51;
+    font-size:8px
 }
 
-th:nth-child(5) {
-    width: 15%;
+/* CONTATO */
+.contato{
+    min-width:0
 }
 
-th:nth-child(6) {
-    width: 9%;
+.contato span,
+.contato small{
+    display:block;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis
 }
 
-th:nth-child(7) {
-    width: 12%;
+.contato span{
+    color:#65412b;
+    font-size:9px
 }
 
-td {
-    height: 46px;
-    padding: 4px 8px;
-    border-bottom: 1px solid #ead8bb;
-    color: #67422c;
-    font-size: 8px;
-    vertical-align: middle;
+.contato small{
+    color:#927159;
+    font-size:8px
 }
 
-tbody tr:last-child td {
-    border-bottom: none;
+/* STATUS */
+.status{
+    font-size:9px;
+    white-space:nowrap
 }
 
-
-/* =========================
-CLIENTE
-========================= */
-
-.cliente {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    min-width: 0;
+.status.ativo{
+    color:#78914f
 }
 
-.avatar {
-    width: 27px;
-    height: 27px;
-    min-width: 27px;
-    border-radius: 50%;
-    background: #efcfaa;
-    border: 1px solid #b9572f;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #a64324;
-    font-size: 8px;
-    font-weight: 700;
+.status.inativo{
+    color:#a52f2f
 }
 
-.cliente strong {
-    display: block;
-    color: #4d2214;
-    font-size: 8px;
-    line-height: 10px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+/* AÇÕES */
+.acoes{
+    display:flex;
+    align-items:center;
+    gap:5px
 }
 
-.cliente small {
-    display: block;
-    color: #966d51;
-    font-size: 7px;
-    line-height: 9px;
-    white-space: nowrap;
+.acoes button,
+.btn-editar{
+    height:27px;
+    border-radius:6px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer
 }
 
-
-/* =========================
-CONTATO
-========================= */
-
-.contato {
-    min-width: 0;
+.btn-editar{
+    width:55px;
+    padding:0 5px;
+    background:#fffaf0;
+    border:1px solid #c9a77b;
+    color:#68442d;
+    font-size:9px;
+    text-decoration:none
 }
 
-.contato span {
-    display: block;
-    color: #65412b;
-    font-size: 8px;
-    line-height: 10px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.btn-excluir{
+    width:27px;
+    padding:0;
+    background:#fff1ed;
+    border:1px solid #daa9a0;
+    color:#a52f2f
 }
 
-.contato small {
-    display: block;
-    color: #927159;
-    font-size: 7px;
-    line-height: 9px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+/* VER TODOS */
+.ver-todos{
+    height:25px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+    color:#775f49;
+    font-size:9px
 }
 
-
-/* =========================
-STATUS
-========================= */
-
-.status {
-    font-size: 8px;
-    white-space: nowrap;
-}
-
-.status.ativo {
-    color: #78914f;
-}
-
-.status.inativo {
-    color: #a52f2f;
-}
-
-
-/* =========================
-AÇÕES
-========================= */
-
-.acoes {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.acoes button {
-    height: 23px;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-.btn-editar {
-    width: 48px;
-    padding: 0 4px;
-    gap: 4px;
-    background: #fffaf0;
-    border: 1px solid #c9a77b;
-    color: #68442d;
-    font-size: 7px;
-}
-
-.btn-editar img {
-    width: 10px;
-    height: 10px;
-    object-fit: contain;
-}
-
-.acoes .btn-excluir {
-    width: 23px;
-    padding: 0;
-    background: #fff1ed;
-    border: 1px solid #daa9a0;
-}
-
-.acoes .btn-excluir img {
-    width: 10px;
-    height: 10px;
-    object-fit: contain;
-}
-
-
-/* =========================
-VER TODOS
-========================= */
-
-.ver-todos {
-    height: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    color: #775f49;
-    font-size: 8px;
-}
-
-.ver-todos span:last-child {
-    font-size: 8px;
-}
-
-
-/* =========================
-MENSAGENS
-========================= */
-
-.carregando,
+/* MENSAGENS */
 .vazio,
-.erro {
-    padding: 20px;
-    text-align: center;
-    color: #775f49;
-    font-size: 9px;
+.carregando,
+.erro{
+    padding:20px;
+    text-align:center;
+    color:#775f49;
+    font-size:10px
 }
 
-.erro {
-    color: #a52f2f;
+.erro{
+    color:#a52f2f
 }
 
-
-/* ==================================================
-MODAIS
-================================================== */
-
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: rgba(45, 20, 10, 0.58);
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    background:rgba(45,20,10,.58);
+    align-items:center;
+    justify-content:center;
+    padding:20px
 }
 
-
-/* =========================
-CAIXA DO MODAL
-========================= */
-
-.modal-conteudo {
-    width: 420px;
-    max-width: 90%;
-    max-height: 85vh;
-    overflow: hidden;
-    position: relative;
-    padding: 0;
-    background: #fff8eb;
-    border: 1px solid #e5c99f;
-    border-radius: 15px;
-    box-shadow: 0 18px 45px rgba(72, 28, 17, 0.30);
+.modal-conteudo{
+    width:420px;
+    max-width:90%;
+    max-height:85vh;
+    overflow:auto;
+    position:relative;
+    background:#fff8eb;
+    border:1px solid #e5c99f;
+    border-radius:15px;
+    box-shadow:0 18px 45px rgba(72,28,17,.3);
+    padding-bottom:18px
 }
 
-
-/* =========================
-FAIXA COLORIDA
-========================= */
-
-.modal-conteudo::before {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 8px;
-    background: linear-gradient(
-        90deg,
-        #c95718 0%,
-        #e89a42 50%,
-        #b83d2f 100%
-    );
+.modal-conteudo:before{
+    content:"";
+    display:block;
+    width:100%;
+    height:8px;
+    background:linear-gradient(90deg,#c95718,#e89a42,#b83d2f)
 }
 
-
-/* =========================
-TÍTULO
-========================= */
-
-.modal-conteudo h2 {
-    color: #481c11;
-    margin: 23px 25px 10px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    text-align: center;
+.modal-conteudo h2{
+    color:#481c11;
+    margin:22px 25px 15px;
+    font-size:20px;
+    text-align:center
 }
 
-
-/* =========================
-TEXTO
-========================= */
-
-.modal-conteudo p {
-    color: #6b4938;
-    margin: 0 auto;
-    padding: 0 30px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 11px;
-    line-height: 1.6;
-    text-align: center;
+.fechar-modal{
+    position:absolute;
+    top:14px;
+    right:16px;
+    width:27px;
+    height:27px;
+    border:0;
+    border-radius:50%;
+    background:#f4dfc2;
+    color:#76513d;
+    font-size:18px;
+    line-height:27px;
+    text-align:center;
+    text-decoration:none
 }
 
-
-/* =========================
-AVISO DO MODAL DE EXCLUSÃO
-========================= */
-
-.modal-excluir .modal-conteudo p::before {
-    content: "ATENÇÃO";
-    display: block;
-    width: fit-content;
-    margin: 0 auto 10px;
-    padding: 5px 14px;
-    border-radius: 20px;
-    background: #f7dfb7;
-    color: #a35416;
-    font-size: 8px;
-    font-weight: bold;
-    letter-spacing: 1px;
+.fechar-modal:hover{
+    background:#e7c49b;
+    color:#481c11
 }
 
-
-/* =========================
-BOTÃO FECHAR
-========================= */
-
-.fechar-modal {
-    position: absolute;
-    top: 14px;
-    right: 16px;
-    z-index: 2;
-    width: 27px;
-    height: 27px;
-    border: none;
-    border-radius: 50%;
-    background: #f4dfc2;
-    color: #76513d;
-    font-size: 18px;
-    line-height: 27px;
-    cursor: pointer;
-    transition: 0.2s;
+.modal-conteudo label{
+    display:block;
+    color:#603813;
+    font-size:12px;
+    font-weight:bold;
+    margin:10px 24px 4px
 }
 
-.fechar-modal:hover {
-    background: #e7c49b;
-    color: #481c11;
+.modal-conteudo input,
+.modal-conteudo select{
+    width:calc(100% - 48px);
+    margin:0 24px;
+    padding:9px 11px;
+    border:1px solid #ddc39b;
+    border-radius:7px;
+    outline:0;
+    background:#fff;
+    color:#481c11;
+    font-size:12px
 }
 
-
-/* =========================
-CAMPOS DO MODAL DE EDITAR
-========================= */
-
-.modal-conteudo label {
-    display: block;
-    color: #603813;
-    font-size: 12px;
-    font-weight: bold;
-    margin: 10px 24px 4px;
+.modal-conteudo input:focus,
+.modal-conteudo select:focus{
+    border-color:#d86100;
+    box-shadow:0 0 0 2px rgba(216,97,0,.1)
 }
 
-.modal-conteudo input {
-    width: calc(100% - 48px);
-    margin: 0 24px;
-    padding: 9px 11px;
-    border: 1px solid #ddc39b;
-    border-radius: 7px;
-    outline: none;
-    background: #fff;
-    color: #481c11;
-    font-size: 12px;
+/* BOTÕES */
+.modal-botoes{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-top:22px;
+    padding:15px 24px 0
 }
 
-.modal-conteudo input:focus {
-    border-color: #d86100;
-    box-shadow: 0 0 0 2px rgba(216, 97, 0, 0.10);
+.modal-botoes button,
+.modal-botoes a{
+    min-width:105px;
+    height:34px;
+    padding:0 16px;
+    border-radius:7px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    cursor:pointer;
+    font-size:10px;
+    font-weight:bold
 }
 
-
-/* =========================
-ÁREA DOS BOTÕES
-========================= */
-
-.modal-botoes {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 24px;
-    padding: 16px 24px;
-    background: #f5e5cb;
-    border-top: 1px solid #e4ceb0;
+.btn-cancelar{
+    background:#fffaf1;
+    color:#5d321f;
+    border:1px solid #cdb38f
 }
 
-
-/* =========================
-BOTÕES DO MODAL
-========================= */
-
-.modal-botoes button {
-    min-width: 105px;
-    height: 34px;
-    padding: 0 16px;
-    border-radius: 7px;
-    border: none;
-    cursor: pointer;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 10px;
-    font-weight: bold;
-    transition: 0.2s ease;
+.btn-cancelar:hover{
+    background:#ead8bb
 }
 
-
-/* =========================
-CANCELAR
-========================= */
-
-.modal-botoes .btn-cancelar {
-    background: #fffaf1;
-    color: #5d321f;
-    border: 1px solid #cdb38f;
+.btn-salvar{
+    background:linear-gradient(135deg,#d86100,#b94800);
+    color:#fff;
+    border:0
 }
 
-.modal-botoes .btn-cancelar:hover {
-    background: #ead8bb;
-    border-color: #b99870;
-    transform: translateY(-1px);
+.btn-salvar:hover{
+    background:linear-gradient(135deg,#e87312,#a83f00)
 }
 
-
-/* =========================
-EXCLUIR
-========================= */
-
-.modal-botoes .btn-excluir {
-    background: linear-gradient(
-        135deg,
-        #d65343,
-        #a92f26
-    );
-    color: #fff;
-    border: 1px solid #972820;
-    box-shadow: 0 3px 8px rgba(169, 47, 38, 0.25);
+/* RESPONSIVO */
+@media(max-width:1100px){
+    .cards-resumo{
+        grid-template-columns:repeat(2,1fr)
+    }
 }
 
-.modal-botoes .btn-excluir:hover {
-    background: linear-gradient(
-        135deg,
-        #e56452,
-        #98261f
-    );
-    transform: translateY(-1px);
-    box-shadow: 0 5px 13px rgba(169, 47, 38, 0.35);
-}
+@media(max-width:800px){
+    .sidebar{
+        width:70px
+    }
 
+    .logo{
+        justify-content:center;
+        padding:10px
+    }
 
-/* =========================
-SALVAR
-========================= */
+    .logo-text{
+        display:none
+    }
 
-.modal-botoes .btn-salvar {
-    background: linear-gradient(
-        135deg,
-        #d86100,
-        #b94800
-    );
-    color: #fff;
-}
+    .menu a{
+        font-size:0;
+        justify-content:center;
+        padding:0
+    }
 
-.modal-botoes .btn-salvar:hover {
-    background: linear-gradient(
-        135deg,
-        #e87312,
-        #a83f00
-    );
-    transform: translateY(-1px);
-}
+    .menu a i{
+        font-size:16px
+    }
 
+    .conteudo{
+        margin-left:70px;
+        width:calc(100% - 70px)
+    }
 
-/* =========================
-EFEITO AO CLICAR
-========================= */
-
-.modal-botoes button:active {
-    transform: scale(0.97);
+    .cards-resumo{
+        grid-template-columns:1fr
+    }
 }

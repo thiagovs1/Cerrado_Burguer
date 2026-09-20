@@ -2,114 +2,88 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+    font-family:'Poppins',sans-serif
 }
 
 body{
-
     display:flex;
-    background:#ecd6a6;
+    background:#ecd6a6
 }
 
 .sidebar{
-    width:225px;
-    background:#fff4df;
-    border-right:1px solid #ead3ab;
+    position:fixed;
+    top:0;
+    left:0;
+    width:208px;
+    height:100vh;
+    background:#fff3d8;
+    border-right:1px solid #ead7ae;
+    z-index:1000
+}
+
+.logo{
+    height:75px;
+    display:flex;
+    align-items:center;
+    padding:10px 15px;
+    gap:10px
+}
+
+.logo img{
+    width:43px;
+    height:43px;
+    object-fit:contain
+}
+
+.logo-text h2{
+    font-size:15px;
+    color:#a85228;
+    line-height:18px
+}
+
+.logo-text p{
+    font-size:8px;
+    color:#714c3b;
+    margin-top:1px
+}
+
+.menu{
     display:flex;
     flex-direction:column;
+    margin-top:7px
 }
 
-.logo-area{
-
+.menu a{
+    height:39px;
     display:flex;
     align-items:center;
-
     gap:12px;
-
-    padding:18px;
-}
-
-.logo-area img{
-
-    width:45px;
-}
-
-.logo-area h2{
-
-    font-size:18px;
-    color:#d05c0c;
-}
-
-.logo-area span{
-
+    padding:0 17px;
+    text-decoration:none;
+    color:#5d3a2d;
     font-size:11px;
-    color:#777;
+    transition:.2s
 }
 
-nav{
-    flex:1;   
-    margin-top:15px;
+.menu a i{
+    width:18px;
+    text-align:center;
+    font-size:14px
 }
 
-nav a{
-
-    display:flex;
-    align-items:center;
-
-    gap:14px;
-
-    text-decoration:none;
-
-    color:#603813;
-
-    padding:14px 20px;
-
-    transition:.3s;
+.menu a:hover{
+    background:#f7dfbd
 }
 
-nav a img{
-
-    width:20px;
+.menu a.ativo{
+    background:#eeb47e;
+    color:#542c1f;
+    font-weight:bold
 }
-
-nav a:hover{
-
-    background:#edd3af;
-}
-
-.ativo{
-
-    background:#e8b783;
-}
-
-
-.sair{
-    margin-top:auto;
-    display:flex;
-    align-items:center;
-    gap:14px;
-    padding:16px 20px;
-    text-decoration:none;
-    color:#603813;
-}
-.sair:hover{
-    background:#edd3af;
-}
-
-.sair img{
-
-    width:20px;
-}
-
-.sair:hover{
-
-    background:#edd3af;
-}
-
 
 .conteudo{
-
-    flex:1;
-
-    background:#ecd6a6;
+    margin-left:208px;
+    width:calc(100% - 208px);
+    min-height:100vh;
+    background:#ecd6a6
 }

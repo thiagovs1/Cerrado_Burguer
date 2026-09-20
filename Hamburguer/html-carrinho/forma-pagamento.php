@@ -86,15 +86,15 @@ $cidade = $pedido['cidade'] ?? '';
             Promoções do dia
         </a>
 
-        <a href="../html/cardapio.html">
+        <a href="../html/cardapio.php">
             Cardápio
         </a>
 
-        <a href="../html/contato.html">
+        <a href="../html/tela-inicial.html#contato">
             Contato
         </a>
 
-        <a href="../html/avaliacoes.html">
+        <a href="../html/tela-inicial.html#avaliacoes">
             Avaliações
         </a>
 

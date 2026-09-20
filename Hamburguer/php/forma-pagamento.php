@@ -41,7 +41,7 @@ $stmt->execute([$id_usuario]);
 $pedido = $stmt->fetch();
 
 if (!$pedido) {
-    header("Location: ../html/cardapio.html");
+    header("Location: ../html/cardapio.php");
     exit;
 }
 

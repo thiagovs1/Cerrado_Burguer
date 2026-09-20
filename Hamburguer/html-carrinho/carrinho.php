@@ -186,15 +186,15 @@ if ($carrinho) {
             Promoções do dia
         </a>
 
-        <a href="../html/cardapio.html">
+        <a href="../html/cardapio.php">
             Cardápio
         </a>
 
-        <a href="../html/tela-inicial.html">
+        <a href="../html/tela-inicial.html#contato">
             Contato
         </a>
 
-        <a href="../html/avaliacoes.html">
+        <a href="../html/tela-inicial.html#avaliacoes">
             Avaliações
         </a>
 
@@ -243,7 +243,7 @@ if ($carrinho) {
             </h2>
 
 
-            <a href="../html/cardapio.html">
+            <a href="../html/cardapio.php">
 
                 Voltar para o cardápio
 

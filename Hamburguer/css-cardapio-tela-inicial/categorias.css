@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #1b0d05;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+#cardapio {
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto;
+}
+
+#cardapio h1 {
+    text-align: center;
+    color: #f5a623;
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 25px;
+}
+
+.produto {
+    background: #2b160b;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,.35);
+    transition: .2s;
+}
+
+.produto:hover {
+    transform: translateY(-5px);
+}
+
+.produto img {
+    width: 100%;
+    height: 190px;
+    object-fit: contain;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.produto h3 {
+    color: #f5a623;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.produto p {
+    color: #ddd;
+    font-size: 14px;
+    min-height: 40px;
+    margin-bottom: 15px;
+}
+
+.produto strong {
+    color: #fff;
+    font-size: 20px;
+}
+
+.linha-voltar {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.btn-voltar {
+    display: inline-block;
+    background: #f5a623;
+    color: #1b0d05;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.btn-voltar:hover {
+    background: #ffbd4a;
+}
+
+@media (max-width: 600px) {
+    #cardapio {
+        width: 92%;
+    }
+
+    #cardapio h1 {
+        font-size: 28px;
+    }
+
+    .produtos {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,112 +1,232 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-body{
-
-    display:flex;
-    background:#ecd6a6;
+body {
+    display: flex;
+    min-height: 100vh;
+    background: #ecd6a6;
 }
 
-.sidebar{
-    width:225px;
-    background:#fff4df;
-    border-right:1px solid #ead3ab;
-    display:flex;
-    flex-direction:column;
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+    width: 208px;
+    min-height: 100vh;
+
+    background: #fff3d8;
+    border-right: 1px solid #ead7ae;
+
+    display: flex;
+    flex-direction: column;
+
+    flex-shrink: 0;
 }
 
-.logo-area{
 
-    display:flex;
-    align-items:center;
+/* =========================================================
+   LOGO
+========================================================= */
 
-    gap:12px;
+.logo {
+    display: flex;
+    align-items: center;
 
-    padding:18px;
+    gap: 10px;
+
+    padding: 18px 15px 14px;
 }
 
-.logo-area img{
+.logo img {
+    width: 42px;
+    height: 42px;
 
-    width:45px;
+    object-fit: contain;
 }
 
-.logo-area h2{
+.logo-text h2 {
+    font-size: 17px;
+    line-height: 18px;
 
-    font-size:18px;
-    color:#d05c0c;
+    color: #d05c0c;
+
+    font-weight: 600;
 }
 
-.logo-area span{
+.logo-text p {
+    margin-top: 2px;
 
-    font-size:11px;
-    color:#777;
+    font-size: 9px;
+
+    color: #777;
+
+    letter-spacing: 0.5px;
 }
 
-nav{
-    flex:1; margin-top:15px;
+
+/* =========================================================
+   MENU
+========================================================= */
+
+.menu {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 10px;
 }
 
-nav a{
+.menu a {
+    display: flex;
+    align-items: center;
 
-    display:flex;
-    align-items:center;
+    width: 100%;
+    height: 42px;
 
-    gap:14px;
+    padding: 0 18px;
 
-    text-decoration:none;
+    gap: 13px;
 
-    color:#603813;
+    text-decoration: none;
 
-    padding:14px 20px;
+    color: #603813;
 
-    transition:.3s;
+    font-size: 11px;
+
+    transition: background 0.2s ease;
 }
 
-nav a img{
 
-    width:20px;
+/* ÍCONES */
+
+.menu a i {
+    width: 20px;
+
+    text-align: center;
+
+    font-size: 16px;
+
+    color: #603813;
 }
 
-nav a:hover{
 
-    background:#edd3af;
+/* TEXTO */
+
+.menu a span {
+    font-size: 11px;
+
+    color: #603813;
 }
 
-.ativo{
 
-    background:#e8b783;
+/* HOVER */
+
+.menu a:hover {
+    background: #edd3af;
 }
 
-.sair{
-    margin-top:auto;
-    display:flex;
-    align-items:center;
-    gap:14px;
-    padding:16px 20px;
-    text-decoration:none;
-    color:#603813;
-}
-.sair:hover{
-    background:#edd3af;
+
+/* ITEM ATIVO */
+
+.menu a.ativo {
+    background: #e9ad78;
 }
 
-.sair img{
-
-    width:20px;
+.menu a.ativo i,
+.menu a.ativo span {
+    color: #603813;
 }
 
-.sair:hover{
 
-    background:#edd3af;
+/* =========================================================
+   CONTEÚDO
+========================================================= */
+
+.conteudo {
+    flex: 1;
+
+    min-width: 0;
+
+    background: #ecd6a6;
 }
 
-.conteudo{
 
-    flex:1;
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
 
-    background:#ecd6a6;
+@media (max-width: 850px) {
+
+    .sidebar {
+        width: 180px;
+    }
+
+    .logo {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .logo-text h2 {
+        font-size: 14px;
+    }
+
+    .logo-text p {
+        font-size: 8px;
+    }
+
+    .menu a {
+        padding: 0 12px;
+
+        gap: 10px;
+    }
+
+    .menu a i {
+        font-size: 14px;
+    }
+
+    .menu a span {
+        font-size: 10px;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    body {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .logo {
+        justify-content: center;
+    }
+
+    .menu {
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        margin: 0;
+    }
+
+    .menu a {
+        height: 40px;
+
+        padding: 8px;
+
+        justify-content: center;
+    }
+
+    .conteudo {
+        padding: 12px;
+    }
 }

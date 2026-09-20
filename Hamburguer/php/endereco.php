@@ -75,7 +75,7 @@ if ($tipo_entrega === 'Entrega') {
         $id_usuario
     ]);
 
-    header("Location: ../html-carrinho/pagamento.php");
+    header("Location: ../html-carrinho/forma-pagamento.php");
     exit;
 }
 
