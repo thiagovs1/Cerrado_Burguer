@@ -1,57 +1,72 @@
+
 <?php
 require_once "../Crud/conexao.php";
 
-if (!isset($pdo)) die("Erro na conexão com o banco.");
+if (!isset($pdo)) {
+    die("Erro na conexão com o banco.");
+}
 
 function numeroEncomenda($id){
-    return '#ENQ-' . str_pad($id,4,'0',STR_PAD_LEFT);
+    return '#ENQ-' . str_pad($id, 4, '0', STR_PAD_LEFT);
 }
 
 function moeda($valor){
-    return 'R$ ' . number_format($valor,2,',','.');
+    return 'R$ ' . number_format((float)$valor, 2, ',', '.');
 }
 
 function classeStatus($status){
     return match($status){
-        'Pendente'=>'pendente',
-        'Em Andamento'=>'andamento',
-        'Recebida'=>'recebida',
-        'Cancelada'=>'cancelado',
-        default=>''
+        'Pendente' => 'pendente',
+        'Em Andamento' => 'andamento',
+        'Recebida' => 'recebida',
+        'Cancelada' => 'cancelado',
+        default => ''
     };
 }
 
-/* AÇÕES */
-if($_SERVER['REQUEST_METHOD']==='POST'){
+/* =========================================================
+   AÇÕES
+========================================================= */
 
-    $acao=$_POST['acao']??'';
-    $id=(int)($_POST['id_encomenda']??0);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    if($id>0){
+    $acao = $_POST['acao'] ?? '';
+    $id = (int)($_POST['id_encomenda'] ?? 0);
 
-        if($acao==='receber'){
-            $stmt=$pdo->prepare("
+    if ($id > 0) {
+
+        /* RECEBER */
+        if ($acao === 'receber') {
+
+            $stmt = $pdo->prepare("
                 UPDATE encomenda
-                SET status='Recebida'
-                WHERE id_encomenda=?
+                SET status = 'Recebida'
+                WHERE id_encomenda = ?
             ");
+
             $stmt->execute([$id]);
         }
 
-        if($acao==='cancelar'){
-            $stmt=$pdo->prepare("
+        /* CANCELAR */
+        if ($acao === 'cancelar') {
+
+            $stmt = $pdo->prepare("
                 UPDATE encomenda
-                SET status='Cancelada'
-                WHERE id_encomenda=?
+                SET status = 'Cancelada'
+                WHERE id_encomenda = ?
             ");
+
             $stmt->execute([$id]);
         }
 
-        if($acao==='excluir'){
-            $stmt=$pdo->prepare("
+        /* EXCLUIR */
+        if ($acao === 'excluir') {
+
+            $stmt = $pdo->prepare("
                 DELETE FROM encomenda
-                WHERE id_encomenda=?
+                WHERE id_encomenda = ?
             ");
+
             $stmt->execute([$id]);
         }
     }
@@ -60,110 +75,142 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     exit;
 }
 
-/* FILTROS */
-$busca=trim($_GET['busca']??'');
-$status=$_GET['status']??'';
+/* =========================================================
+   FILTROS
+========================================================= */
 
-$where=[];
-$params=[];
+$busca = trim($_GET['busca'] ?? '');
+$status = $_GET['status'] ?? '';
 
-if($busca!==''){
-    $where[]="(
-        f.nome LIKE ?
-        OR CONCAT('#ENQ-',LPAD(e.id_encomenda,4,'0')) LIKE ?
+$where = [];
+$params = [];
+
+/* BUSCA */
+if ($busca !== '') {
+
+    $where[] = "(
+        e.nome_fornecedor LIKE ?
+        OR CONCAT('#ENQ-', LPAD(e.id_encomenda, 4, '0')) LIKE ?
     )";
 
-    $params[]="%$busca%";
-    $params[]="%$busca%";
+    $params[] = "%$busca%";
+    $params[] = "%$busca%";
 }
 
-if($status!==''){
-    $where[]="e.status=?";
-    $params[]=$status;
+/* STATUS */
+if ($status !== '') {
+
+    $where[] = "e.status = ?";
+    $params[] = $status;
 }
 
-$sql="
+/* =========================================================
+   LISTA DE ENCOMENDAS
+========================================================= */
+
+$sql = "
     SELECT
         e.*,
-        f.nome AS fornecedor,
-        f.tipo AS tipo_fornecedor,
-        f.telefone,
         (
             SELECT COUNT(*)
             FROM itens_encomenda ie
-            WHERE ie.id_encomenda=e.id_encomenda
+            WHERE ie.id_encomenda = e.id_encomenda
         ) AS quantidade_itens
     FROM encomenda e
-    INNER JOIN fornecedor f
-        ON f.id_fornecedor=e.id_fornecedor
 ";
 
-if($where){
-    $sql.=" WHERE ".implode(" AND ",$where);
+if ($where) {
+
+    $sql .= " WHERE " . implode(" AND ", $where);
 }
 
-$sql.=" ORDER BY e.id_encomenda DESC";
+$sql .= " ORDER BY e.id_encomenda DESC";
 
-$stmt=$pdo->prepare($sql);
+$stmt = $pdo->prepare($sql);
 $stmt->execute($params);
-$encomendas=$stmt->fetchAll();
 
-/* CARDS */
-function card($pdo,$condicao=''){
+$encomendas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $sql="
+/* =========================================================
+   CARDS
+========================================================= */
+
+function card($pdo, $condicao = ''){
+
+    $sql = "
         SELECT
             COUNT(*) AS quantidade,
-            COALESCE(SUM(valor_total),0) AS total
+            COALESCE(SUM(valor_total), 0) AS total
         FROM encomenda
     ";
 
-    if($condicao){
-        $sql.=" WHERE $condicao";
+    if ($condicao !== '') {
+        $sql .= " WHERE " . $condicao;
     }
 
-    return $pdo->query($sql)->fetch();
+    return $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
 }
 
-$hoje=card($pdo,"data_encomenda=CURDATE()");
-$pendentes=card($pdo,"status='Pendente'");
-$andamento=card($pdo,"status='Em Andamento'");
-$recebidas=card($pdo,"status='Recebida'");
-$canceladas=card($pdo,"status='Cancelada'");
+$hoje = card(
+    $pdo,
+    "data_encomenda = CURDATE()"
+);
 
-/* DETALHES */
-$visualizar=(int)($_GET['visualizar']??0);
-$detalhe=null;
-$itens=[];
+$pendentes = card(
+    $pdo,
+    "status = 'Pendente'"
+);
 
-if($visualizar>0){
+$andamento = card(
+    $pdo,
+    "status = 'Em Andamento'"
+);
 
-    $stmt=$pdo->prepare("
-        SELECT
-            e.*,
-            f.nome AS fornecedor,
-            f.tipo AS tipo_fornecedor,
-            f.telefone
-        FROM encomenda e
-        INNER JOIN fornecedor f
-            ON f.id_fornecedor=e.id_fornecedor
-        WHERE e.id_encomenda=?
+$recebidas = card(
+    $pdo,
+    "status = 'Recebida'"
+);
+
+$canceladas = card(
+    $pdo,
+    "status = 'Cancelada'"
+);
+
+/* =========================================================
+   DETALHES
+========================================================= */
+
+$visualizar = (int)($_GET['visualizar'] ?? 0);
+
+$detalhe = null;
+$itens = [];
+
+if ($visualizar > 0) {
+
+    /* BUSCA A ENCOMENDA */
+    $stmt = $pdo->prepare("
+        SELECT *
+        FROM encomenda
+        WHERE id_encomenda = ?
     ");
 
     $stmt->execute([$visualizar]);
-    $detalhe=$stmt->fetch();
 
-    if($detalhe){
+    $detalhe = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $stmt=$pdo->prepare("
+    /* BUSCA OS ITENS */
+    if ($detalhe) {
+
+        $stmt = $pdo->prepare("
             SELECT *
             FROM itens_encomenda
-            WHERE id_encomenda=?
+            WHERE id_encomenda = ?
             ORDER BY id_item
         ");
 
         $stmt->execute([$visualizar]);
-        $itens=$stmt->fetchAll();
+
+        $itens = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 ?>
@@ -174,11 +221,18 @@ if($visualizar>0){
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Encomenda</title>
 
-    <link rel="stylesheet" href="../Adm.css/encomenda.css">
+    <link
+        rel="stylesheet"
+        href="../Adm.css/encomenda.css"
+    >
 
     <link
         rel="stylesheet"
@@ -189,16 +243,25 @@ if($visualizar>0){
 
 <body>
 
-<!-- SIDEBAR -->
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
 <aside class="sidebar">
 
     <div class="logo">
 
-        <img src="../../imagens/logo.png" alt="Logo CerradoBurguer">
+        <img
+            src="../../imagens/logo.png"
+            alt="Logo CerradoBurguer"
+        >
 
         <div class="logo-text">
+
             <h2>CerradoBurguer</h2>
+
             <p>ADMINISTRAÇÃO</p>
+
         </div>
 
     </div>
@@ -255,7 +318,10 @@ if($visualizar>0){
             <span>Configurações</span>
         </a>
 
-        <a href="encomenda.php" class="ativo">
+        <a
+            href="encomenda.php"
+            class="ativo"
+        >
             <i class="fa-solid fa-box"></i>
             <span>Encomenda</span>
         </a>
@@ -269,59 +335,128 @@ if($visualizar>0){
 
 </aside>
 
-<!-- CONTEÚDO -->
+
+<!-- =========================================================
+     CONTEÚDO
+========================================================= -->
+
 <main class="conteudo">
+
+    <!-- TOPO -->
 
     <header class="topo">
 
         <div>
+
             <h1>Encomenda</h1>
-            <p>Gerenciamento de encomendas</p>
+
+            <p>
+                Gerenciamento de encomendas
+            </p>
+
         </div>
 
-        <a href="nova_encomenda.php" class="nova-encomenda">
+        <a
+            href="nova_encomenda.php"
+            class="nova-encomenda"
+        >
             + Nova Encomenda
         </a>
 
     </header>
 
-    <!-- CARDS -->
+
+    <!-- =====================================================
+         CARDS
+    ====================================================== -->
+
     <section class="cards">
 
         <div class="card">
+
             <h3>Encomenda de Hoje</h3>
-            <strong><?= $hoje['quantidade'] ?></strong>
-            <span><?= moeda($hoje['total']) ?></span>
+
+            <strong>
+                <?= $hoje['quantidade'] ?>
+            </strong>
+
+            <span>
+                <?= moeda($hoje['total']) ?>
+            </span>
+
         </div>
 
+
         <div class="card">
+
             <h3>Pendente</h3>
-            <strong><?= $pendentes['quantidade'] ?></strong>
-            <span><?= moeda($pendentes['total']) ?></span>
+
+            <strong>
+                <?= $pendentes['quantidade'] ?>
+            </strong>
+
+            <span>
+                <?= moeda($pendentes['total']) ?>
+            </span>
+
         </div>
 
+
         <div class="card">
+
             <h3>Em Andamento</h3>
-            <strong><?= $andamento['quantidade'] ?></strong>
-            <span><?= moeda($andamento['total']) ?></span>
+
+            <strong>
+                <?= $andamento['quantidade'] ?>
+            </strong>
+
+            <span>
+                <?= moeda($andamento['total']) ?>
+            </span>
+
         </div>
 
+
         <div class="card">
+
             <h3>Recebidas</h3>
-            <strong><?= $recebidas['quantidade'] ?></strong>
-            <span><?= moeda($recebidas['total']) ?></span>
+
+            <strong>
+                <?= $recebidas['quantidade'] ?>
+            </strong>
+
+            <span>
+                <?= moeda($recebidas['total']) ?>
+            </span>
+
         </div>
 
+
         <div class="card">
+
             <h3>Canceladas</h3>
-            <strong><?= $canceladas['quantidade'] ?></strong>
-            <span><?= moeda($canceladas['total']) ?></span>
+
+            <strong>
+                <?= $canceladas['quantidade'] ?>
+            </strong>
+
+            <span>
+                <?= moeda($canceladas['total']) ?>
+            </span>
+
         </div>
 
     </section>
 
-    <!-- FILTROS -->
-    <form method="GET" class="filtros">
+
+    <!-- =====================================================
+         FILTROS
+    ====================================================== -->
+
+    <form
+        method="GET"
+        class="filtros"
+    >
 
         <div class="campo pesquisa">
 
@@ -336,39 +471,54 @@ if($visualizar>0){
 
         </div>
 
+
         <select name="status">
 
-            <option value="">Todos os status</option>
+            <option value="">
+                Todos os status
+            </option>
 
             <?php
-            $statusLista=[
+
+            $statusLista = [
                 'Pendente',
                 'Em Andamento',
                 'Recebida',
                 'Cancelada'
             ];
+
             ?>
 
-            <?php foreach($statusLista as $s): ?>
+            <?php foreach ($statusLista as $s): ?>
 
                 <option
-                    value="<?= $s ?>"
-                    <?= $status===$s?'selected':'' ?>
+                    value="<?= htmlspecialchars($s) ?>"
+                    <?= $status === $s ? 'selected' : '' ?>
                 >
-                    <?= $s ?>
+                    <?= htmlspecialchars($s) ?>
                 </option>
 
             <?php endforeach; ?>
 
         </select>
 
-        <button type="submit">Filtrar</button>
 
-        <a href="encomenda.php">Limpar</a>
+        <button type="submit">
+            Filtrar
+        </button>
+
+
+        <a href="encomenda.php">
+            Limpar
+        </a>
 
     </form>
 
-    <!-- ÁREA PRINCIPAL -->
+
+    <!-- =====================================================
+         ÁREA PRINCIPAL
+    ====================================================== -->
+
     <section class="area-principal">
 
         <div class="tabela-container">
@@ -380,70 +530,126 @@ if($visualizar>0){
                     <thead>
 
                         <tr>
+
                             <th>Número</th>
+
                             <th>Fornecedor</th>
+
                             <th>Tipo</th>
-                            <th>Telefone</th>
+
                             <th>Data</th>
+
                             <th>Itens</th>
+
                             <th>Valor</th>
+
                             <th>Status</th>
+
                             <th>Ações</th>
+
                         </tr>
 
                     </thead>
 
+
                     <tbody>
 
-                    <?php if(!$encomendas): ?>
+                    <?php if (!$encomendas): ?>
 
                         <tr>
-                            <td colspan="9">
+
+                            <td colspan="8">
+
                                 Nenhuma encomenda encontrada.
+
                             </td>
+
                         </tr>
 
                     <?php endif; ?>
 
-                    <?php foreach($encomendas as $e): ?>
+
+                    <?php foreach ($encomendas as $e): ?>
 
                         <tr>
 
+                            <!-- NÚMERO -->
+
                             <td>
+
                                 <?= numeroEncomenda($e['id_encomenda']) ?>
+
                             </td>
 
-                            <td>
-                                <?= htmlspecialchars($e['fornecedor']) ?>
-                            </td>
+
+                            <!-- FORNECEDOR -->
 
                             <td>
+
+                                <?= htmlspecialchars($e['nome_fornecedor']) ?>
+
+                            </td>
+
+
+                            <!-- TIPO -->
+
+                            <td>
+
                                 <?= htmlspecialchars($e['tipo_fornecedor']) ?>
+
                             </td>
 
-                            <td>
-                                <?= htmlspecialchars($e['telefone'] ?: 'Não informado') ?>
-                            </td>
+
+                            <!-- DATA -->
 
                             <td>
-                                <?= date('d/m/Y',strtotime($e['data_encomenda'])) ?>
+
+                                <?= date(
+                                    'd/m/Y',
+                                    strtotime($e['data_encomenda'])
+                                ) ?>
+
                             </td>
 
+
+                            <!-- ITENS -->
+
                             <td>
+
                                 <?= $e['quantidade_itens'] ?>
+
                             </td>
 
+
+                            <!-- VALOR -->
+
                             <td>
+
                                 <?= moeda($e['valor_total']) ?>
+
                             </td>
 
+
+                            <!-- STATUS -->
+
                             <td>
-                                <span class="status <?= classeStatus($e['status']) ?>">
+
+                                <span
+                                    class="status <?= classeStatus($e['status']) ?>"
+                                >
+
                                     <?= htmlspecialchars($e['status']) ?>
+
                                 </span>
+
                             </td>
+
+
+                            <!-- AÇÕES -->
 
                             <td class="acoes">
+
+                                <!-- VISUALIZAR -->
 
                                 <a
                                     href="?visualizar=<?= $e['id_encomenda'] ?>"
@@ -452,9 +658,21 @@ if($visualizar>0){
                                     Ver
                                 </a>
 
-                                <?php if($e['status']!=='Recebida' && $e['status']!=='Cancelada'): ?>
 
-                                    <form method="POST" style="display:inline">
+                                <!-- RECEBER / CANCELAR -->
+
+                                <?php
+                                if (
+                                    $e['status'] !== 'Recebida'
+                                    &&
+                                    $e['status'] !== 'Cancelada'
+                                ):
+                                ?>
+
+                                    <form
+                                        method="POST"
+                                        style="display:inline"
+                                    >
 
                                         <input
                                             type="hidden"
@@ -468,13 +686,20 @@ if($visualizar>0){
                                             value="<?= $e['id_encomenda'] ?>"
                                         >
 
-                                        <button type="submit" class="editar">
+                                        <button
+                                            type="submit"
+                                            class="editar"
+                                        >
                                             Receber
                                         </button>
 
                                     </form>
 
-                                    <form method="POST" style="display:inline">
+
+                                    <form
+                                        method="POST"
+                                        style="display:inline"
+                                    >
 
                                         <input
                                             type="hidden"
@@ -488,7 +713,10 @@ if($visualizar>0){
                                             value="<?= $e['id_encomenda'] ?>"
                                         >
 
-                                        <button type="submit" class="editar">
+                                        <button
+                                            type="submit"
+                                            class="editar"
+                                        >
                                             Cancelar
                                         </button>
 
@@ -496,7 +724,13 @@ if($visualizar>0){
 
                                 <?php endif; ?>
 
-                                <form method="POST" style="display:inline">
+
+                                <!-- EXCLUIR -->
+
+                                <form
+                                    method="POST"
+                                    style="display:inline"
+                                >
 
                                     <input
                                         type="hidden"
@@ -510,8 +744,13 @@ if($visualizar>0){
                                         value="<?= $e['id_encomenda'] ?>"
                                     >
 
-                                    <button type="submit" class="excluir">
+                                    <button
+                                        type="submit"
+                                        class="excluir"
+                                    >
+
                                         <i class="fa-solid fa-trash"></i>
+
                                     </button>
 
                                 </form>
@@ -530,8 +769,12 @@ if($visualizar>0){
 
         </div>
 
-        <!-- DETALHES -->
-        <?php if($detalhe): ?>
+
+        <!-- =================================================
+             DETALHES
+        ================================================== -->
+
+        <?php if ($detalhe): ?>
 
             <section class="detalhes">
 
@@ -540,62 +783,114 @@ if($visualizar>0){
                     <div>
 
                         <h2>
-                            <?= numeroEncomenda($detalhe['id_encomenda']) ?>
+
+                            <?= numeroEncomenda(
+                                $detalhe['id_encomenda']
+                            ) ?>
+
                         </h2>
 
                         <strong>
-                            <?= htmlspecialchars($detalhe['fornecedor']) ?>
+
+                            <?= htmlspecialchars(
+                                $detalhe['nome_fornecedor']
+                            ) ?>
+
                         </strong>
 
                     </div>
 
                 </div>
 
+
+                <!-- INFORMAÇÕES -->
+
                 <div class="informacoes">
 
                     <div>
+
                         <b>Tipo:</b>
+
                         <span>
-                            <?= htmlspecialchars($detalhe['tipo_fornecedor']) ?>
+
+                            <?= htmlspecialchars(
+                                $detalhe['tipo_fornecedor']
+                            ) ?>
+
                         </span>
+
                     </div>
 
-                    <div>
-                        <b>Telefone:</b>
-                        <span>
-                            <?= htmlspecialchars($detalhe['telefone'] ?: 'Não informado') ?>
-                        </span>
-                    </div>
 
                     <div>
+
                         <b>Data da encomenda:</b>
+
                         <span>
-                            <?= date('d/m/Y',strtotime($detalhe['data_encomenda'])) ?>
+
+                            <?= date(
+                                'd/m/Y',
+                                strtotime(
+                                    $detalhe['data_encomenda']
+                                )
+                            ) ?>
+
                         </span>
+
                     </div>
 
+
                     <div>
+
                         <b>Data prevista:</b>
+
                         <span>
-                            <?= date('d/m/Y',strtotime($detalhe['data_prevista'])) ?>
+
+                            <?= date(
+                                'd/m/Y',
+                                strtotime(
+                                    $detalhe['data_prevista']
+                                )
+                            ) ?>
+
                         </span>
+
                     </div>
 
+
                     <div>
+
                         <b>Status:</b>
+
                         <span>
-                            <?= htmlspecialchars($detalhe['status']) ?>
+
+                            <?= htmlspecialchars(
+                                $detalhe['status']
+                            ) ?>
+
                         </span>
+
                     </div>
 
+
                     <div>
+
                         <b>Observação:</b>
+
                         <span>
-                            <?= htmlspecialchars($detalhe['observacao'] ?: 'Nenhuma') ?>
+
+                            <?= htmlspecialchars(
+                                $detalhe['observacao'] ?: 'Nenhuma'
+                            ) ?>
+
                         </span>
+
                     </div>
 
                 </div>
+
+
+                <!-- ITENS -->
 
                 <h3>Itens</h3>
 
@@ -606,44 +901,96 @@ if($visualizar>0){
                         <thead>
 
                             <tr>
+
                                 <th>Item</th>
+
                                 <th>Tipo</th>
+
                                 <th>Unidade</th>
+
                                 <th>Quantidade</th>
+
                                 <th>Valor unitário</th>
+
                                 <th>Subtotal</th>
+
                             </tr>
 
                         </thead>
 
+
                         <tbody>
 
-                        <?php foreach($itens as $item): ?>
+                        <?php if (!$itens): ?>
+
+                            <tr>
+
+                                <td colspan="6">
+
+                                    Nenhum item encontrado.
+
+                                </td>
+
+                            </tr>
+
+                        <?php endif; ?>
+
+
+                        <?php foreach ($itens as $item): ?>
 
                             <tr>
 
                                 <td>
-                                    <?= htmlspecialchars($item['nome_item']) ?>
+
+                                    <?= htmlspecialchars(
+                                        $item['nome_item']
+                                    ) ?>
+
                                 </td>
 
-                                <td>
-                                    <?= htmlspecialchars($item['tipo']) ?>
-                                </td>
 
                                 <td>
-                                    <?= htmlspecialchars($item['unidade']) ?>
+
+                                    <?= htmlspecialchars(
+                                        $item['tipo']
+                                    ) ?>
+
                                 </td>
 
-                                <td>
-                                    <?= $item['quantidade'] ?>
-                                </td>
 
                                 <td>
-                                    <?= moeda($item['valor_unitario']) ?>
+
+                                    <?= htmlspecialchars(
+                                        $item['unidade']
+                                    ) ?>
+
                                 </td>
 
+
                                 <td>
-                                    <?= moeda($item['subtotal']) ?>
+
+                                    <?= htmlspecialchars(
+                                        $item['quantidade']
+                                    ) ?>
+
+                                </td>
+
+
+                                <td>
+
+                                    <?= moeda(
+                                        $item['valor_unitario']
+                                    ) ?>
+
+                                </td>
+
+
+                                <td>
+
+                                    <?= moeda(
+                                        $item['subtotal']
+                                    ) ?>
+
                                 </td>
 
                             </tr>
@@ -656,12 +1003,19 @@ if($visualizar>0){
 
                 </div>
 
+
+                <!-- TOTAL -->
+
                 <div class="total">
 
                     <b>Total:</b>
 
                     <strong>
-                        <?= moeda($detalhe['valor_total']) ?>
+
+                        <?= moeda(
+                            $detalhe['valor_total']
+                        ) ?>
+
                     </strong>
 
                 </div>
@@ -675,4 +1029,5 @@ if($visualizar>0){
 </main>
 
 </body>
+
 </html>
