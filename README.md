@@ -74,55 +74,6 @@ Entre as principais tabelas estão:
 * `encomenda` — encomendas;
 * `itens_encomenda` — itens das encomendas.
 
-## Estrutura do projeto
-
-Cerrado_Burguer/
-│
-├── Hamburguer/
-│   ├── administrador/
-│   │   ├── Adm.html/
-│   │   ├── Adm.css/
-│   │   └── Crud/
-│   │
-│   ├── crud/
-│   │   ├── login.html
-│   │   ├── login.php
-│   │   ├── cadastra.html
-│   │   ├── cadastrar.php
-│   │   ├── perfil.php
-│   │   ├── recuperar.html
-│   │   ├── recuperar.php
-│   │   └── database.sql
-│   │
-│   ├── html/
-│   │   ├── tela-inicial.html
-│   │   ├── cardapio.php
-│   │   ├── hamburgueres.html
-│   │   ├── bebidas.html
-│   │   ├── acompanhamentos.html
-│   │   └── combos.html
-│   │
-│   ├── html-carrinho/
-│   │   ├── carrinho.php
-│   │   ├── endereco.php
-│   │   ├── forma-pagamento.php
-│   │   └── confirmacao.php
-│   │
-│   ├── php/
-│   │   ├── carrinho.php
-│   │   ├── endereco.php
-│   │   └── forma-pagamento.php
-│   │
-│   ├── css/
-│   ├── css-cardapio-tela-inicial/
-│   ├── css-carrinho/
-│   ├── imagens/
-│   ├── docker-compose.yaml
-│   └── dockerfile
-│
-└── README.md
-
-
 ## Protótipo
 
 Antes da implementação, as principais telas foram planejadas no **Canva**. O protótipo serviu como nossa referência para a criação das páginas e para definir a organização visual do sistema.
