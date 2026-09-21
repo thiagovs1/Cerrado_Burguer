@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 require_once "../crud/conexao.php";
@@ -11,9 +10,6 @@ if (!isset($_SESSION['usuario_id'])) {
 
 $id_usuario = $_SESSION['usuario_id'];
 
-/*
-    Busca o último pedido finalizado
-*/
 $sql = "SELECT *
         FROM pedido
         WHERE id_usuario = ?
@@ -31,9 +27,6 @@ if (!$pedido) {
     exit;
 }
 
-/*
-    Busca os produtos do pedido
-*/
 $sql = "SELECT
             produto.nome,
             itens_pedidos.quantidade,
@@ -49,9 +42,6 @@ $stmt->execute([$pedido['id_pedido']]);
 
 $itens = $stmt->fetchAll();
 
-/*
-    Valores já calculados e salvos no banco
-*/
 $subtotal = $pedido['subtotal'];
 $entrega = $pedido['valor_entrega'];
 $total = $pedido['total'];

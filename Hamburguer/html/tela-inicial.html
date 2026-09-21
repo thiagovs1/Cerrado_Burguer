@@ -292,25 +292,31 @@ E-mail:
 <script>
 
 function adicionarProduto(idProduto) {
-const form = document.createElement('form');
-form.method = 'POST';
-form.action = '../php/carrinho.php';
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = '../php/carrinho.php';
 
-const acao = document.createElement('input');
-acao.type = 'hidden';
-acao.name = 'acao';
-acao.value = 'adicionar';
+    const acao = document.createElement('input');
+    acao.type = 'hidden';
+    acao.name = 'acao';
+    acao.value = 'adicionar';
 
-const produto = document.createElement('input');
-produto.type = 'hidden';
-produto.name = 'id_produto';
-produto.value = idProduto;
+    const produto = document.createElement('input');
+    produto.type = 'hidden';
+    produto.name = 'id_produto';
+    produto.value = idProduto;
 
-form.appendChild(acao);
-form.appendChild(produto);
+    const voltar = document.createElement('input');
+    voltar.type = 'hidden';
+    voltar.name = 'voltar';
+    voltar.value = window.location.pathname + window.location.search + window.location.hash;
 
-document.body.appendChild(form);
-form.submit();
+    form.appendChild(acao);
+    form.appendChild(produto);
+    form.appendChild(voltar);
+
+    document.body.appendChild(form);
+    form.submit();
 }
 
 fetch('../crud/check_session.php')

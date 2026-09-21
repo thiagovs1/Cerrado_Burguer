@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$host = 'localhost';
+$host = 'mysql';
 $db   = 'cerrado_burguer';
 $user = 'root';
 $pass = '';
@@ -31,17 +31,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // LOGIN DO ADMINISTRADOR
     if ($email === "admin123@hamburgueria.com" && $senha === "CerradoBurguer") {
 
         $_SESSION['admin'] = true;
         $_SESSION['usuario_email'] = $email;
 
-        header("Location: ../administrador/Adm.html/clientes.html");
+        header("Location: ../administrador/Adm.html/adm-inicio.html");
         exit;
     }
 
-    // LOGIN DO USUÁRIO
     $stmt = $pdo->prepare("SELECT * FROM usuario WHERE email = ?");
     $stmt->execute([$email]);
 

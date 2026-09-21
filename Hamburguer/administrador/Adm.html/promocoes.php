@@ -5,10 +5,6 @@ if (!isset($pdo)) {
     die("Erro na conexão com o banco.");
 }
 
-/* =========================
-   EDITAR / EXCLUIR
-========================= */
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $acao = $_POST['acao'] ?? '';
@@ -57,11 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-
-/* =========================
-   FILTROS
-========================= */
-
 $busca = trim($_GET['busca'] ?? '');
 $status = $_GET['status'] ?? '';
 
@@ -93,11 +84,6 @@ if ($status === 'Inativa') {
     $where[] = "p.status = 'Inativo'";
 }
 
-
-/* =========================
-   BUSCAR PROMOÇÕES
-========================= */
-
 $sql = "
     SELECT
         p.id_produto,
@@ -119,11 +105,6 @@ $stmt->execute($params);
 
 $promocoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
-/* =========================
-   RESUMO
-========================= */
-
 $stmt = $pdo->query("
     SELECT
         COUNT(*) AS total,
@@ -142,11 +123,6 @@ $inativas = (int)($resumo['inativas'] ?? 0);
 $percentual = $total > 0
     ? round(($ativas / $total) * 100)
     : 0;
-
-
-/* =========================
-   BUSCAR PRODUTO PARA EDITAR
-========================= */
 
 $editar = null;
 
@@ -186,11 +162,6 @@ if (isset($_GET['editar'])) {
 </head>
 
 <body>
-
-
-<!-- =========================
-     MENU LATERAL
-========================= -->
 
 <aside class="sidebar">
 
@@ -276,10 +247,6 @@ if (isset($_GET['editar'])) {
 </aside>
 
 
-<!-- =========================
-     CONTEÚDO
-========================= -->
-
 <main class="conteudo">
 
 
@@ -296,11 +263,6 @@ if (isset($_GET['editar'])) {
         </button>
 
     </div>
-
-
-    <!-- =========================
-         RESUMO
-    ========================= -->
 
     <section class="resumo-promocoes">
 
@@ -383,11 +345,6 @@ if (isset($_GET['editar'])) {
 
     </section>
 
-
-    <!-- =========================
-         PROMOÇÕES
-    ========================= -->
-
     <section class="area-promocoes">
 
 
@@ -437,11 +394,6 @@ if (isset($_GET['editar'])) {
 
 
         </form>
-
-
-        <!-- =========================
-             TABELA
-        ========================= -->
 
         <table class="tabela-promocoes">
 
@@ -633,10 +585,6 @@ if (isset($_GET['editar'])) {
 
 </main>
 
-
-<!-- =========================
-     MODAL DE EDIÇÃO
-========================= -->
 
 <?php if ($editar): ?>
 

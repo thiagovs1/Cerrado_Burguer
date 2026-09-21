@@ -6,7 +6,7 @@ if (!isset($_SESSION['usuario_id'])) {
     exit;
 }
 
-$host = 'localhost';
+$host = 'mysql';
 $db   = 'cerrado_burguer';
 $user = 'root';
 $pass = '';

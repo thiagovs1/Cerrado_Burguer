@@ -1,6 +1,4 @@
-
 <?php
-
 session_start();
 
 require_once "../crud/conexao.php";
@@ -11,7 +9,6 @@ if (!isset($_SESSION['usuario_id'])) {
 }
 
 $id_usuario = $_SESSION['usuario_id'];
-
 $tipo_entrega = $_POST['tipo_entrega'] ?? '';
 
 if ($tipo_entrega === 'Retirada') {
@@ -22,7 +19,8 @@ if ($tipo_entrega === 'Retirada') {
                 estado = NULL,
                 endereco = NULL,
                 setor = NULL,
-                informacao_adicional = NULL
+                informacao_adicional = NULL,
+                status = 'Pedido recebido'
             WHERE id_usuario = ?
             AND status = 'Carrinho'";
 
@@ -41,12 +39,7 @@ if ($tipo_entrega === 'Entrega') {
     $setor = trim($_POST['setor'] ?? '');
     $informacao = trim($_POST['informacao'] ?? '');
 
-    if (
-        $cidade === '' ||
-        $estado === '' ||
-        $endereco === '' ||
-        $setor === ''
-    ) {
+    if ($cidade === '' || $estado === '' || $endereco === '' || $setor === '') {
         echo "<script>
                 alert('Preencha todos os campos obrigatórios.');
                 window.history.back();
@@ -65,7 +58,6 @@ if ($tipo_entrega === 'Entrega') {
             AND status = 'Carrinho'";
 
     $stmt = $pdo->prepare($sql);
-
     $stmt->execute([
         $cidade,
         $estado,

@@ -1,6 +1,6 @@
 <?php
 
-$host = "localhost";
+$host = "mysql";
 $usuario = "root";
 $senha = "";
 $banco = "cerrado_burguer";

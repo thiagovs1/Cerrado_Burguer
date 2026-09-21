@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 require_once "../crud/conexao.php";
@@ -27,9 +26,6 @@ if (!$pedido) {
     exit;
 }
 
-
-/* CALCULA O SUBTOTAL */
-
 $sql = "SELECT SUM(quantidade * preco_unitario) AS subtotal
         FROM itens_pedidos
         WHERE id_pedido = ?";
@@ -39,15 +35,9 @@ $stmt->execute([$pedido['id_pedido']]);
 
 $subtotal = $stmt->fetch()['subtotal'] ?? 0;
 
-
-/* VALOR DA ENTREGA */
-
 $entrega = ($pedido['tipo_entrega'] === 'Entrega') ? 5 : 0;
 
 $total = $subtotal + $entrega;
-
-
-/* ENDEREÇO */
 
 $endereco = $pedido['endereco'] ?? '';
 $cidade = $pedido['cidade'] ?? '';

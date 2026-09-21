@@ -144,11 +144,9 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             name="id_produto"
                             value="<?= $produto['id_produto'] ?>">
 
-                        <button
-                            type="submit"
-                            class="add">
-                            +
-                        </button>
+                         <input type="hidden" name="voltar" value="<?= htmlspecialchars($_SERVER['REQUEST_URI']) ?>">
+
+                         <button type="submit" class="add">+</button>
 
                     </form>
 

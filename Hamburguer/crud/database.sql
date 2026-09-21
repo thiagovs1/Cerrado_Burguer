@@ -1,9 +1,6 @@
 CREATE DATABASE IF NOT EXISTS cerrado_burguer;
 USE cerrado_burguer;
 
--- =====================================================
--- USUÁRIOS / CLIENTES
--- =====================================================
 
 CREATE TABLE IF NOT EXISTS usuario (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -17,9 +14,6 @@ CREATE TABLE IF NOT EXISTS usuario (
     data_cadastro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
--- =====================================================
--- CATEGORIAS
--- =====================================================
 
 CREATE TABLE IF NOT EXISTS categoria (
     id_categoria INT AUTO_INCREMENT PRIMARY KEY,
@@ -31,9 +25,6 @@ CREATE TABLE IF NOT EXISTS categoria (
     cor VARCHAR(20) DEFAULT '#8B0000'
 );
 
--- =====================================================
--- PRODUTOS
--- =====================================================
 
 CREATE TABLE IF NOT EXISTS produto (
     id_produto INT AUTO_INCREMENT PRIMARY KEY,
@@ -51,9 +42,6 @@ CREATE TABLE IF NOT EXISTS produto (
         REFERENCES categoria(id_categoria)
 );
 
--- =====================================================
--- PEDIDOS
--- =====================================================
 
 CREATE TABLE IF NOT EXISTS pedido (
     id_pedido INT AUTO_INCREMENT PRIMARY KEY,
@@ -84,9 +72,6 @@ CREATE TABLE IF NOT EXISTS pedido (
         REFERENCES usuario(id)
 );
 
--- =====================================================
--- ITENS DOS PEDIDOS
--- =====================================================
 
 CREATE TABLE IF NOT EXISTS itens_pedidos (
     id_item_pedidos INT AUTO_INCREMENT PRIMARY KEY,
@@ -102,9 +87,6 @@ CREATE TABLE IF NOT EXISTS itens_pedidos (
         REFERENCES pedido(id_pedido)
 );
 
--- =====================================================
--- CATEGORIAS PADRÃO
--- =====================================================
 
 INSERT INTO categoria (tipo, nome, descricao)
 SELECT 'Cardápio', 'Acompanhamentos',
@@ -137,10 +119,6 @@ WHERE NOT EXISTS (
     SELECT 1 FROM categoria
     WHERE nome = 'Combos'
 );
-
--- =====================================================
--- PRODUTOS - ACOMPANHAMENTOS
--- =====================================================
 
 INSERT INTO produto
 (id_categoria, nome, descricao, preco, imagem, tempo_preparo)
@@ -247,10 +225,6 @@ AND NOT EXISTS (
     WHERE nome = 'Geleia de pimenta – 150g'
 );
 
--- =====================================================
--- PRODUTOS - BEBIDAS
--- =====================================================
-
 INSERT INTO produto
 (id_categoria, nome, descricao, preco, imagem, tempo_preparo)
 SELECT id_categoria,
@@ -356,9 +330,6 @@ AND NOT EXISTS (
     WHERE nome = 'Guaraná – 1L'
 );
 
--- =====================================================
--- PRODUTOS - HAMBÚRGUERES
--- =====================================================
 
 INSERT INTO produto
 (id_categoria, nome, descricao, preco, imagem, tempo_preparo)
@@ -450,9 +421,6 @@ AND NOT EXISTS (
     WHERE nome = 'Supremo Burguer'
 );
 
--- =====================================================
--- COMBOS
--- =====================================================
 
 INSERT INTO produto
 (id_categoria, nome, descricao, preco, imagem, tempo_preparo)
@@ -514,9 +482,6 @@ AND NOT EXISTS (
     WHERE nome = 'Bolinho de mandioca com carne seca e 2 molhos'
 );
 
--- =====================================================
--- ENCOMENDAS
--- =====================================================
 
 CREATE TABLE IF NOT EXISTS encomenda (
     id_encomenda INT AUTO_INCREMENT PRIMARY KEY,
@@ -535,10 +500,6 @@ CREATE TABLE IF NOT EXISTS encomenda (
 
     valor_total DECIMAL(10,2) NOT NULL DEFAULT 0.00
 );
-
--- =====================================================
--- ITENS DAS ENCOMENDAS
--- =====================================================
 
 CREATE TABLE IF NOT EXISTS itens_encomenda (
     id_item INT AUTO_INCREMENT PRIMARY KEY,

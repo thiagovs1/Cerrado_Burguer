@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__.'/../Crud/conexao.php';
 
-/* EDITAR / EXCLUIR */
 if($_SERVER['REQUEST_METHOD']==='POST'){
     $acao=$_POST['acao']??'';
     $id=(int)($_POST['id']??0);
@@ -50,7 +49,6 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     }
 }
 
-/* LISTAR CLIENTES */
 $stmt=$pdo->query("
     SELECT
         u.*,
@@ -67,7 +65,7 @@ $stmt=$pdo->query("
 
 $clientes=$stmt->fetchAll(PDO::FETCH_ASSOC);
 
-/* CARDS */
+
 $totalClientes=$pdo->query("
     SELECT COUNT(*) FROM usuario
 ")->fetchColumn();
@@ -89,7 +87,6 @@ $totalPedidos=$pdo->query("
     WHERE status<>'Carrinho'
 ")->fetchColumn();
 
-/* CLIENTE SENDO EDITADO */
 $clienteEditar=null;
 
 if(isset($_GET['editar'])){
@@ -119,7 +116,7 @@ if(isset($_GET['editar'])){
 
 <body>
 
-<!-- SIDEBAR -->
+
 <aside class="sidebar">
 
     <div class="logo">
@@ -202,7 +199,6 @@ if(isset($_GET['editar'])){
 
 </aside>
 
-<!-- CONTEÚDO -->
 <main class="conteudo">
 
 <h1>Clientes</h1>
@@ -265,7 +261,6 @@ if(isset($_GET['editar'])){
 
 </section>
 
-<!-- CLIENTES -->
 <section class="area-clientes">
 
 <div class="tabela-container">
@@ -430,7 +425,6 @@ if(isset($_GET['editar'])){
 
 </main>
 
-<!-- MODAL EDITAR -->
 <?php if($clienteEditar): ?>
 
 <div class="modal" style="display:flex">

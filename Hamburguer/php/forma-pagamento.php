@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 require_once "../crud/conexao.php";
@@ -26,9 +25,6 @@ if ($troco === 'Sim') {
     $troco_final = 'Não';
 }
 
-/*
-    Procura o carrinho atual do usuário
-*/
 $sql = "SELECT id_pedido, tipo_entrega
         FROM pedido
         WHERE id_usuario = ?
@@ -47,9 +43,6 @@ if (!$pedido) {
 
 $id_pedido = $pedido['id_pedido'];
 
-/*
-    Calcula o subtotal dos produtos
-*/
 $sql = "SELECT SUM(quantidade * preco_unitario) AS subtotal
         FROM itens_pedidos
         WHERE id_pedido = ?";
@@ -61,23 +54,14 @@ $resultado = $stmt->fetch();
 
 $subtotal = $resultado['subtotal'] ?? 0;
 
-/*
-    Calcula a taxa de entrega
-*/
 if ($pedido['tipo_entrega'] === 'Entrega') {
     $entrega = 5;
 } else {
     $entrega = 0;
 }
 
-/*
-    Calcula o total
-*/
 $total = $subtotal + $entrega;
 
-/*
-    Finaliza o pedido
-*/
 $sql = "UPDATE pedido
         SET forma_pagamento = ?,
             troco = ?,
@@ -101,8 +85,5 @@ $stmt->execute([
     $id_usuario
 ]);
 
-/*
-    Vai para a confirmação
-*/
 header("Location: ../html-carrinho/confirmacao.php");
 exit;

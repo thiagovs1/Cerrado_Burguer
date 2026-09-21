@@ -1,41 +1,28 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Avaliações - CerradoBurguer</title>
-
     <link rel="stylesheet" href="../Adm.css/avaliacoes.css">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
 
     <aside class="sidebar">
 
-        <!-- LOGO -->
         <div class="logo">
-
-            <img src="../../imagens/logo.png"
-                 alt="Logo CerradoBurguer">
+            <img src="../../imagens/logo.png" alt="Logo CerradoBurguer">
 
             <div class="logo-text">
-
                 <h2>CerradoBurguer</h2>
-
                 <p>ADMINISTRAÇÃO</p>
-
             </div>
-
         </div>
 
-
-        <!-- MENU -->
         <nav class="menu">
 
             <a href="adm-inicio.html">
@@ -102,27 +89,19 @@
 
     </aside>
 
-
-    <!-- CONTEÚDO DA PÁGINA -->
-    <main class="conteudo">
-
-        <!-- Seu conteúdo de avaliações entra aqui -->
-
-    </main>
-
+    <main class="conteudo"></main>
 
     <script>
         const links = document.querySelectorAll(".menu a");
 
         links.forEach(link => {
-
             if (link.pathname === window.location.pathname) {
                 link.classList.add("ativo");
             }
-
         });
     </script>
 
 </body>
 
 </html>
+

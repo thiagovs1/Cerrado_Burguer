@@ -2,7 +2,7 @@
 session_start();
 
 
-$host = 'localhost';
+$host = 'mysql';
 $db   = 'cerrado_burguer';
 $user = 'root';
 $pass = '';
