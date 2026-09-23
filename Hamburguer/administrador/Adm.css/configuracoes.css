@@ -6,114 +6,109 @@
 }
 
 body{
-
     display:flex;
+    min-height:100vh;
     background:#ecd6a6;
 }
 
-
 .sidebar{
-    width:225px;
-    background:#fff4df;
-    border-right:1px solid #ead3ab;
+    width:208px;
+    min-height:100vh;
+    background:#fff3d8;
+    border-right:1px solid #ead7ae;
+    display:flex;
+    flex-direction:column;
+    position:fixed;
+    left:0;
+    top:0;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:18px 16px;
+}
+
+.logo img{
+    width:43px;
+    height:43px;
+    object-fit:contain;
+    display:block;
+}
+
+.logo-text{
     display:flex;
     flex-direction:column;
 }
 
-
-.logo-area{
-
-    display:flex;
-    align-items:center;
-
-    gap:12px;
-
-    padding:18px;
+.logo-text h2{
+    font-size:17px;
+    color:#a85228;
+    white-space:nowrap;
+    margin:0;
 }
 
-.logo-area img{
-
-    width:45px;
+.logo-text p{
+    font-size:10px;
+    color:#714c3b;
+    margin:2px 0 0;
 }
 
-.logo-area h2{
-
-    font-size:18px;
-    color:#d05c0c;
-}
-
-.logo-area span{
-
-    font-size:11px;
-    color:#777;
-}
-
-
-
-nav{
-    flex:1;         
+.menu{
+    flex:1;
     margin-top:15px;
 }
 
-nav a{
-
+.menu a{
     display:flex;
     align-items:center;
-
     gap:14px;
-
     text-decoration:none;
-
     color:#603813;
-
-    padding:14px 20px;
-
+    padding:12px 20px;
     transition:.3s;
+    font-size:14px;
 }
 
-nav a img{
-
+.menu a i{
     width:20px;
+    text-align:center;
+    font-size:17px;
 }
 
-nav a:hover{
-
+.menu a:hover{
     background:#edd3af;
 }
 
-.ativo{
-
+.menu a.ativo{
     background:#e8b783;
 }
 
 .sair{
-    margin-top:auto;
     display:flex;
     align-items:center;
     gap:14px;
-    padding:16px 20px;
     text-decoration:none;
     color:#603813;
-}
-.sair:hover{
-    background:#edd3af;
+    padding:16px 20px;
+    font-size:14px;
 }
 
-.sair img{
-
+.sair i{
     width:20px;
+    text-align:center;
+    font-size:17px;
 }
 
 .sair:hover{
-
     background:#edd3af;
 }
-
-
 
 .conteudo{
-
     flex:1;
-
+    margin-left:208px;
+    min-height:100vh;
     background:#ecd6a6;
+    padding:20px;
 }

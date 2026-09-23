@@ -1,92 +1,108 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
 
 body{
     display:flex;
-    background:#f6e5ba;
     min-height:100vh;
+    background:#f6e5ba;
 }
 
 .sidebar{
-    width:225px;
-    background:#fff4df;
-    border-right:1px solid #ead3ab;
+    width:208px;
+    min-height:100vh;
+    background:#fff3d8;
+    border-right:1px solid #ead7ae;
     display:flex;
     flex-direction:column;
+    position:fixed;
+    left:0;
+    top:0;
 }
 
-.logo-area{
+.logo{
     display:flex;
     align-items:center;
     gap:10px;
-    padding:18px;
+    padding:18px 16px;
 }
 
-.logo-area img{
-    width:45px;
+.logo img{
+    width:43px;
+    height:43px;
+    object-fit:contain;
+    display:block;
 }
 
-.logo-area h2{
-    font-size:24px;
-    color:#d45c1e;
-    line-height:22px;
-}
-
-.logo-area span{
-    font-size:12px;
-    color:#444;
-}
-
-nav{
+.logo-text{
     display:flex;
     flex-direction:column;
+}
+
+.logo-text h2{
+    font-size:17px;
+    color:#a85228;
+    white-space:nowrap;
+    margin:0;
+}
+
+.logo-text p{
+    font-size:10px;
+    color:#714c3b;
+    margin:2px 0 0;
+}
+
+.menu{
+    flex:1;
     margin-top:15px;
 }
 
-nav a{
+.menu a{
     display:flex;
     align-items:center;
-    gap:18px;
-    padding:16px 25px;
+    gap:14px;
     text-decoration:none;
-    color:#5f2d12;
-    font-size:19px;
+    color:#603813;
+    padding:12px 20px;
     transition:.3s;
+    font-size:14px;
 }
 
-nav a img{
-    width:28px;
+.menu a i{
+    width:20px;
+    text-align:center;
+    font-size:17px;
 }
 
-nav a:hover{
-    background:#efc89f;
+.menu a:hover{
+    background:#edd3af;
 }
 
-nav .ativo{
-    background:#eab07d;
+.menu a.ativo{
+    background:#e8b783;
 }
 
 .sair{
     display:flex;
     align-items:center;
-    gap:18px;
-    padding:25px;
+    gap:14px;
     text-decoration:none;
-    color:#5f2d12;
-    font-size:20px;
+    color:#603813;
+    padding:16px 20px;
+    font-size:14px;
 }
 
-.sair img{
-    width:28px;
+.sair i{
+    width:20px;
+    text-align:center;
+    font-size:17px;
 }
 
+.sair:hover{
+    background:#edd3af;
+}
 
 main{
     flex:1;
+    margin-left:208px;
     padding:28px 40px;
 }
 
@@ -107,7 +123,6 @@ main h1{
     background:white;
     border-radius:22px;
     display:flex;
-
     gap:22px;
     padding:22px;
     box-shadow:0 3px 8px rgba(0,0,0,.08);
@@ -115,6 +130,8 @@ main h1{
 
 .card img{
     width:50px;
+    height:50px;
+    object-fit:contain;
 }
 
 .card p{
@@ -149,6 +166,8 @@ main h1{
 
 .esquerda img{
     width:42px;
+    height:42px;
+    object-fit:contain;
 }
 
 .esquerda h3{
@@ -176,15 +195,14 @@ main h1{
     font-size:11px;
 }
 
-.pedidos {
-    background: #f1dfb6;
-    border: 10px solid white;
-    border-radius: 22px;
-    padding: 0;
-    box-shadow: 0 3px 8px rgba(0,0,0,.08);
-    overflow: hidden;
-
-    height: 650px;
+.pedidos{
+    background:#f1dfb6;
+    border:10px solid white;
+    border-radius:22px;
+    padding:0;
+    box-shadow:0 3px 8px rgba(0,0,0,.08);
+    overflow:hidden;
+    height:650px;
 }
 
 .filtros{
@@ -234,7 +252,6 @@ main h1{
     border-bottom:none;
 }
 
-
 .dados{
     display:flex;
     align-items:center;
@@ -244,6 +261,7 @@ main h1{
 .dados img{
     width:30px;
     height:30px;
+    object-fit:contain;
 }
 
 .dados strong{
@@ -261,7 +279,6 @@ main h1{
     color:#ad5930;
     font-size:11px;
 }
-
 
 .status{
     display:flex;
@@ -282,6 +299,7 @@ main h1{
     border-radius:20px;
     font-size:9px;
 }
+
 .pendente{
     background:#d77743;
 }
@@ -297,4 +315,3 @@ main h1{
 .finalizado{
     background:#d3b467;
 }
-

@@ -160,7 +160,7 @@ if(isset($_GET['editar'])){
             <span>Relatório</span>
         </a>
 
-        <a href="promocoes.html">
+        <a href="promocoes.php">
             <i class="fa-solid fa-tag"></i>
             <span>Promoção</span>
         </a>
