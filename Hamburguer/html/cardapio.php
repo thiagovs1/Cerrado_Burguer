@@ -1,12 +1,40 @@
 <?php
+header('Content-Type: text/html; charset=UTF-8');
+
 require_once "../administrador/Crud/conexao.php";
 
 $categorias = $pdo->query("
     SELECT id_categoria, nome, imagem, cor
     FROM categoria
     WHERE status = 'Ativa'
-    ORDER BY id_categoria
+    ORDER BY CASE nome
+    WHEN 'Hambúrgueres' THEN 1
+    WHEN 'Combos' THEN 4
+    WHEN 'Acompanhamentos' THEN 3
+    WHEN 'Bebidas' THEN 2
+    ELSE 5
+END, id_categoria
 ")->fetchAll(PDO::FETCH_ASSOC);
+
+
+$categoriasFixas = [
+    'Hambúrgueres' => [
+        'cor' => '#884927',
+        'imagem' => '../imagens/amburgueres.png'
+    ],
+    'Bebidas' => [
+        'cor' => '#c19371',
+        'imagem' => '../imagens/Bebi.png'
+    ],
+    'Acompanhamentos' => [
+        'cor' => '#d17420',
+        'imagem' => '../imagens/batatafrita.png'
+    ],
+    'Combos' => [
+        'cor' => '#5d2100',
+        'imagem' => '../imagens/combo.png'
+    ]
+];
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +48,7 @@ $categorias = $pdo->query("
     <link rel="stylesheet" href="../css-cardapio-tela-inicial/cardapio.css">
     <link rel="stylesheet" href="../css/menu_perfil.css">
 </head>
+
 
 <body>
 
@@ -57,20 +86,35 @@ $categorias = $pdo->query("
 
         <?php foreach ($categorias as $categoria): ?>
 
-            <a href="categoria.php?id=<?= $categoria['id_categoria'] ?>"
-               class="card"
-               style="background-color: <?= htmlspecialchars($categoria['cor']) ?>;">
+    <?php
+        $nome = $categoria['nome'];
 
-                <img
-                    src="<?= !empty($categoria['imagem'])
-                        ? '../imagens/' . htmlspecialchars($categoria['imagem'])
-                        : '../imagens/amini.png' ?>"
-                    alt="<?= htmlspecialchars($categoria['nome']) ?>"
-                >
+        if (isset($categoriasFixas[$nome])) {
+            $cor = $categoriasFixas[$nome]['cor'];
+            $imagem = $categoriasFixas[$nome]['imagem'];
+        } else {
+            $cor = !empty($categoria['cor'])
+                ? $categoria['cor']
+                : '#fdf3dd';
 
-                <h3><?= htmlspecialchars($categoria['nome']) ?></h3>
+            $imagem = !empty($categoria['imagem'])
+                ? '../imagens/' . htmlspecialchars($categoria['imagem'])
+                : '../imagens/amini.png';
+        }
+    ?>
 
-            </a>
+    <a href="categoria.php?id=<?= $categoria['id_categoria'] ?>"
+       class="card"
+       style="background-color: <?= htmlspecialchars($cor) ?>;">
+
+        <img
+            src="<?= htmlspecialchars($imagem) ?>"
+            alt="<?= htmlspecialchars($nome) ?>"
+        >
+
+        <h3><?= htmlspecialchars($nome) ?></h3>
+
+    </a>
 
         <?php endforeach; ?>
 

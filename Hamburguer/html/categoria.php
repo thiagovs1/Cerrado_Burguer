@@ -1,5 +1,8 @@
 <?php
-require_once "../administrador/Crud/conexao.php";
+
+header('Content-Type: text/html; charset=UTF-8');
+
+require_once "../crud/conexao.php";
 
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
@@ -37,7 +40,7 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title><?= htmlspecialchars($categoria['nome']) ?> - Cerrado Burguer</title>
+    <title><?= htmlspecialchars($categoria['nome'], ENT_QUOTES, 'UTF-8') ?> - Cerrado Burguer</title>
 
     <link rel="stylesheet" href="../css-cardapio-tela-inicial/hamburguer.css">
     <link rel="stylesheet" href="../css/menu_perfil.css">
@@ -92,7 +95,7 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <main>
 
-    <h1><?= htmlspecialchars($categoria['nome']) ?></h1>
+    <h1><?= htmlspecialchars($categoria['nome'], ENT_QUOTES, 'UTF-8') ?></h1>
 
     <div class="produtos">
 
@@ -111,19 +114,19 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php if (!empty($produto['imagem'])): ?>
 
                         <img
-                            src="../imagens/<?= htmlspecialchars($produto['imagem']) ?>"
-                            alt="<?= htmlspecialchars($produto['nome']) ?>">
+                            src="../imagens/<?= htmlspecialchars($produto['imagem'], ENT_QUOTES, 'UTF-8') ?>"
+                            alt="<?= htmlspecialchars($produto['nome'], ENT_QUOTES, 'UTF-8') ?>">
 
                     <?php endif; ?>
 
                     <div>
 
                         <h2>
-                            <?= htmlspecialchars($produto['nome']) ?>
+                            <?= htmlspecialchars($produto['nome'], ENT_QUOTES, 'UTF-8') ?>
                         </h2>
 
                         <p>
-                            <?= htmlspecialchars($produto['descricao']) ?>
+                            <?= htmlspecialchars($produto['descricao'], ENT_QUOTES, 'UTF-8') ?>
                         </p>
 
                         <span>
@@ -144,9 +147,12 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             name="id_produto"
                             value="<?= $produto['id_produto'] ?>">
 
-                         <input type="hidden" name="voltar" value="<?= htmlspecialchars($_SERVER['REQUEST_URI']) ?>">
+                        <input
+                            type="hidden"
+                            name="voltar"
+                            value="<?= htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES, 'UTF-8') ?>">
 
-                         <button type="submit" class="add">+</button>
+                        <button type="submit" class="add">+</button>
 
                     </form>
 

@@ -1,4 +1,7 @@
 <?php
+
+header('Content-Type: text/html; charset=UTF-8');
+
 require_once "../Crud/conexao.php";
 
 $mensagem = "";
