@@ -2,7 +2,7 @@
 
 header('Content-Type: text/html; charset=UTF-8');
 
-require_once "../Crud/conexao.php";
+require_once "../../crud/conexao.php";
 
 $pdo->exec("SET NAMES utf8mb4");
 
@@ -305,7 +305,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
             <span>Início</span>
         </a>
 
-        <a href="pedidos.html">
+        <a href="pedidos.php">
             <i class="fa-solid fa-clipboard-list"></i>
             <span>Pedidos</span>
         </a>

@@ -1,5 +1,5 @@
 <?php
-require_once "../Crud/conexao.php";
+require_once "../../crud/conexao.php";
 
 if (!isset($pdo)) {
     die("Erro na conexão com o banco.");
@@ -144,7 +144,7 @@ if ($visualizar > 0) {
 
     <nav class="menu">
         <a href="adm-inicio.html"><i class="fa-solid fa-house"></i><span>Início</span></a>
-        <a href="pedidos.html"><i class="fa-solid fa-clipboard-list"></i><span>Pedidos</span></a>
+        <a href="pedidos.php"><i class="fa-solid fa-clipboard-list"></i><span>Pedidos</span></a>
         <a href="cadastro.php"><i class="fa-solid fa-user-plus"></i><span>Cadastro</span></a>
         <a href="categorias.php"><i class="fa-solid fa-layer-group"></i><span>Categorias</span></a>
         <a href="relatorio.html"><i class="fa-solid fa-chart-column"></i><span>Relatório</span></a>

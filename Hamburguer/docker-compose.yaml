@@ -14,15 +14,18 @@ services:
       - ./crud/database.sql:/docker-entrypoint-initdb.d/database.sql:ro
 
   php:
-    build: .
-    container_name: CerradoBurguer-php
-    restart: always
-    ports:
-      - "8080:80"
-    volumes:
-      - ./:/var/www/html
-    depends_on:
-      - mysql
+  build: .
+  container_name: CerradoBurguer-php
+  restart: always
 
-volumes:
-  mysql_dados:
+  environment:
+    DOCKER_ENV: "true"
+
+  ports:
+    - "8080:80"
+
+  volumes:
+    - ./:/var/www/html
+
+  depends_on:
+    - mysql

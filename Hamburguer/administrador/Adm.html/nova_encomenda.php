@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once "../Crud/conexao.php";
+require_once "../../crud/conexao.php";
 
 if (!isset($pdo)) {
     die("Erro na conexão com o banco.");

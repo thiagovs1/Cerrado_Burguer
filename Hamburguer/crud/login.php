@@ -1,25 +1,10 @@
+
 <?php
+
 session_start();
 
-$host = 'mysql';
-$db   = 'cerrado_burguer';
-$user = 'root';
-$pass = '';
-$charset = 'utf8mb4';
-
-$dsn = "mysql:host=$host;port=3306;dbname=$db;charset=$charset";
-
-$options = [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES => false,
-];
-
-try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
-} catch (PDOException $e) {
-    die("Erro na conexão: " . $e->getMessage());
-}
+// Usa a conexão central do projeto
+require_once __DIR__ . '/conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -31,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
+    // Login administrativo
     if ($email === "admin123@hamburgueria.com" && $senha === "CerradoBurguer") {
 
         $_SESSION['admin'] = true;
@@ -40,7 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $stmt = $pdo->prepare("SELECT * FROM usuario WHERE email = ?");
+    // Login do usuário
+    $stmt = $pdo->prepare(
+        "SELECT * FROM usuario WHERE email = ?"
+    );
+
     $stmt->execute([$email]);
 
     $usuario = $stmt->fetch();

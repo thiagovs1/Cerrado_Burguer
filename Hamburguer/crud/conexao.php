@@ -1,9 +1,16 @@
+
 <?php
 
-$host = "mysql";
 $dbname = "cerrado_burguer";
 $user = "root";
 $password = "";
+
+// Detecta se o PHP está rodando dentro do Docker
+if (getenv("DOCKER_ENV") === "true") {
+    $host = "mysql";
+} else {
+    $host = "localhost";
+}
 
 try {
 
@@ -23,14 +30,10 @@ try {
         PDO::FETCH_ASSOC
     );
 
+    $pdo->exec("SET NAMES utf8mb4");
+
 } catch (PDOException $e) {
 
-    http_response_code(500);
-
-    echo json_encode([
-        "sucesso" => false,
-        "mensagem" => "Erro ao conectar ao banco de dados."
-    ]);
-
-    exit;
+    die("Erro na conexão: " . $e->getMessage());
 }
+

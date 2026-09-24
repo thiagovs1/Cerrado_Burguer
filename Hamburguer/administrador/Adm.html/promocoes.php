@@ -1,5 +1,5 @@
 <?php
-require_once "../Crud/conexao.php";
+require_once "../../crud/conexao.php";
 
 if (!isset($pdo)) {
     die("Erro na conexão com o banco.");
@@ -187,7 +187,7 @@ if (isset($_GET['editar'])) {
             <span>Início</span>
         </a>
 
-        <a href="pedidos.html">
+        <a href="pedidos.php">
             <i class="fa-solid fa-clipboard-list"></i>
             <span>Pedidos</span>
         </a>

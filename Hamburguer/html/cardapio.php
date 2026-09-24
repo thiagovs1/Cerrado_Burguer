@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: text/html; charset=UTF-8');
 
-require_once "../administrador/Crud/conexao.php";
+require_once "../Crud/conexao.php";
 
 $categorias = $pdo->query("
     SELECT id_categoria, nome, imagem, cor

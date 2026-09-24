@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__.'/../Crud/conexao.php';
+require_once __DIR__.'/../../crud/conexao.php';
 
 if($_SERVER['REQUEST_METHOD']==='POST'){
     $acao=$_POST['acao']??'';

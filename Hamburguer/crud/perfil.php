@@ -417,7 +417,7 @@ if ($pagina === "pedidos") {
         Promoções do dia
     </a>
 
-    <a href="../html/cardapio.html">
+    <a href="../html/cardapio.php">
         Cardápio
     </a>
 

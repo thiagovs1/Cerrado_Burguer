@@ -1,5 +1,5 @@
 <?php
-require_once "../Crud/conexao.php";
+require_once "../../crud/conexao.php";
 
 $mensagem="";$modal=false;$editar=null;
 
@@ -159,7 +159,7 @@ $porcentagemInativas=$total?round(($inativas/$total)*100):0;
 
     <nav class="menu">
         <a href="adm-inicio.html"><i class="fa-solid fa-house"></i><span>Início</span></a>
-        <a href="pedidos.html"><i class="fa-solid fa-clipboard-list"></i><span>Pedidos</span></a>
+        <a href="pedidos.php"><i class="fa-solid fa-clipboard-list"></i><span>Pedidos</span></a>
         <a href="cadastro.php"><i class="fa-solid fa-user-plus"></i><span>Cadastro</span></a>
         <a href="categorias.php" class="ativo"><i class="fa-solid fa-layer-group"></i><span>Categorias</span></a>
         <a href="relatorio.html"><i class="fa-solid fa-chart-column"></i><span>Relatório</span></a>
