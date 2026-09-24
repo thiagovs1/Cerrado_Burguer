@@ -9,18 +9,17 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         $nome=trim($_POST['nome']??'');
         $email=trim($_POST['email']??'');
         $telefone=trim($_POST['telefone']??'')?:null;
-        $cpf=trim($_POST['cpf']??'')?:null;
         $endereco=trim($_POST['endereco']??'')?:null;
         $status=($_POST['status']??'Ativo')==='Inativo'?'Inativo':'Ativo';
 
         $stmt=$pdo->prepare("
             UPDATE usuario
-            SET nome=?,email=?,telefone=?,cpf=?,endereco=?,status=?
+            SET nome=?,email=?,telefone=?,endereco=?,status=?
             WHERE id=?
         ");
 
         $stmt->execute([
-            $nome,$email,$telefone,$cpf,$endereco,$status,$id
+            $nome,$email,$telefone,$endereco,$status,$id
         ]);
 
         header('Location: clientes.php');
@@ -29,16 +28,20 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 
     if($acao==='excluir'){
         $stmt=$pdo->prepare("
-            SELECT COUNT(*)
-            FROM pedido
-            WHERE id_usuario=?
-            AND status<>'Carrinho'
+            SELECT status
+            FROM usuario
+            WHERE id=?
         ");
 
         $stmt->execute([$id]);
+        $cliente=$stmt->fetch(PDO::FETCH_ASSOC);
 
-        if($stmt->fetchColumn()>0){
-            die('Este cliente possui pedidos e não pode ser excluído. Altere o status para Inativo.');
+        if(!$cliente){
+            die('Cliente não encontrado.');
+        }
+
+        if($cliente['status']!=='Inativo'){
+            die('Somente clientes Inativos podem ser excluídos.');
         }
 
         $stmt=$pdo->prepare("DELETE FROM usuario WHERE id=?");
@@ -64,7 +67,6 @@ $stmt=$pdo->query("
 ");
 
 $clientes=$stmt->fetchAll(PDO::FETCH_ASSOC);
-
 
 $totalClientes=$pdo->query("
     SELECT COUNT(*) FROM usuario
@@ -111,11 +113,11 @@ if(isset($_GET['editar'])){
 <link rel="stylesheet" href="../Adm.css/cliente.css">
 
 <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
 
 <body>
-
 
 <aside class="sidebar">
 
@@ -140,7 +142,7 @@ if(isset($_GET['editar'])){
             <span>Início</span>
         </a>
 
-        <a href="pedidos.html">
+        <a href="pedidos.php">
             <i class="fa-solid fa-clipboard-list"></i>
             <span>Pedidos</span>
         </a>
@@ -286,9 +288,11 @@ if(isset($_GET['editar'])){
 <?php if(empty($clientes)): ?>
 
 <tr>
+
     <td colspan="7" class="vazio">
         Nenhum cliente cadastrado.
     </td>
+
 </tr>
 
 <?php endif; ?>
@@ -374,10 +378,13 @@ if(isset($_GET['editar'])){
 
         <a
             href="clientes.php?editar=<?=$cliente['id']?>"
-            class="btn-editar"
-        >
+            class="btn-editar">
+
             Editar
+
         </a>
+
+        <?php if($cliente['status']==='Inativo'): ?>
 
         <form method="POST" style="margin:0">
 
@@ -395,12 +402,15 @@ if(isset($_GET['editar'])){
 
             <button
                 type="submit"
-                class="btn-excluir"
-            >
+                class="btn-excluir">
+
                 <i class="fa-solid fa-trash"></i>
+
             </button>
 
         </form>
+
+        <?php endif; ?>
 
     </div>
 
@@ -475,8 +485,8 @@ if(isset($_GET['editar'])){
 
 <input
     type="text"
-    name="cpf"
     value="<?=htmlspecialchars($clienteEditar['cpf']??'')?>"
+    readonly
 >
 
 <label>Endereço</label>

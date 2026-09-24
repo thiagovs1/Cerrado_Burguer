@@ -148,7 +148,7 @@ if ($visualizar > 0) {
         <a href="cadastro.php"><i class="fa-solid fa-user-plus"></i><span>Cadastro</span></a>
         <a href="categorias.php"><i class="fa-solid fa-layer-group"></i><span>Categorias</span></a>
         <a href="relatorio.html"><i class="fa-solid fa-chart-column"></i><span>Relatório</span></a>
-        <a href="promocoes.html"><i class="fa-solid fa-tag"></i><span>Promoção</span></a>
+        <a href="promocoes.php"><i class="fa-solid fa-tag"></i><span>Promoção</span></a>
         <a href="clientes.php"><i class="fa-solid fa-users"></i><span>Clientes</span></a>
         <a href="entregas.html"><i class="fa-solid fa-truck"></i><span>Entregas</span></a>
         <a href="avaliacoes.html"><i class="fa-solid fa-star"></i><span>Avaliação</span></a>

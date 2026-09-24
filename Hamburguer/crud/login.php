@@ -3,7 +3,6 @@
 
 session_start();
 
-// Usa a conexão central do projeto
 require_once __DIR__ . '/conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -16,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // Login administrativo
     if ($email === "admin123@hamburgueria.com" && $senha === "CerradoBurguer") {
 
         $_SESSION['admin'] = true;
@@ -26,7 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // Login do usuário
     $stmt = $pdo->prepare(
         "SELECT * FROM usuario WHERE email = ?"
     );

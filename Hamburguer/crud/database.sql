@@ -1,9 +1,3 @@
-
--- ============================================================
--- BANCO DE DADOS: cerrado_burguer
--- Compatível com MySQL 8.x / XAMPP / Docker
--- ============================================================
-
 CREATE DATABASE IF NOT EXISTS cerrado_burguer
 CHARACTER SET utf8mb4
 COLLATE utf8mb4_unicode_ci;
@@ -12,10 +6,6 @@ USE cerrado_burguer;
 
 SET FOREIGN_KEY_CHECKS = 0;
 
--- ============================================================
--- APAGA AS TABELAS EXISTENTES
--- ============================================================
-
 DROP TABLE IF EXISTS itens_pedidos;
 DROP TABLE IF EXISTS itens_encomenda;
 DROP TABLE IF EXISTS pedido;
@@ -23,10 +13,6 @@ DROP TABLE IF EXISTS produto;
 DROP TABLE IF EXISTS encomenda;
 DROP TABLE IF EXISTS categoria;
 DROP TABLE IF EXISTS usuario;
-
--- ============================================================
--- TABELA: usuario
--- ============================================================
 
 CREATE TABLE usuario (
     id INT NOT NULL AUTO_INCREMENT,
@@ -46,10 +32,6 @@ CREATE TABLE usuario (
 DEFAULT CHARSET=utf8mb4
 COLLATE=utf8mb4_unicode_ci;
 
--- ============================================================
--- TABELA: categoria
--- ============================================================
-
 CREATE TABLE categoria (
     id_categoria INT NOT NULL AUTO_INCREMENT,
     tipo VARCHAR(100) DEFAULT NULL,
@@ -63,10 +45,6 @@ CREATE TABLE categoria (
 ) ENGINE=InnoDB
 DEFAULT CHARSET=utf8mb4
 COLLATE=utf8mb4_unicode_ci;
-
--- ============================================================
--- TABELA: encomenda
--- ============================================================
 
 CREATE TABLE encomenda (
     id_encomenda INT NOT NULL AUTO_INCREMENT,
@@ -88,16 +66,13 @@ CREATE TABLE encomenda (
 DEFAULT CHARSET=utf8mb4
 COLLATE=utf8mb4_unicode_ci;
 
--- ============================================================
--- TABELA: produto
--- ============================================================
-
 CREATE TABLE produto (
     id_produto INT NOT NULL AUTO_INCREMENT,
     id_categoria INT NOT NULL,
     nome VARCHAR(100) NOT NULL,
     descricao VARCHAR(500) DEFAULT NULL,
     preco DECIMAL(7,2) NOT NULL,
+    preco_anterior DECIMAL(7,2) DEFAULT NULL,
     status ENUM('Ativo','Inativo') NOT NULL DEFAULT 'Ativo',
     imagem VARCHAR(255) DEFAULT NULL,
     tempo_preparo INT NOT NULL DEFAULT 0,
@@ -109,18 +84,15 @@ CREATE TABLE produto (
 
     CONSTRAINT produto_ibfk_1
         FOREIGN KEY (id_categoria)
-        REFERENCES categoria (id_categoria)
+        REFERENCES categoria(id_categoria)
 ) ENGINE=InnoDB
 DEFAULT CHARSET=utf8mb4
 COLLATE=utf8mb4_unicode_ci;
 
--- ============================================================
--- TABELA: pedido
--- ============================================================
-
 CREATE TABLE pedido (
     id_pedido INT NOT NULL AUTO_INCREMENT,
-    id_usuario INT NOT NULL,
+    id_usuario INT DEFAULT NULL,
+
     subtotal DECIMAL(10,2) NOT NULL DEFAULT 0.00,
     valor_entrega DECIMAL(10,2) NOT NULL DEFAULT 0.00,
     total DECIMAL(10,2) NOT NULL DEFAULT 0.00,
@@ -141,14 +113,12 @@ CREATE TABLE pedido (
 
     CONSTRAINT pedido_ibfk_1
         FOREIGN KEY (id_usuario)
-        REFERENCES usuario (id)
+        REFERENCES usuario(id)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
 ) ENGINE=InnoDB
 DEFAULT CHARSET=utf8mb4
 COLLATE=utf8mb4_unicode_ci;
-
--- ============================================================
--- TABELA: itens_encomenda
--- ============================================================
 
 CREATE TABLE itens_encomenda (
     id_item INT NOT NULL AUTO_INCREMENT,
@@ -165,15 +135,11 @@ CREATE TABLE itens_encomenda (
 
     CONSTRAINT itens_encomenda_ibfk_1
         FOREIGN KEY (id_encomenda)
-        REFERENCES encomenda (id_encomenda)
+        REFERENCES encomenda(id_encomenda)
         ON DELETE CASCADE
 ) ENGINE=InnoDB
 DEFAULT CHARSET=utf8mb4
 COLLATE=utf8mb4_unicode_ci;
-
--- ============================================================
--- TABELA: itens_pedidos
--- ============================================================
 
 CREATE TABLE itens_pedidos (
     id_item_pedidos INT NOT NULL AUTO_INCREMENT,
@@ -188,18 +154,14 @@ CREATE TABLE itens_pedidos (
 
     CONSTRAINT itens_pedidos_ibfk_1
         FOREIGN KEY (id_produto)
-        REFERENCES produto (id_produto),
+        REFERENCES produto(id_produto),
 
     CONSTRAINT itens_pedidos_ibfk_2
         FOREIGN KEY (id_pedido)
-        REFERENCES pedido (id_pedido)
+        REFERENCES pedido(id_pedido)
 ) ENGINE=InnoDB
 DEFAULT CHARSET=utf8mb4
 COLLATE=utf8mb4_unicode_ci;
-
--- ============================================================
--- DADOS: usuario
--- ============================================================
 
 INSERT INTO usuario
 (id, email, senha, nome, telefone, endereco, cpf, status, data_cadastro)
@@ -226,10 +188,6 @@ VALUES
     'Ativo',
     '2026-09-23 12:24:30'
 );
-
--- ============================================================
--- DADOS: categoria
--- ============================================================
 
 INSERT INTO categoria
 (id_categoria, tipo, nome, descricao, imagem, status, cor)
@@ -271,10 +229,6 @@ VALUES
     '#8b0000'
 );
 
--- ============================================================
--- DADOS: produto
--- ============================================================
-
 INSERT INTO produto
 (
     id_produto,
@@ -282,6 +236,7 @@ INSERT INTO produto
     nome,
     descricao,
     preco,
+    preco_anterior,
     status,
     imagem,
     tempo_preparo,
@@ -289,274 +244,30 @@ INSERT INTO produto
     disponivel_entrega
 )
 VALUES
-(
-    1, 1,
-    'Batata Frita - 500g',
-    'Batata frita - 500g',
-    7.80,
-    'Ativo',
-    'batatafrita.png',
-    10,
-    'Não',
-    'Sim'
-),
-(
-    2, 1,
-    'Porção de anéis de cebola – 500g',
-    'Porção de anéis de cebola - 500g',
-    8.99,
-    'Ativo',
-    'Anelcebola.png',
-    10,
-    'Não',
-    'Sim'
-),
-(
-    3, 1,
-    'Bolinho de mandioca com carne seca – 500g',
-    'Bolinho de mandioca com carne seca - 500g',
-    12.90,
-    'Ativo',
-    'bolinhoM.png',
-    15,
-    'Não',
-    'Sim'
-),
-(
-    4, 1,
-    'Molho barbecue – 150g',
-    'Molho barbecue - 150g',
-    4.99,
-    'Ativo',
-    'Barbecue.png',
-    5,
-    'Não',
-    'Sim'
-),
-(
-    5, 1,
-    'Maionese Temperada – 150g',
-    'Maionese temperada - 150g',
-    2.99,
-    'Ativo',
-    'temperada.png',
-    5,
-    'Não',
-    'Sim'
-),
-(
-    6, 1,
-    'Maionese de alho – 150g',
-    'Maionese de alho - 150g',
-    2.50,
-    'Ativo',
-    'MdeAlho.png',
-    5,
-    'Não',
-    'Sim'
-),
-(
-    7, 1,
-    'Geleia de pimenta – 150g',
-    'Geleia de pimenta - 150g',
-    5.00,
-    'Ativo',
-    'Gpimenta.png',
-    5,
-    'Não',
-    'Sim'
-),
-(
-    8, 2,
-    'Coca Cola – 1L',
-    'Coca Cola - 1 litro',
-    8.99,
-    'Ativo',
-    'coca.png',
-    2,
-    'Sim',
-    'Sim'
-),
-(
-    9, 2,
-    'Suco natural de caju – 500ml',
-    'Suco natural de caju - 500ml',
-    5.99,
-    'Ativo',
-    'Sucocaju.png',
-    5,
-    'Não',
-    'Sim'
-),
-(
-    10, 2,
-    'Suco natural de laranja – 500ml',
-    'Suco natural de laranja - 500ml',
-    6.99,
-    'Ativo',
-    'Slaranja.png',
-    5,
-    'Não',
-    'Sim'
-),
-(
-    11, 2,
-    'Pepsi – 500ml',
-    'Pepsi - 500ml',
-    8.99,
-    'Ativo',
-    'pepsi.png',
-    2,
-    'Não',
-    'Sim'
-),
-(
-    12, 2,
-    'Fanta – 1L',
-    'Fanta - 1 litro',
-    10.99,
-    'Ativo',
-    'Fanta.png',
-    2,
-    'Não',
-    'Sim'
-),
-(
-    13, 2,
-    'Suco de Uva – 500ml',
-    'Suco de uva - 500ml',
-    5.99,
-    'Ativo',
-    'sucoUva.png',
-    5,
-    'Não',
-    'Sim'
-),
-(
-    14, 2,
-    'Guaraná – 1L',
-    'Guaraná - 1L',
-    12.99,
-    'Ativo',
-    'guarana.png',
-    2,
-    'Não',
-    'Sim'
-),
-(
-    15, 3,
-    'Cheddar Burguer',
-    'Pão brioche, cheddar duplo e carne dupla',
-    28.00,
-    'Ativo',
-    'Amburguer_card - Copia.png',
-    20,
-    'Não',
-    'Sim'
-),
-(
-    16, 3,
-    'Tropical Burguer',
-    'Carne, queijo, abacaxi grelhado e molho agridoce',
-    30.00,
-    'Ativo',
-    'Burguer2.png',
-    20,
-    'Não',
-    'Sim'
-),
-(
-    17, 3,
-    'X-Burguer',
-    'Carne, alface, tomate, bacon e cheddar',
-    38.00,
-    'Ativo',
-    'burguer3.png',
-    20,
-    'Não',
-    'Sim'
-),
-(
-    18, 3,
-    'Smash Burguer Duplo',
-    'Dois smash, queijo e molho da casa',
-    25.00,
-    'Ativo',
-    'burguer4.png',
-    20,
-    'Não',
-    'Sim'
-),
-(
-    19, 3,
-    'Burguer Simples',
-    'Carne, queijo, alface e tomate',
-    20.00,
-    'Ativo',
-    'burger5.png',
-    20,
-    'Não',
-    'Sim'
-),
-(
-    20, 3,
-    'Supremo Burguer',
-    'Carne, picles, alface, tomate e maionese',
-    30.00,
-    'Ativo',
-    'burguer7.png',
-    20,
-    'Não',
-    'Sim'
-),
-(
-    21, 4,
-    '2 Acompanhamentos de sua preferência',
-    'Uma porção de anéis de cebola, bolinho de mandioca com carne seca ou batata frita 500g',
-    17.90,
-    'Ativo',
-    'Co1.png',
-    15,
-    'Não',
-    'Sim'
-),
-(
-    22, 4,
-    '3 Supremo Burguer',
-    '3 Supremo Burguer',
-    87.90,
-    'Ativo',
-    'amburgueres.png',
-    25,
-    'Não',
-    'Sim'
-),
-(
-    23, 4,
-    'Cheddar Burguer e Coca-Cola',
-    'Cheddar Burguer com Coca-Cola 1L',
-    28.90,
-    'Ativo',
-    'Amburguer_card.png',
-    20,
-    'Não',
-    'Sim'
-),
-(
-    24, 4,
-    'Bolinho de mandioca com carne seca e 2 molhos',
-    'Bolinho de mandioca com carne seca, molho barbecue, geleia de pimenta e maionese temperada',
-    16.00,
-    'Ativo',
-    'bolinhoM.png',
-    15,
-    'Não',
-    'Sim'
-);
-
--- ============================================================
--- DADOS: pedido
--- ============================================================
+(1,1,'Batata Frita - 500g','Batata frita - 500g',7.80,NULL,'Ativo','batatafrita.png',10,'Não','Sim'),
+(2,1,'Porção de anéis de cebola – 500g','Porção de anéis de cebola - 500g',8.99,NULL,'Ativo','Anelcebola.png',10,'Não','Sim'),
+(3,1,'Bolinho de mandioca com carne seca – 500g','Bolinho de mandioca com carne seca - 500g',12.90,NULL,'Ativo','bolinhoM.png',15,'Não','Sim'),
+(4,1,'Molho barbecue – 150g','Molho barbecue - 150g',4.99,NULL,'Ativo','Barbecue.png',5,'Não','Sim'),
+(5,1,'Maionese Temperada – 150g','Maionese temperada - 150g',2.99,NULL,'Ativo','temperada.png',5,'Não','Sim'),
+(6,1,'Maionese de alho – 150g','Maionese de alho - 150g',2.50,NULL,'Ativo','MdeAlho.png',5,'Não','Sim'),
+(7,1,'Geleia de pimenta – 150g','Geleia de pimenta - 150g',5.00,NULL,'Ativo','Gpimenta.png',5,'Não','Sim'),
+(8,2,'Coca Cola – 1L','Coca Cola - 1 litro',8.99,NULL,'Ativo','coca.png',2,'Sim','Sim'),
+(9,2,'Suco natural de caju – 500ml','Suco natural de caju - 500ml',5.99,NULL,'Ativo','Sucocaju.png',5,'Não','Sim'),
+(10,2,'Suco natural de laranja – 500ml','Suco natural de laranja - 500ml',6.99,NULL,'Ativo','Slaranja.png',5,'Não','Sim'),
+(11,2,'Pepsi – 500ml','Pepsi - 500ml',8.99,NULL,'Ativo','pepsi.png',2,'Não','Sim'),
+(12,2,'Fanta – 1L','Fanta - 1 litro',10.99,NULL,'Ativo','Fanta.png',2,'Não','Sim'),
+(13,2,'Suco de Uva – 500ml','Suco de uva - 500ml',5.99,NULL,'Ativo','sucoUva.png',5,'Não','Sim'),
+(14,2,'Guaraná – 1L','Guaraná - 1L',12.99,NULL,'Ativo','guarana.png',2,'Não','Sim'),
+(15,3,'Cheddar Burguer','Pão brioche, cheddar duplo e carne dupla',28.00,NULL,'Ativo','Amburguer_card - Copia.png',20,'Não','Sim'),
+(16,3,'Tropical Burguer','Carne, queijo, abacaxi grelhado e molho agridoce',30.00,NULL,'Ativo','Burguer2.png',20,'Não','Sim'),
+(17,3,'X-Burguer','Carne, alface, tomate, bacon e cheddar',38.00,NULL,'Ativo','burguer3.png',20,'Não','Sim'),
+(18,3,'Smash Burguer Duplo','Dois smash, queijo e molho da casa',25.00,NULL,'Ativo','burguer4.png',20,'Não','Sim'),
+(19,3,'Burguer Simples','Carne, queijo, alface e tomate',20.00,NULL,'Ativo','burger5.png',20,'Não','Sim'),
+(20,3,'Supremo Burguer','Carne, picles, alface, tomate e maionese',30.00,NULL,'Ativo','burguer7.png',20,'Não','Sim'),
+(21,4,'2 Acompanhamentos de sua preferência','Uma porção de anéis de cebola, bolinho de mandioca com carne seca ou batata frita 500g',17.90,NULL,'Ativo','Co1.png',15,'Não','Sim'),
+(22,4,'3 Supremo Burguer','3 Supremo Burguer',87.90,NULL,'Ativo','amburgueres.png',25,'Não','Sim'),
+(23,4,'Cheddar Burguer e Coca-Cola','Cheddar Burguer com Coca-Cola 1L',28.90,NULL,'Ativo','Amburguer_card.png',20,'Não','Sim'),
+(24,4,'Bolinho de mandioca com carne seca e 2 molhos','Bolinho de mandioca com carne seca, molho barbecue, geleia de pimenta e maionese temperada',16.00,NULL,'Ativo','bolinhoM.png',15,'Não','Sim');
 
 INSERT INTO pedido
 (
@@ -579,66 +290,29 @@ INSERT INTO pedido
 )
 VALUES
 (
-    1, 1,
-    0.00,
-    0.00,
-    0.00,
+    1,1,
+    0.00,0.00,0.00,
     'Retirada',
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
+    NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,
     'Carrinho',
     '2026-09-23 11:05:54'
 ),
 (
-    2, 2,
-    0.00,
-    0.00,
-    0.00,
+    2,2,
+    0.00,0.00,0.00,
     'Retirada',
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    '',
+    NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',
     'finalizado',
     '2026-09-23 12:24:44'
 ),
 (
-    3, 2,
-    0.00,
-    0.00,
-    0.00,
+    3,2,
+    0.00,0.00,0.00,
     'Retirada',
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    '',
+    NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',
     'cancelado',
     '2026-09-23 12:41:29'
 );
-
--- ============================================================
--- DADOS: itens_encomenda
--- ============================================================
-
--- Atualmente sem registros.
-
--- ============================================================
--- DADOS: itens_pedidos
--- ============================================================
 
 INSERT INTO itens_pedidos
 (
@@ -649,19 +323,11 @@ INSERT INTO itens_pedidos
     preco_unitario
 )
 VALUES
-(1, 19, 1, 1, 20.00),
-(2, 20, 2, 1, 30.00),
-(3, 5, 3, 1, 2.99);
-
--- ============================================================
--- FINALIZA
--- ============================================================
+(1,19,1,1,20.00),
+(2,20,2,1,30.00),
+(3,5,3,1,2.99);
 
 SET FOREIGN_KEY_CHECKS = 1;
-
--- ============================================================
--- VERIFICAÇÃO
--- ============================================================
 
 SELECT 'Banco cerrado_burguer criado com sucesso!' AS mensagem;
 

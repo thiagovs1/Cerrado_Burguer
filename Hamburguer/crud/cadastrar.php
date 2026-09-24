@@ -3,7 +3,6 @@
 
 session_start();
 
-// Usa a conexão central do projeto
 require_once __DIR__ . '/conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -44,13 +43,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
-    // Criptografa a senha
     $senhaHash = password_hash(
         $senha1,
         PASSWORD_DEFAULT
     );
 
-    // Cadastra o usuário
     $stmt = $pdo->prepare(
         "INSERT INTO usuario
         (email, senha, nome, cpf, telefone)

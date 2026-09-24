@@ -1,15 +1,11 @@
 <?php
-
 header('Content-Type: text/html; charset=UTF-8');
-
 require_once "../../crud/conexao.php";
-
 $pdo->exec("SET NAMES utf8mb4");
 
 $mensagem = "";
 $editar = null;
 $modalExcluir = null;
-$visualizar = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $acao = $_POST['acao'] ?? '';
@@ -24,46 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $promocao = ($_POST['promocao'] ?? '') === 'on' ? 'Sim' : 'Não';
     $entrega = ($_POST['disponivel_entrega'] ?? '') === 'on' ? 'Sim' : 'Não';
 
-    if ($acao === 'visualizar') {
-
-        if (!$nome || !$descricao || !$id_categoria) {
-            $mensagem = "Preencha nome, descrição e categoria.";
-        } elseif (!is_numeric($preco) || $preco < 0) {
-            $mensagem = "Informe um preço válido.";
-        } else {
-
-            if ($id) {
-                $stmt = $pdo->prepare("SELECT * FROM produto WHERE id_produto=?");
-                $stmt->execute([$id]);
-                $editar = $stmt->fetch(PDO::FETCH_ASSOC);
-            }
-
-            $editar = $editar ?: [];
-
-            $editar = array_merge($editar, [
-                'id_produto' => $id,
-                'nome' => $nome,
-                'descricao' => $descricao,
-                'preco' => $preco,
-                'id_categoria' => $id_categoria,
-                'status' => $status,
-                'tempo_preparo' => $tempo,
-                'promocao' => $promocao,
-                'disponivel_entrega' => $entrega
-            ]);
-
-            $visualizar = true;
-        }
-    }
-
     if ($acao === 'salvar') {
-
         if (!$nome || !$descricao || !$id_categoria) {
             $mensagem = "Preencha todos os campos obrigatórios.";
         } elseif (!is_numeric($preco) || $preco < 0) {
             $mensagem = "Informe um preço válido.";
         } else {
-
             $imagem = null;
 
             if ($id) {
@@ -73,19 +35,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] !== UPLOAD_ERR_NO_FILE) {
-
                 if ($_FILES['imagem']['error'] !== UPLOAD_ERR_OK) {
                     $mensagem = "Erro ao enviar a imagem.";
                 } elseif ($_FILES['imagem']['size'] > 5 * 1024 * 1024) {
                     $mensagem = "A imagem deve ter no máximo 5MB.";
                 } else {
-
                     $ext = strtolower(pathinfo($_FILES['imagem']['name'], PATHINFO_EXTENSION));
 
                     if (!in_array($ext, ['jpg', 'jpeg', 'png', 'webp'])) {
                         $mensagem = "Formato de imagem inválido.";
                     } else {
-
                         $novaImagem = uniqid('produto_', true) . '.' . $ext;
                         $pasta = __DIR__ . '/../../imagens/';
 
@@ -93,17 +52,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             mkdir($pasta, 0777, true);
                         }
 
-                        if (move_uploaded_file(
-                            $_FILES['imagem']['tmp_name'],
-                            $pasta . $novaImagem
-                        )) {
-
+                        if (move_uploaded_file($_FILES['imagem']['tmp_name'], $pasta . $novaImagem)) {
                             if ($imagem && file_exists($pasta . $imagem)) {
                                 unlink($pasta . $imagem);
                             }
 
                             $imagem = $novaImagem;
-
                         } else {
                             $mensagem = "Não foi possível salvar a imagem.";
                         }
@@ -112,9 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             if (!$mensagem) {
-
                 if ($id) {
-
                     $sql = "UPDATE produto SET
                         id_categoria=?,
                         nome=?,
@@ -141,9 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ]);
 
                     header("Location: cadastro.php?msg=Produto+atualizado+com+sucesso");
-
                 } else {
-
                     $sql = "INSERT INTO produto
                         (id_categoria,nome,descricao,preco,status,imagem,tempo_preparo,promocao,disponivel_entrega)
                         VALUES (?,?,?,?,?,?,?,?,?)";
@@ -169,23 +119,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($acao === 'excluir' && $id) {
-
         try {
-
             $stmt = $pdo->prepare("SELECT imagem FROM produto WHERE id_produto=?");
             $stmt->execute([$id]);
             $produto = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if (!$produto) {
-
                 $mensagem = "Produto não encontrado.";
-
             } else {
-
                 $pdo->prepare("DELETE FROM produto WHERE id_produto=?")->execute([$id]);
 
                 if ($produto['imagem']) {
-
                     $arquivo = __DIR__ . '/../../imagens/' . $produto['imagem'];
 
                     if (file_exists($arquivo)) {
@@ -196,9 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header("Location: cadastro.php?msg=Produto+excluído+com+sucesso");
                 exit;
             }
-
         } catch (PDOException $e) {
-
             $mensagem = $e->getCode() === '23000'
                 ? "Este produto não pode ser excluído porque está sendo utilizado em pedidos."
                 : "Erro ao excluir produto.";
@@ -217,7 +159,6 @@ $categorias = $pdo->query("
 ")->fetchAll(PDO::FETCH_ASSOC);
 
 if (isset($_GET['editar'])) {
-
     $stmt = $pdo->prepare("SELECT * FROM produto WHERE id_produto=?");
     $stmt->execute([intval($_GET['editar'])]);
     $editar = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -228,7 +169,6 @@ if (isset($_GET['editar'])) {
 }
 
 if (isset($_GET['excluir'])) {
-
     $stmt = $pdo->prepare("
         SELECT id_produto,nome
         FROM produto
@@ -245,39 +185,20 @@ $produtos = $pdo->query("
     INNER JOIN categoria c ON c.id_categoria=p.id_categoria
     ORDER BY p.id_produto DESC
 ")->fetchAll(PDO::FETCH_ASSOC);
-
-$categoriaPreview = null;
-
-if ($visualizar && !empty($editar['id_categoria'])) {
-
-    $stmt = $pdo->prepare("
-        SELECT id_categoria,nome,cor
-        FROM categoria
-        WHERE id_categoria=?
-    ");
-
-    $stmt->execute([$editar['id_categoria']]);
-    $categoriaPreview = $stmt->fetch(PDO::FETCH_ASSOC);
-}
-
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Cadastro de Produtos</title>
 
-<meta charset="UTF-8">
+    <link rel="stylesheet" href="../Adm.css/cadastro.css">
 
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-<title>Cadastro de Produtos</title>
-
-<link rel="stylesheet" href="../Adm.css/cadastro.css">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
@@ -285,17 +206,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 <aside class="sidebar">
 
     <div class="logo">
-
         <img src="../../imagens/logo.png" alt="Logo CerradoBurguer">
 
         <div class="logo-text">
-
             <h2>CerradoBurguer</h2>
-
             <p>ADMINISTRAÇÃO</p>
-
         </div>
-
     </div>
 
     <nav class="menu">
@@ -366,477 +282,373 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 <main class="conteudo">
 
-<div class="topo">
+    <div class="topo">
 
-    <h1><?= $editar ? 'Editar Produto' : 'Cadastrar Produto' ?></h1>
+        <h1><?= $editar ? 'Editar Produto' : 'Cadastrar Produto' ?></h1>
 
-    <a href="cadastro.php" class="voltar">← Voltar</a>
+        <a href="cadastro.php" class="voltar">← Voltar</a>
 
-</div>
+    </div>
 
-<?php if ($mensagem): ?>
+    <?php if ($mensagem): ?>
 
-<div class="mensagem">
+        <div class="mensagem">
+            <?= htmlspecialchars($mensagem) ?>
+        </div>
 
-    <?= htmlspecialchars($mensagem) ?>
+    <?php endif; ?>
 
-</div>
+    <div class="area-cadastro">
 
-<?php endif; ?>
+        <section class="formulario">
 
-<div class="area-cadastro">
+            <h2>Informações Básicas</h2>
 
-<section class="formulario">
+            <form method="POST" enctype="multipart/form-data">
 
-<h2>Informações Básicas</h2>
+                <input type="hidden"
+                    name="id_produto"
+                    value="<?= $editar['id_produto'] ?? '' ?>">
 
-<form method="POST" enctype="multipart/form-data">
+                <div class="campo">
 
-<input type="hidden"
-name="id_produto"
-value="<?= $editar['id_produto'] ?? '' ?>">
+                    <label>Nome do Produto <b>*</b></label>
 
-<div class="campo">
+                    <input
+                        type="text"
+                        name="nome"
+                        value="<?= htmlspecialchars($editar['nome'] ?? '') ?>"
+                        placeholder="Ex: Burguer Clássico"
+                        maxlength="100"
+                        required>
 
-<label>Nome do Produto <b>*</b></label>
+                </div>
 
-<input
-type="text"
-name="nome"
-value="<?= htmlspecialchars($editar['nome'] ?? '') ?>"
-placeholder="Ex: Burguer Clássico"
-maxlength="100"
-required>
+                <div class="campo">
 
-</div>
+                    <label>Descrição <b>*</b></label>
 
-<div class="campo">
+                    <textarea
+                        name="descricao"
+                        maxlength="500"
+                        required><?= htmlspecialchars($editar['descricao'] ?? '') ?></textarea>
 
-<label>Descrição <b>*</b></label>
+                </div>
 
-<textarea
-name="descricao"
-maxlength="500"
-required><?= htmlspecialchars($editar['descricao'] ?? '') ?></textarea>
+                <div class="linha">
 
-</div>
+                    <div class="campo">
 
-<div class="linha">
+                        <label>Preço <b>*</b></label>
 
-<div class="campo">
+                        <input
+                            type="text"
+                            name="preco"
+                            value="<?= isset($editar['preco']) ? number_format($editar['preco'],2,',','') : '' ?>"
+                            placeholder="0,00"
+                            required>
 
-<label>Preço <b>*</b></label>
+                    </div>
 
-<input
-type="text"
-name="preco"
-value="<?= isset($editar['preco']) ? number_format($editar['preco'],2,',','') : '' ?>"
-placeholder="0,00"
-required>
+                    <div class="campo">
 
-</div>
+                        <label>Categoria <b>*</b></label>
 
-<div class="campo">
+                        <select name="id_categoria" required>
 
-<label>Categoria <b>*</b></label>
+                            <option value="">Selecione a categoria</option>
 
-<select name="id_categoria" required>
+                            <?php foreach ($categorias as $categoria): ?>
 
-<option value="">Selecione a categoria</option>
+                                <option
+                                    value="<?= $categoria['id_categoria'] ?>"
+                                    <?= isset($editar['id_categoria']) && $editar['id_categoria'] == $categoria['id_categoria'] ? 'selected' : '' ?>>
 
-<?php foreach ($categorias as $categoria): ?>
+                                    <?= htmlspecialchars($categoria['nome']) ?>
 
-<option
-value="<?= $categoria['id_categoria'] ?>"
-<?= isset($editar['id_categoria']) && $editar['id_categoria'] == $categoria['id_categoria'] ? 'selected' : '' ?>>
+                                </option>
 
-<?= htmlspecialchars($categoria['nome']) ?>
+                            <?php endforeach; ?>
 
-</option>
+                        </select>
 
-<?php endforeach; ?>
+                    </div>
 
-</select>
+                </div>
 
-</div>
+                <div class="campo status-campo">
 
-</div>
+                    <label>Status <b>*</b></label>
 
-<div class="campo status-campo">
+                    <div class="status-opcoes">
 
-<label>Status <b>*</b></label>
+                        <label>
 
-<div class="status-opcoes">
+                            <input
+                                type="radio"
+                                name="status"
+                                value="Ativo"
+                                <?= ($editar['status'] ?? 'Ativo') === 'Ativo' ? 'checked' : '' ?>>
 
-<label>
+                            Ativo
 
-<input
-type="radio"
-name="status"
-value="Ativo"
-<?= ($editar['status'] ?? 'Ativo') === 'Ativo' ? 'checked' : '' ?>>
+                        </label>
 
-Ativo
+                        <label>
 
-</label>
+                            <input
+                                type="radio"
+                                name="status"
+                                value="Inativo"
+                                <?= ($editar['status'] ?? '') === 'Inativo' ? 'checked' : '' ?>>
 
-<label>
+                            Inativo
 
-<input
-type="radio"
-name="status"
-value="Inativo"
-<?= ($editar['status'] ?? '') === 'Inativo' ? 'checked' : '' ?>>
+                        </label>
 
-Inativo
+                    </div>
 
-</label>
+                </div>
 
-</div>
+                <div class="campo imagem-campo">
 
-</div>
+                    <label>Imagem do Produto</label>
 
-<div class="campo imagem-campo">
+                    <small>Adicione uma imagem atraente ao produto</small>
 
-<label>Imagem do Produto</label>
+                    <div class="upload">
 
-<small>Adicione uma imagem atraente ao produto</small>
+                        <input
+                            type="file"
+                            id="imagem"
+                            name="imagem"
+                            accept="image/png,image/jpeg,image/webp">
 
-<div class="upload">
+                        <label for="imagem" class="arquivo">
+                            Escolher arquivo
+                        </label>
 
-<input
-type="file"
-id="imagem"
-name="imagem"
-accept="image/png,image/jpeg,image/webp">
+                        <span>
+                            <?= !empty($editar['imagem'])
+                                ? htmlspecialchars($editar['imagem'])
+                                : 'Nenhum arquivo escolhido' ?>
+                        </span>
 
-<label for="imagem" class="arquivo">
-Escolher arquivo
-</label>
+                    </div>
 
-<span>
-<?= !empty($editar['imagem'])
-    ? htmlspecialchars($editar['imagem'])
-    : 'Nenhum arquivo escolhido' ?>
-</span>
+                    <small class="formatos">
+                        PNG, JPG, WEBP até 5MB
+                    </small>
 
-</div>
+                    <?php if (!empty($editar['imagem'])): ?>
 
-<small class="formatos">
-PNG, JPG, WEBP até 5MB
-</small>
+                        <div class="imagem-atual">
 
-<?php if (!empty($editar['imagem'])): ?>
+                            <img
+                                src="../../imagens/<?= htmlspecialchars($editar['imagem']) ?>"
+                                alt="Imagem atual">
 
-<div class="imagem-atual">
+                            <span>Imagem atual</span>
 
-<img
-src="../../imagens/<?= htmlspecialchars($editar['imagem']) ?>"
-alt="Imagem atual">
+                        </div>
 
-<span>Imagem atual</span>
+                    <?php endif; ?>
 
-</div>
+                </div>
 
-<?php endif; ?>
+                <div class="adicionais">
 
-</div>
+                    <h3>Informações Adicionais</h3>
 
-<div class="adicionais">
+                    <div class="tempo">
 
-<h3>Informações Adicionais</h3>
+                        <label>Tempo de preparo (min)</label>
 
-<div class="tempo">
+                        <input
+                            type="number"
+                            name="tempo_preparo"
+                            min="0"
+                            value="<?= $editar['tempo_preparo'] ?? 0 ?>">
 
-<label>Tempo de preparo (min)</label>
+                    </div>
 
-<input
-type="number"
-name="tempo_preparo"
-min="0"
-value="<?= $editar['tempo_preparo'] ?? 0 ?>">
+                    <div class="opcoes">
 
-</div>
+                        <label class="check">
 
-<div class="opcoes">
+                            <input
+                                type="checkbox"
+                                name="promocao"
+                                <?= ($editar['promocao'] ?? 'Não') === 'Sim' ? 'checked' : '' ?>>
 
-<label class="check">
+                            Produto em Promoção
 
-<input
-type="checkbox"
-name="promocao"
-<?= ($editar['promocao'] ?? 'Não') === 'Sim' ? 'checked' : '' ?>>
+                        </label>
 
-Produto em Promoção
+                        <label class="check">
 
-</label>
+                            <input
+                                type="checkbox"
+                                name="disponivel_entrega"
+                                <?= ($editar['disponivel_entrega'] ?? 'Sim') === 'Sim' ? 'checked' : '' ?>>
 
-<label class="check">
+                            Disponível para entrega
 
-<input
-type="checkbox"
-name="disponivel_entrega"
-<?= ($editar['disponivel_entrega'] ?? 'Sim') === 'Sim' ? 'checked' : '' ?>>
+                        </label>
 
-Disponível para entrega
+                    </div>
 
-</label>
+                </div>
 
-</div>
+                <div class="botoes">
 
-</div>
+                    <a href="cadastro.php" class="limpar">
+                        🗑 Limpar
+                    </a>
 
-<div class="botoes">
+                    <button
+                        type="submit"
+                        name="acao"
+                        value="salvar"
+                        class="salvar">
 
-<a href="cadastro.php" class="limpar">
-🗑 Limpar
-</a>
+                        <?= $editar ? 'Atualizar Produto' : 'Salvar Produto' ?>
 
-<button
-type="submit"
-name="acao"
-value="visualizar"
-class="botao-visualizar">
+                    </button>
 
-👁 Visualizar produto
+                </div>
 
-</button>
+            </form>
 
-<button
-type="submit"
-name="acao"
-value="salvar"
-class="salvar">
+        </section>
 
-<?= $editar ? 'Atualizar Produto' : 'Salvar Produto' ?>
+        <section class="produtos">
 
-</button>
+            <h2>Produtos Cadastrados</h2>
 
-</div>
+            <div class="tabela-cabecalho">
 
-</form>
+                <span>Nome</span>
+                <span>Categoria</span>
+                <span>Preço</span>
+                <span>Status</span>
+                <span>Ações</span>
 
-</section>
+            </div>
 
-<?php if ($visualizar): ?>
+            <?php foreach ($produtos as $produto): ?>
 
-<section class="preview-produto-area">
+                <div class="produto">
 
-<h2>Pré-visualização</h2>
+                    <span>
+                        <?= htmlspecialchars($produto['nome']) ?>
+                    </span>
 
-<span class="subtitulo">
-Assim o produto aparecerá na categoria.
-</span>
+                    <span>
+                        <?= htmlspecialchars($produto['categoria']) ?>
+                    </span>
 
-<?php if ($categoriaPreview): ?>
+                    <span>
+                        R$ <?= number_format($produto['preco'],2,',','.') ?>
+                    </span>
 
-<div
-class="preview-categoria-nome"
-style="background:<?= htmlspecialchars($categoriaPreview['cor']) ?>;color:#fff">
+                    <span>
+                        <?= htmlspecialchars($produto['status']) ?>
+                    </span>
 
-Categoria: <?= htmlspecialchars($categoriaPreview['nome']) ?>
+                    <div class="acoes">
 
-</div>
+                        <a
+                            href="?editar=<?= $produto['id_produto'] ?>"
+                            class="editar">
 
-<?php endif; ?>
+                            Editar
 
-<div class="preview-card">
+                        </a>
 
-<div class="preview-card-imagem">
+                        <a
+                            href="?excluir=<?= $produto['id_produto'] ?>"
+                            class="excluir">
 
-<?php if (!empty($editar['imagem'])): ?>
+                            Excluir
 
-<img
-src="../../imagens/<?= htmlspecialchars($editar['imagem']) ?>"
-alt="<?= htmlspecialchars($editar['nome']) ?>">
+                        </a>
 
-<?php else: ?>
+                    </div>
 
-<span class="preview-sem-imagem">
-Sem imagem
-</span>
+                </div>
 
-<?php endif; ?>
+            <?php endforeach; ?>
 
-</div>
+            <?php if (!$produtos): ?>
 
-<?php if (($editar['promocao'] ?? 'Não') === 'Sim'): ?>
+                <p class="sem-produtos">
+                    Nenhum produto cadastrado.
+                </p>
 
-<span class="preview-promocao">
-PROMOÇÃO
-</span>
+            <?php endif; ?>
 
-<?php endif; ?>
+        </section>
 
-<h3>
-<?= htmlspecialchars($editar['nome'] ?: 'Nome do produto') ?>
-</h3>
-
-<p>
-<?= htmlspecialchars($editar['descricao'] ?: 'Descrição do produto') ?>
-</p>
-
-<span class="preco">
-
-R$ <?= number_format(
-    (float)($editar['preco'] ?? 0),
-    2,
-    ',',
-    '.'
-) ?>
-
-</span>
-
-<?php if (
-    ($editar['status'] ?? 'Ativo') === 'Ativo' &&
-    ($editar['disponivel_entrega'] ?? 'Sim') === 'Sim'
-): ?>
-
-<div class="add-preview">
-+
-</div>
-
-<?php else: ?>
-
-<div class="preview-inativo">
-Produto indisponível
-</div>
-
-<?php endif; ?>
-
-</div>
-
-</section>
-
-<?php endif; ?>
-
-<section class="produtos">
-
-<h2>Produtos Cadastrados</h2>
-
-<div class="tabela-cabecalho">
-
-<span>Nome</span>
-<span>Categoria</span>
-<span>Preço</span>
-<span>Status</span>
-<span>Ações</span>
-
-</div>
-
-<?php foreach ($produtos as $produto): ?>
-
-<div class="produto">
-
-<span>
-<?= htmlspecialchars($produto['nome']) ?>
-</span>
-
-<span>
-<?= htmlspecialchars($produto['categoria']) ?>
-</span>
-
-<span>
-R$ <?= number_format($produto['preco'],2,',','.') ?>
-</span>
-
-<span>
-<?= htmlspecialchars($produto['status']) ?>
-</span>
-
-<div class="acoes">
-
-<a
-href="?editar=<?= $produto['id_produto'] ?>"
-class="editar">
-
-Editar
-
-</a>
-
-<a
-href="?excluir=<?= $produto['id_produto'] ?>"
-class="excluir">
-
-Excluir
-
-</a>
-
-</div>
-
-</div>
-
-<?php endforeach; ?>
-
-<?php if (!$produtos): ?>
-
-<p class="sem-produtos">
-Nenhum produto cadastrado.
-</p>
-
-<?php endif; ?>
-
-</section>
-
-</div>
+    </div>
 
 </main>
 
 <?php if ($modalExcluir): ?>
 
-<div class="modal-excluir ativo">
+    <div class="modal-excluir ativo">
 
-<div class="caixa-excluir">
+        <div class="caixa-excluir">
 
-<h2>Excluir produto?</h2>
+            <h2>Excluir produto?</h2>
 
-<p>
+            <p>
 
-Tem certeza que deseja excluir
+                Tem certeza que deseja excluir
 
-<strong>
-<?= htmlspecialchars($modalExcluir['nome']) ?>
-</strong>?
+                <strong>
+                    <?= htmlspecialchars($modalExcluir['nome']) ?>
+                </strong>?
 
-</p>
+            </p>
 
-<div class="botoes-excluir">
+            <div class="botoes-excluir">
 
-<a
-href="cadastro.php"
-class="btn-cancelar-exclusao">
+                <a
+                    href="cadastro.php"
+                    class="btn-cancelar-exclusao">
 
-Cancelar
+                    Cancelar
 
-</a>
+                </a>
 
-<form method="POST">
+                <form method="POST">
 
-<input
-type="hidden"
-name="acao"
-value="excluir">
+                    <input
+                        type="hidden"
+                        name="acao"
+                        value="excluir">
 
-<input
-type="hidden"
-name="id_produto"
-value="<?= $modalExcluir['id_produto'] ?>">
+                    <input
+                        type="hidden"
+                        name="id_produto"
+                        value="<?= $modalExcluir['id_produto'] ?>">
 
-<button
-type="submit"
-class="btn-confirmar-exclusao">
+                    <button
+                        type="submit"
+                        class="btn-confirmar-exclusao">
 
-Excluir
+                        Excluir
 
-</button>
+                    </button>
 
-</form>
+                </form>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-</div>
+    </div>
 
 <?php endif; ?>
 

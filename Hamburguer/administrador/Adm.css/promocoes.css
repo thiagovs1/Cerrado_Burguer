@@ -86,20 +86,20 @@ body{
     width:calc(100% - 208px);
     min-height:100vh;
     background:#ecd6a6;
-    padding:0 28px 30px;
+    padding:0 28px 30px
 }
 
 .cabecalho-promocoes{
     height:48px;
     display:flex;
     align-items:center;
-    justify-content:space-between;
+    justify-content:space-between
 }
 
 .cabecalho-promocoes h1{
     font-size:15px;
     color:#5d2d13;
-    font-weight:600;
+    font-weight:600
 }
 
 .btn-nova-promocao{
@@ -110,18 +110,18 @@ body{
     padding:6px 13px;
     font-size:10px;
     font-weight:bold;
-    cursor:pointer;
+    cursor:pointer
 }
 
 .btn-nova-promocao:hover{
-    background:#754d39;
+    background:#754d39
 }
 
 .resumo-promocoes{
     display:grid;
-    grid-template-columns:repeat(4, 1fr);
+    grid-template-columns:repeat(4,1fr);
     gap:30px;
-    margin:0 0 16px;
+    margin:0 0 16px
 }
 
 .card-resumo{
@@ -132,7 +132,7 @@ body{
     align-items:center;
     justify-content:center;
     gap:12px;
-    box-shadow:0 1px 2px rgba(0,0,0,.03);
+    box-shadow:0 1px 2px rgba(0,0,0,.03)
 }
 
 .icone-resumo{
@@ -142,36 +142,36 @@ body{
     align-items:center;
     justify-content:center;
     color:#a56c4e;
-    font-size:20px;
+    font-size:20px
 }
 
 .info-resumo{
-    text-align:center;
+    text-align:center
 }
 
 .info-resumo p{
     font-size:8px;
     color:#5d3a2d;
-    margin-bottom:3px;
+    margin-bottom:3px
 }
 
 .info-resumo strong{
     display:block;
     font-size:17px;
     color:#c75b2b;
-    line-height:17px;
+    line-height:17px
 }
 
 .info-resumo span{
     font-size:8px;
-    color:#714c3b;
+    color:#714c3b
 }
 
 .area-promocoes{
     background:#fffdf8;
     border-radius:11px;
     padding:10px;
-    min-height:310px;
+    min-height:310px
 }
 
 .filtros{
@@ -179,7 +179,7 @@ body{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:4px;
+    margin-bottom:4px
 }
 
 .campo-busca{
@@ -191,11 +191,11 @@ body{
     padding:0 10px 0 27px;
     font-size:9px;
     outline:none;
-    color:#5d3a2d;
+    color:#5d3a2d
 }
 
 .busca-container{
-    position:relative;
+    position:relative
 }
 
 .busca-container i{
@@ -203,7 +203,7 @@ body{
     left:9px;
     top:5px;
     font-size:9px;
-    color:#555;
+    color:#555
 }
 
 .filtro-status{
@@ -215,17 +215,17 @@ body{
     padding:0 8px;
     font-size:9px;
     color:#5d3a2d;
-    outline:none;
+    outline:none
 }
 
 .tabela-promocoes{
     width:100%;
     border-collapse:collapse;
-    table-layout:fixed;
+    table-layout:fixed
 }
 
 .tabela-promocoes thead{
-    background:#bd8c6c;
+    background:#bd8c6c
 }
 
 .tabela-promocoes th{
@@ -234,11 +234,11 @@ body{
     font-size:8px;
     font-weight:500;
     text-align:left;
-    padding:0 10px;
+    padding:0 10px
 }
 
 .tabela-promocoes th:last-child{
-    text-align:center;
+    text-align:center
 }
 
 .tabela-promocoes td{
@@ -247,21 +247,21 @@ body{
     color:#5d3a2d;
     font-size:8px;
     padding:4px 10px;
-    vertical-align:middle;
+    vertical-align:middle
 }
 
 .tabela-promocoes tbody tr{
-    background:#f1dfb6;
+    background:#f1dfb6
 }
 
 .tabela-promocoes tbody tr:hover{
-    background:#ead2a4;
+    background:#ead2a4
 }
 
 .produto{
     display:flex;
     align-items:center;
-    gap:8px;
+    gap:8px
 }
 
 .produto img{
@@ -269,38 +269,38 @@ body{
     height:30px;
     border-radius:50%;
     object-fit:cover;
-    background:#d8a16e;
+    background:#d8a16e
 }
 
 .produto-info{
-    line-height:10px;
+    line-height:10px
 }
 
 .produto-info strong{
     display:block;
     font-size:8px;
     font-weight:500;
-    color:#542c1f;
+    color:#542c1f
 }
 
 .produto-info span{
     font-size:7px;
-    color:#714c3b;
+    color:#714c3b
 }
 
 .preco{
-    color:#542c1f;
+    color:#542c1f
 }
 
 .status-ativa{
-    color:#71813e;
+    color:#71813e
 }
 
 .acoes{
     display:flex;
     align-items:center;
     justify-content:center;
-    gap:7px;
+    gap:7px
 }
 
 .btn-editar,
@@ -311,7 +311,7 @@ body{
     font-size:9px;
     display:flex;
     align-items:center;
-    justify-content:center;
+    justify-content:center
 }
 
 .btn-editar{
@@ -320,19 +320,329 @@ body{
     background:#fff8e9;
     color:#542c1f;
     gap:5px;
+    text-decoration:none
 }
 
 .btn-excluir{
     width:22px;
     border:1px solid #e34e3d;
     background:#fff8e9;
-    color:#e34e3d;
+    color:#e34e3d
 }
 
 .btn-editar:hover{
-    background:#f4e4c4;
+    background:#f4e4c4
 }
 
 .btn-excluir:hover{
-    background:#ffe1dc;
+    background:#ffe1dc
 }
+.modal-promocao{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+    padding:20px
+}
+
+.modal-promocao.ativo{
+    display:flex
+}
+
+.modal-promocao-conteudo{
+    background:#fffdf8;
+    width:100%;
+    max-width:850px;
+    max-height:85vh;
+    overflow-y:auto;
+    border-radius:14px;
+    padding:25px
+}
+
+.modal-promocao-topo{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px
+}
+
+.modal-promocao-topo h2{
+    margin:0;
+    color:#5d2d13
+}
+
+.fechar-promocao{
+    border:0;
+    background:transparent;
+    font-size:28px;
+    cursor:pointer;
+    color:#542c1f
+}
+
+.lista-produtos-promocao{
+    display:flex;
+    flex-direction:column;
+    gap:12px
+}
+
+.produto-promocao{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:14px;
+    border:1px solid #bca078;
+    border-radius:10px;
+    background:#f1dfb6
+}
+
+.produto-promocao img{
+    width:70px;
+    height:70px;
+    object-fit:cover;
+    border-radius:8px
+}
+
+.produto-promocao-info{
+    flex:1
+}
+
+.produto-promocao-info strong{
+    display:block;
+    margin-bottom:5px;
+    color:#542c1f
+}
+
+.produto-promocao-info span{
+    display:block;
+    font-size:13px;
+    color:#714c3b
+}
+
+.produto-promocao-preco{
+    font-weight:bold;
+    white-space:nowrap;
+    color:#542c1f
+}
+
+.btn-adicionar-promocao{
+    border:0;
+    padding:10px 14px;
+    border-radius:7px;
+    cursor:pointer;
+    background:#8f654e;
+    color:#fff;
+    font-weight:bold
+}
+
+.btn-adicionar-promocao:hover{
+    background:#754d39
+}
+
+.modal-preco{
+    display:none
+}
+
+.modal-preco.ativo{
+    display:block
+}
+
+.modal-preco form{
+    display:flex;
+    flex-direction:column;
+    gap:12px
+}
+
+.modal-preco label{
+    font-weight:bold;
+    color:#542c1f
+}
+
+.modal-preco input{
+    padding:12px;
+    border:1px solid #bca078;
+    border-radius:7px;
+    color:#5d3a2d
+}
+
+.preco-normal{
+    background:#f1dfb6;
+    padding:12px;
+    border-radius:7px;
+    margin:12px 0;
+    color:#542c1f
+}
+
+.botoes-promocao{
+    display:flex;
+    gap:10px;
+    margin-top:10px
+}
+
+.botoes-promocao button{
+    padding:11px 18px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold
+}
+
+.btn-salvar-promocao{
+    border:0;
+    background:#8f654e;
+    color:#fff
+}
+
+.btn-salvar-promocao:hover{
+    background:#754d39
+}
+
+.btn-cancelar-promocao{
+    border:1px solid #5d2d13;
+    background:#fff8e9;
+    color:#542c1f
+}
+
+.btn-cancelar-promocao:hover{
+    background:#f4e4c4
+}
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:10000;
+    background:rgba(0,0,0,.65);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px
+}
+
+.modal-conteudo{
+    width:100%;
+    max-width:500px;
+    background:#fffdf8;
+    border-radius:14px;
+    padding:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,.25)
+}
+
+.modal-conteudo h2{
+    margin:0 0 20px;
+    color:#5d2d13;
+    font-size:20px
+}
+
+.modal-conteudo form{
+    display:flex;
+    flex-direction:column;
+    gap:7px
+}
+
+.modal-conteudo label{
+    color:#5d3a2d;
+    font-size:11px;
+    font-weight:600;
+    margin-top:5px
+}
+
+.modal-conteudo input,
+.modal-conteudo select{
+    width:100%;
+    height:36px;
+    padding:0 10px;
+    border:1px solid #bca078;
+    border-radius:6px;
+    background:#fff;
+    color:#5d3a2d;
+    font-size:11px;
+    outline:none
+}
+
+.modal-conteudo input:focus,
+.modal-conteudo select:focus{
+    border-color:#8f654e;
+    box-shadow:0 0 0 2px rgba(143,101,78,.12)
+}
+
+.acoes-modal{
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    gap:8px;
+    margin-top:18px
+}
+
+.acoes-modal button,
+.acoes-modal a{
+    height:30px;
+    min-width:65px;
+    padding:0 13px;
+    border-radius:5px;
+    font-size:9px;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    justify-content:center
+}
+
+.acoes-modal .btn-editar{
+    border:1px solid #5d2d13;
+    background:#8f654e;
+    color:#fff
+}
+
+.acoes-modal .btn-editar:hover{
+    background:#754d39
+}
+
+.acoes-modal .btn-cancelar{
+    border:1px solid #5d2d13;
+    background:#fff8e9;
+    color:#542c1f
+}
+
+.acoes-modal .btn-cancelar:hover{
+    background:#f4e4c4
+}
+
+@media(max-width:600px){
+
+    .modal,
+    .modal-promocao{
+        padding:12px
+    }
+
+    .modal-conteudo{
+        padding:20px
+    }
+
+    .modal-conteudo h2{
+        font-size:18px
+    }
+
+    .acoes-modal{
+        flex-direction:column
+    }
+
+    .acoes-modal button,
+    .acoes-modal a{
+        width:100%
+    }
+
+    .produto-promocao{
+        flex-wrap:wrap
+    }
+
+    .produto-promocao-info{
+        min-width:150px
+    }
+
+    .btn-adicionar-promocao{
+        width:100%
+    }
+}
+

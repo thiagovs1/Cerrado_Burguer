@@ -1,7 +1,6 @@
 <?php
 
 header('Content-Type: text/html; charset=UTF-8');
-
 require_once "../crud/conexao.php";
 
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
@@ -15,6 +14,7 @@ $stmt = $pdo->prepare("
     FROM categoria
     WHERE id_categoria = ? AND status = 'Ativa'
 ");
+
 $stmt->execute([$id]);
 $categoria = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -23,28 +23,38 @@ if (!$categoria) {
 }
 
 $stmt = $pdo->prepare("
-    SELECT id_produto, nome, descricao, preco, imagem
+    SELECT
+        id_produto,
+        nome,
+        descricao,
+        preco,
+        preco_anterior,
+        promocao,
+        imagem
     FROM produto
-    WHERE id_categoria = ? AND status = 'Ativo'
+    WHERE id_categoria = ?
+      AND status = 'Ativo'
     ORDER BY id_produto DESC
 ");
+
 $stmt->execute([$id]);
 $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title><?= htmlspecialchars($categoria['nome'], ENT_QUOTES, 'UTF-8') ?> - Cerrado Burguer</title>
+    <title>
+        <?= htmlspecialchars($categoria['nome'], ENT_QUOTES, 'UTF-8') ?> - Cerrado Burguer
+    </title>
 
     <link rel="stylesheet" href="../css-cardapio-tela-inicial/hamburguer.css">
     <link rel="stylesheet" href="../css/menu_perfil.css">
-
 </head>
 
 <body>
@@ -56,27 +66,11 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </a>
 
     <nav class="menu">
-
-        <a href="tela-inicial.html">
-            Inicio
-        </a>
-
-        <a href="tela-inicial.html#promocoes">
-            Promoções
-        </a>
-
-        <a href="cardapio.php">
-            Cardápio
-        </a>
-
-        <a href="tela-inicial.html">
-            Contato
-        </a>
-
-        <a href="tela-inicial.html#avaliacao">
-            Avaliações
-        </a>
-
+        <a href="tela-inicial.html">Inicio</a>
+        <a href="tela-inicial.html#promocoes">Promoções</a>
+        <a href="cardapio.php">Cardápio</a>
+        <a href="tela-inicial.html">Contato</a>
+        <a href="tela-inicial.html#avaliacao">Avaliações</a>
     </nav>
 
     <div class="icons">
@@ -95,7 +89,9 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <main>
 
-    <h1><?= htmlspecialchars($categoria['nome'], ENT_QUOTES, 'UTF-8') ?></h1>
+    <h1>
+        <?= htmlspecialchars($categoria['nome'], ENT_QUOTES, 'UTF-8') ?>
+    </h1>
 
     <div class="produtos">
 
@@ -107,9 +103,15 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <?php else: ?>
 
-            <?php foreach ($produtos as $produto): ?>
+            <?php foreach ($produtos as $i => $produto): ?>
 
-                <div class="item">
+                <?php
+                $classeCor = (floor($i / 2) % 2 === 0)
+                    ? 'item-pao'
+                    : 'item-carne';
+                ?>
+
+                <div class="item <?= $classeCor ?>">
 
                     <?php if (!empty($produto['imagem'])): ?>
 
@@ -129,18 +131,33 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <?= htmlspecialchars($produto['descricao'], ENT_QUOTES, 'UTF-8') ?>
                         </p>
 
-                        <span>
-                            R$ <?= number_format($produto['preco'], 2, ',', '.') ?>
-                        </span>
+                        <div class="preco-produto">
+
+                            <?php if ($produto['promocao'] === 'Sim' && !empty($produto['preco_anterior'])): ?>
+
+                                <span class="preco-antigo">
+                                    R$ <?= number_format($produto['preco_anterior'], 2, ',', '.') ?>
+                                </span>
+
+                                <span class="preco-promocional">
+                                    R$ <?= number_format($produto['preco'], 2, ',', '.') ?>
+                                </span>
+
+                            <?php else: ?>
+
+                                <span class="preco-normal">
+                                    R$ <?= number_format($produto['preco'], 2, ',', '.') ?>
+                                </span>
+
+                            <?php endif; ?>
+
+                        </div>
 
                     </div>
 
                     <form action="../php/carrinho.php" method="POST">
 
-                        <input
-                            type="hidden"
-                            name="acao"
-                            value="adicionar">
+                        <input type="hidden" name="acao" value="adicionar">
 
                         <input
                             type="hidden"

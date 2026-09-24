@@ -23,10 +23,6 @@ a{
     color:inherit
 }
 
-/* ================================
-   SIDEBAR
-================================ */
-
 .sidebar{
     position:fixed;
     top:0;
@@ -107,10 +103,6 @@ a{
     color:#5d3a2d
 }
 
-/* ================================
-   CONTEÚDO
-================================ */
-
 .main{
     margin-left:208px;
     width:calc(100% - 208px);
@@ -138,10 +130,6 @@ a{
     color:#795b46
 }
 
-/* ================================
-   MENSAGENS
-================================ */
-
 .mensagem{
     display:flex;
     align-items:center;
@@ -164,10 +152,6 @@ a{
     color:#96352c;
     border:1px solid #e7b5af
 }
-
-/* ================================
-   FILTROS
-================================ */
 
 .filtros{
     background:#fffdf8;
@@ -246,10 +230,6 @@ a{
 .btn-limpar:hover{
     background:#ead2a4
 }
-
-/* ================================
-   TABELA
-================================ */
 
 .tabela-container{
     background:#fffdf8;
@@ -344,10 +324,6 @@ tbody tr:last-child td{
     border-bottom:0
 }
 
-/* ================================
-   CLIENTE
-================================ */
-
 .cliente{
     display:flex;
     align-items:center;
@@ -391,10 +367,6 @@ tbody tr:last-child td{
     margin-top:2px
 }
 
-/* ================================
-   TIPO
-================================ */
-
 .tipo{
     display:inline-flex;
     align-items:center;
@@ -411,10 +383,6 @@ tbody tr:last-child td{
 .tipo i{
     font-size:8px
 }
-
-/* ================================
-   ENDEREÇO
-================================ */
 
 .endereco{
     display:flex;
@@ -435,9 +403,6 @@ tbody tr:last-child td{
     font-style:italic
 }
 
-/* ================================
-   PAGAMENTO E VALORES
-================================ */
 
 td strong{
     color:#542c1f
@@ -446,10 +411,6 @@ td strong{
 td .total{
     color:#c75b2b
 }
-
-/* ================================
-   STATUS
-================================ */
 
 .status{
     display:inline-flex;
@@ -488,9 +449,6 @@ td .total{
     color:#a3342b
 }
 
-/* ================================
-   DATA
-================================ */
 
 td>small{
     display:block;
@@ -498,10 +456,6 @@ td>small{
     color:#714c3b;
     margin-top:2px
 }
-
-/* ================================
-   AÇÕES
-================================ */
 
 .acoes{
     display:flex;
@@ -542,10 +496,6 @@ td>small{
     background:#ffe1dc
 }
 
-/* ================================
-   VAZIO
-================================ */
-
 .vazio{
     text-align:center!important;
     padding:45px 20px!important;
@@ -570,11 +520,6 @@ td>small{
     font-size:8px;
     margin-top:3px
 }
-
-/* ================================
-   MODAL
-================================ */
-
 .modal-fundo{
     position:fixed;
     inset:0;
@@ -632,11 +577,6 @@ td>small{
 .modal-topo button:hover{
     background:#ffffff35
 }
-
-/* ================================
-   BLOCOS DO DETALHE
-================================ */
-
 .detalhe-bloco{
     padding:14px 18px;
     border-bottom:1px solid #ead7ae
@@ -689,10 +629,6 @@ td>small{
     grid-column:1/-1
 }
 
-/* ================================
-   ITENS DO PEDIDO
-================================ */
-
 .itens-pedido{
     display:flex;
     flex-direction:column;
@@ -736,10 +672,6 @@ td>small{
     color:#92745d
 }
 
-/* ================================
-   VALORES
-================================ */
-
 .valores{
     display:flex;
     flex-direction:column;
@@ -773,9 +705,6 @@ td>small{
     color:#713919
 }
 
-/* ================================
-   OBSERVAÇÃO
-================================ */
 
 .observacao{
     background:#f1dfb6;
@@ -785,10 +714,6 @@ td>small{
     line-height:1.6;
     color:#5b3926
 }
-
-/* ================================
-   STATUS EDIÇÃO
-================================ */
 
 .status-edicao{
     display:flex;
@@ -822,9 +747,6 @@ td>small{
     background:#754d39
 }
 
-/* ================================
-   BOTÕES DO MODAL
-================================ */
 
 .modal-acoes{
     display:flex;
@@ -858,10 +780,6 @@ td>small{
 .btn-cancelar-modal:hover{
     background:#c83d30
 }
-
-/* ================================
-   MODAL CANCELAMENTO
-================================ */
 
 .modal-cancelamento{
     display:none
@@ -990,11 +908,6 @@ td>small{
 .btn-confirmar-excluir:hover{
     background:#c83d30
 }
-
-/* ================================
-   RESPONSIVO
-================================ */
-
 @media(max-width:1150px){
 
     .filtros form{

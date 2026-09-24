@@ -1,5 +1,6 @@
-
+php
 <?php
+
 session_start();
 
 require_once "../crud/conexao.php";
@@ -10,20 +11,10 @@ if (!isset($_SESSION['usuario_id'])) {
 }
 
 $id_usuario = $_SESSION['usuario_id'];
-
 $tipo_entrega = $_POST['tipo_entrega'] ?? '';
 
-/*
-|--------------------------------------------------------------------------
-| RETIRADA
-|--------------------------------------------------------------------------
-*/
 
 if ($tipo_entrega === 'Retirada') {
-
-    /*
-     * Localiza o carrinho atual do usuário.
-     */
 
     $sql = "SELECT id_pedido
             FROM pedido
@@ -43,11 +34,6 @@ if ($tipo_entrega === 'Retirada') {
 
     $id_pedido = $pedido['id_pedido'];
 
-
-    /*
-     * Calcula o subtotal dos produtos.
-     */
-
     $sql = "SELECT SUM(quantidade * preco_unitario) AS subtotal
             FROM itens_pedidos
             WHERE id_pedido = ?";
@@ -58,23 +44,8 @@ if ($tipo_entrega === 'Retirada') {
     $resultado = $stmt->fetch();
 
     $subtotal = (float) ($resultado['subtotal'] ?? 0);
-
-    /*
-     * Retirada não possui taxa de entrega.
-     */
-
     $entrega = 0.00;
-
-    /*
-     * Total = subtotal + entrega.
-     */
-
-    $total = $subtotal + $entrega;
-
-
-    /*
-     * Finaliza o pedido como Retirada.
-     */
+    $total = $subtotal;
 
     $sql = "UPDATE pedido
             SET tipo_entrega = 'Retirada',
@@ -101,21 +72,10 @@ if ($tipo_entrega === 'Retirada') {
         $id_usuario
     ]);
 
-
-    /*
-     * Vai direto para a confirmação.
-     */
-
     header("Location: ../html-carrinho/confirmacao.php");
     exit;
 }
 
-
-/*
-|--------------------------------------------------------------------------
-| ENTREGA
-|--------------------------------------------------------------------------
-*/
 
 if ($tipo_entrega === 'Entrega') {
 
@@ -125,17 +85,12 @@ if ($tipo_entrega === 'Entrega') {
     $setor = trim($_POST['setor'] ?? '');
     $informacao = trim($_POST['informacao'] ?? '');
 
-    /*
-     * Verifica os campos obrigatórios.
-     */
-
     if (
         $cidade === '' ||
         $estado === '' ||
         $endereco === '' ||
         $setor === ''
     ) {
-
         echo "
         <script>
             alert('Preencha todos os campos obrigatórios.');
@@ -145,11 +100,6 @@ if ($tipo_entrega === 'Entrega') {
 
         exit;
     }
-
-
-    /*
-     * Salva os dados de entrega no pedido.
-     */
 
     $sql = "UPDATE pedido
             SET tipo_entrega = 'Entrega',
@@ -172,21 +122,9 @@ if ($tipo_entrega === 'Entrega') {
         $id_usuario
     ]);
 
-
-    /*
-     * Entrega continua seguindo para a forma de pagamento.
-     */
-
     header("Location: ../html-carrinho/forma-pagamento.php");
     exit;
 }
-
-
-/*
-|--------------------------------------------------------------------------
-| NENHUMA OPÇÃO SELECIONADA
-|--------------------------------------------------------------------------
-*/
 
 echo "
 <script>
@@ -196,3 +134,4 @@ echo "
 ";
 
 ?>
+

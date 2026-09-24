@@ -3,7 +3,6 @@
 
 session_start();
 
-// Usa a conexão central do projeto
 require_once __DIR__ . '/conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -26,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
-    // Verifica se o e-mail existe
     $stmt = $pdo->prepare(
         "SELECT id FROM usuario WHERE email = ?"
     );
@@ -38,13 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
-    // Criptografa a nova senha
     $senhaHash = password_hash(
         $novaSenha,
         PASSWORD_DEFAULT
     );
 
-    // Atualiza a senha
     $stmt = $pdo->prepare(
         "UPDATE usuario SET senha = ? WHERE email = ?"
     );

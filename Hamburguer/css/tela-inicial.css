@@ -568,3 +568,14 @@ section {
     background:#b84e00;
 }
 
+
+.add { cursor: pointer; user-select: none; transition: transform 0.2s ease, opacity 0.2s ease; } 
+.add:hover { transform: scale(1.15); opacity: 0.8; } 
+
+#mensagem-carrinho { position: fixed; top: 20px; right: 20px;
+     background: #4c2617; color: white; padding: 15px 22px;
+      border-radius: 10px; font-size: 15px; font-weight: 500;
+       opacity: 0; transform: translateY(-20px);
+        pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease;
+         z-index: 9999; }
+          #mensagem-carrinho.mostrar { opacity: 1; transform: translateY(0); }
