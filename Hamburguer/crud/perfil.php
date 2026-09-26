@@ -180,7 +180,7 @@ if($pagina==="pedidos"){
         <a href="perfil.php" class="icone-menu perfil-ativo" title="Meu Perfil">
             <img src="../imagens/perfil.png" alt="Perfil">
         </a>
-        <a href="../html-carrinho/carrinho.html" class="icone-menu" title="Carrinho">
+        <a href="../html-carrinho/carrinho.php" class="icone-menu" title="Carrinho">
             <img src="../imagens/carrinho.png" alt="Carrinho">
         </a>
     </div>
