@@ -1,8 +1,5 @@
-php
 <?php
-
 session_start();
-
 require_once "../crud/conexao.php";
 
 if (!isset($_SESSION['usuario_id'])) {

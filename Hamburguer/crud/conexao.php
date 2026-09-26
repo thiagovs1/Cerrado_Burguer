@@ -1,11 +1,9 @@
-
 <?php
 
 $dbname = "cerrado_burguer";
 $user = "root";
 $password = "";
 
-// Detecta se o PHP está rodando dentro do Docker
 if (getenv("DOCKER_ENV") === "true") {
     $host = "mysql";
 } else {

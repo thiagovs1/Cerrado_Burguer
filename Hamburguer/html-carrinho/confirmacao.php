@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require_once "../crud/conexao.php";
 
@@ -191,8 +190,7 @@ $total = $pedido['total'];
 
         <p>
             <strong>Forma de pagamento:</strong>
-            <?= htmlspecialchars($pedido['forma_pagamento']) ?>
-        </p>
+            <?= htmlspecialchars($forma_pagamento ?? '') ?></p>
 
         <?php if (!empty($pedido['troco']) && $pedido['troco'] !== 'Não'): ?>
 
