@@ -235,16 +235,55 @@ $tipoItem = $dados['tipo_fornecedor'] === 'Bebidas'
     </div>
 
     <nav class="menu">
-        <a href="#"><i class="fa-solid fa-house"></i><span>Início</span></a>
-        <a href="#"><i class="fa-solid fa-clipboard-list"></i><span>Pedidos</span></a>
-        <a href="#"><i class="fa-solid fa-user-plus"></i><span>Cadastro</span></a>
-        <a href="#"><i class="fa-solid fa-layer-group"></i><span>Categorias</span></a>
-        <a href="#"><i class="fa-solid fa-chart-column"></i><span>Relatório</span></a>
-        <a href="#"><i class="fa-solid fa-tag"></i><span>Promoção</span></a>
-        <a href="#"><i class="fa-solid fa-users"></i><span>Clientes</span></a>
-        <a href="#"><i class="fa-solid fa-truck"></i><span>Entregas</span></a>
-        <a href="#"><i class="fa-solid fa-star"></i><span>Avaliação</span></a>
-        <a href="#"><i class="fa-solid fa-gear"></i><span>Configurações</span></a>
+        <a href="#">
+            <i class="fa-solid fa-house">
+            </i><span>Início</span>
+        </a>
+
+        <a href="#">
+            <i class="fa-solid fa-clipboard-list">
+            </i><span>Pedidos</span>
+        </a>
+
+        <a href="#">
+            <i class="fa-solid fa-user-plus">
+            </i><span>Cadastro</span>
+        </a>
+
+        <a href="#">
+            <i class="fa-solid fa-layer-group">
+            </i><span>Categorias</span>
+        </a>
+
+        <a href="#">
+            <i class="fa-solid fa-chart-column">
+            </i><span>Relatório</span>
+        </a>
+
+        <a href="#">
+            <i class="fa-solid fa-tag">
+            </i><span>Promoção</span>
+        </a>
+
+        <a href="#">
+            <i class="fa-solid fa-users">
+            </i><span>Clientes</span>
+        </a>
+
+        <a href="#">
+            <i class="fa-solid fa-truck">
+            </i><span>Entregas</span>
+        </a>
+
+        <a href="#">
+            <i class="fa-solid fa-star">
+            </i><span>Avaliação</span>
+        </a>
+
+        <a href="#">
+            <i class="fa-solid fa-gear">
+            </i><span>Configurações</span>
+        </a>
 
         <a href="encomenda.php" class="ativo">
             <i class="fa-solid fa-box"></i>
@@ -261,290 +300,290 @@ $tipoItem = $dados['tipo_fornecedor'] === 'Bebidas'
 
 <main class="conteudo">
 
-<header class="topo">
-    <div>
-        <h1>Nova encomenda</h1>
-        <div class="caminho">Encomenda &gt; Nova encomenda</div>
-    </div>
-
-    <a href="encomenda.php" class="voltar">
-        <i class="fa-solid fa-arrow-left"></i>
-        Voltar
-    </a>
-</header>
-
-<?php if ($erro): ?>
-    <section class="caixa">
-        <strong><?= htmlspecialchars($erro) ?></strong>
-    </section>
-<?php endif; ?>
-
-<section class="caixa informacoes-caixa">
-
-    <h2>Informações da encomenda</h2>
-
-    <form method="POST">
-        <input type="hidden" name="acao" value="atualizar_dados">
-
-        <div class="formulario">
-
-            <div class="campo">
-                <label>Nome do fornecedor</label>
-                <input type="text"
-                    name="nome_fornecedor"
-                    value="<?= htmlspecialchars($dados['nome_fornecedor']) ?>"
-                    placeholder="Ex.: Distribuidora Silva"
-                    required>
-            </div>
-
-            <div class="campo">
-                <label>Tipo do fornecedor</label>
-
-                <select name="tipo_fornecedor" required>
-                    <option value="">Selecione</option>
-
-                    <?php foreach ($tiposFornecedor as $tipo): ?>
-                        <option value="<?= $tipo ?>"
-                            <?= $dados['tipo_fornecedor'] === $tipo ? 'selected' : '' ?>>
-                            <?= $tipo ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-
-            <div class="campo">
-                <label>Data da encomenda</label>
-                <input type="date"
-                    name="data_encomenda"
-                    value="<?= htmlspecialchars($dados['data_encomenda']) ?>"
-                    required>
-            </div>
-
-            <div class="campo">
-                <label>Data da entrega</label>
-                <input type="date"
-                    name="data_prevista"
-                    value="<?= htmlspecialchars($dados['data_prevista']) ?>"
-                    required>
-            </div>
-
-            <div class="campo observacao">
-                <label>Observação</label>
-
-                <textarea name="observacao"
-                    placeholder="Observações sobre a encomenda..."><?= htmlspecialchars($dados['observacao']) ?></textarea>
-            </div>
-
-            <div class="campo">
-                <button type="submit" class="adicionar-item">
-                    <i class="fa-solid fa-floppy-disk"></i>
-                    Atualizar dados
-                </button>
-            </div>
-
+    <header class="topo">
+        <div>
+            <h1>Nova encomenda</h1>
+            <div class="caminho">Encomenda &gt; Nova encomenda</div>
         </div>
-    </form>
 
-</section>
+        <a href="encomenda.php" class="voltar">
+            <i class="fa-solid fa-arrow-left"></i>
+            Voltar
+        </a>
+    </header>
 
-<section class="caixa adicionar">
+    <?php if ($erro): ?>
+        <section class="caixa">
+            <strong><?= htmlspecialchars($erro) ?></strong>
+        </section>
+    <?php endif; ?>
 
-    <h2>Adicionar item</h2>
+    <section class="caixa informacoes-caixa">
 
-    <?php if (!$dados['nome_fornecedor'] || !$dados['tipo_fornecedor']): ?>
-
-        <p class="fornecedor-selecionado">
-            Primeiro preencha o nome e o tipo do fornecedor.
-        </p>
-
-    <?php else: ?>
-
-        <p class="fornecedor-selecionado">
-            Fornecedor:
-            <strong><?= htmlspecialchars($dados['nome_fornecedor']) ?></strong>
-            |
-            Tipo:
-            <strong><?= htmlspecialchars($dados['tipo_fornecedor']) ?></strong>
-        </p>
+        <h2>Informações da encomenda</h2>
 
         <form method="POST">
-            <input type="hidden" name="acao" value="adicionar_item">
+            <input type="hidden" name="acao" value="atualizar_dados">
 
-            <div class="form-itens">
+            <div class="formulario">
 
                 <div class="campo">
-                    <label>Nome do item</label>
+                    <label>Nome do fornecedor</label>
                     <input type="text"
-                        name="nome_item"
-                        placeholder="Ex.: Carne bovina"
+                        name="nome_fornecedor"
+                        value="<?= htmlspecialchars($dados['nome_fornecedor']) ?>"
+                        placeholder="Ex.: Distribuidora Silva"
                         required>
                 </div>
 
                 <div class="campo">
-                    <label>Tipo</label>
+                    <label>Tipo do fornecedor</label>
 
-                    <input type="text"
-                        value="<?= htmlspecialchars($tipoItem) ?>"
-                        readonly>
-
-                    <input type="hidden"
-                        name="tipo"
-                        value="<?= htmlspecialchars($tipoItem) ?>">
-                </div>
-
-                <div class="campo">
-                    <label>Unidade</label>
-
-                    <select name="unidade" required>
+                    <select name="tipo_fornecedor" required>
                         <option value="">Selecione</option>
 
-                        <?php foreach ($unidades as $unidade): ?>
-                            <option value="<?= htmlspecialchars($unidade) ?>">
-                                <?= htmlspecialchars($unidade) ?>
+                        <?php foreach ($tiposFornecedor as $tipo): ?>
+                            <option value="<?= $tipo ?>"
+                                <?= $dados['tipo_fornecedor'] === $tipo ? 'selected' : '' ?>>
+                                <?= $tipo ?>
                             </option>
                         <?php endforeach; ?>
                     </select>
                 </div>
 
                 <div class="campo">
-                    <label>Quantidade</label>
-
-                    <input type="number"
-                        name="quantidade"
-                        step="0.01"
-                        min="0.01"
-                        placeholder="0"
+                    <label>Data da encomenda</label>
+                    <input type="date"
+                        name="data_encomenda"
+                        value="<?= htmlspecialchars($dados['data_encomenda']) ?>"
                         required>
                 </div>
 
                 <div class="campo">
-                    <label>Preço por unidade</label>
-
-                    <input type="number"
-                        name="valor_unitario"
-                        step="0.01"
-                        min="0.01"
-                        placeholder="0,00"
+                    <label>Data da entrega</label>
+                    <input type="date"
+                        name="data_prevista"
+                        value="<?= htmlspecialchars($dados['data_prevista']) ?>"
                         required>
                 </div>
 
-                <button type="submit" class="adicionar-item">
-                    <i class="fa-solid fa-plus"></i>
-                    Adicionar item
-                </button>
+                <div class="campo observacao">
+                    <label>Observação</label>
+
+                    <textarea name="observacao"
+                        placeholder="Observações sobre a encomenda..."><?= htmlspecialchars($dados['observacao']) ?></textarea>
+                </div>
+
+                <div class="campo">
+                    <button type="submit" class="adicionar-item">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        Atualizar dados
+                    </button>
+                </div>
 
             </div>
         </form>
 
-    <?php endif; ?>
+    </section>
 
-</section>
+    <section class="caixa adicionar">
 
-<section class="tabela-caixa">
+        <h2>Adicionar item</h2>
 
-<table>
+        <?php if (!$dados['nome_fornecedor'] || !$dados['tipo_fornecedor']): ?>
 
-    <thead>
-        <tr>
-            <th>ITEM</th>
-            <th>TIPO</th>
-            <th>UNIDADE</th>
-            <th>QUANTIDADE</th>
-            <th>VALOR UNIT.</th>
-            <th>SUBTOTAL</th>
-            <th>AÇÕES</th>
-        </tr>
-    </thead>
+            <p class="fornecedor-selecionado">
+                Primeiro preencha o nome e o tipo do fornecedor.
+            </p>
 
-    <tbody>
+        <?php else: ?>
 
-    <?php if (!$itens): ?>
+            <p class="fornecedor-selecionado">
+                Fornecedor:
+                <strong><?= htmlspecialchars($dados['nome_fornecedor']) ?></strong>
+                |
+                Tipo:
+                <strong><?= htmlspecialchars($dados['tipo_fornecedor']) ?></strong>
+            </p>
 
-        <tr>
-            <td colspan="7">Nenhum item adicionado.</td>
-        </tr>
+            <form method="POST">
+                <input type="hidden" name="acao" value="adicionar_item">
 
-    <?php else: ?>
+                <div class="form-itens">
 
-        <?php foreach ($itens as $i => $item): ?>
+                    <div class="campo">
+                        <label>Nome do item</label>
+                        <input type="text"
+                            name="nome_item"
+                            placeholder="Ex.: Carne bovina"
+                            required>
+                    </div>
 
-            <tr>
-                <td><?= htmlspecialchars($item['nome_item']) ?></td>
-                <td><?= htmlspecialchars($item['tipo']) ?></td>
-                <td><?= htmlspecialchars($item['unidade']) ?></td>
-                <td><?= number_format($item['quantidade'], 2, ',', '.') ?></td>
-                <td>R$ <?= number_format($item['valor_unitario'], 2, ',', '.') ?></td>
+                    <div class="campo">
+                        <label>Tipo</label>
 
-                <td class="verde">
-                    R$ <?= number_format($item['subtotal'], 2, ',', '.') ?>
-                </td>
+                        <input type="text"
+                            value="<?= htmlspecialchars($tipoItem) ?>"
+                            readonly>
 
-                <td class="acoes">
+                        <input type="hidden"
+                            name="tipo"
+                            value="<?= htmlspecialchars($tipoItem) ?>">
+                    </div>
 
-                    <button type="button"
-                        class="editar"
-                        title="Editar item"
-                        onclick='abrirEdicao(
-                            <?= $i ?>,
-                            <?= json_encode($item["nome_item"]) ?>,
-                            <?= json_encode($item["quantidade"]) ?>,
-                            <?= json_encode($item["valor_unitario"]) ?>
-                        )'>
-                        <i class="fa-solid fa-pen"></i>
+                    <div class="campo">
+                        <label>Unidade</label>
+
+                        <select name="unidade" required>
+                            <option value="">Selecione</option>
+
+                            <?php foreach ($unidades as $unidade): ?>
+                                <option value="<?= htmlspecialchars($unidade) ?>">
+                                    <?= htmlspecialchars($unidade) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label>Quantidade</label>
+
+                        <input type="number"
+                            name="quantidade"
+                            step="0.01"
+                            min="0.01"
+                            placeholder="0"
+                            required>
+                    </div>
+
+                    <div class="campo">
+                        <label>Preço por unidade</label>
+
+                        <input type="number"
+                            name="valor_unitario"
+                            step="0.01"
+                            min="0.01"
+                            placeholder="0,00"
+                            required>
+                    </div>
+
+                    <button type="submit" class="adicionar-item">
+                        <i class="fa-solid fa-plus"></i>
+                        Adicionar item
                     </button>
 
-                    <form method="POST" style="display:inline">
-                        <input type="hidden" name="acao" value="excluir_item">
-                        <input type="hidden" name="indice" value="<?= $i ?>">
+                </div>
+            </form>
 
-                        <button type="submit"
-                            class="excluir"
-                            title="Excluir item"
-                            onclick="return confirm('Deseja realmente excluir este item?')">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </form>
+        <?php endif; ?>
 
-                </td>
+    </section>
+
+    <section class="tabela-caixa">
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>ITEM</th>
+                <th>TIPO</th>
+                <th>UNIDADE</th>
+                <th>QUANTIDADE</th>
+                <th>VALOR UNIT.</th>
+                <th>SUBTOTAL</th>
+                <th>AÇÕES</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        <?php if (!$itens): ?>
+
+            <tr>
+                <td colspan="7">Nenhum item adicionado.</td>
             </tr>
 
-        <?php endforeach; ?>
+        <?php else: ?>
 
-    <?php endif; ?>
+            <?php foreach ($itens as $i => $item): ?>
 
-    </tbody>
+                <tr>
+                    <td><?= htmlspecialchars($item['nome_item']) ?></td>
+                    <td><?= htmlspecialchars($item['tipo']) ?></td>
+                    <td><?= htmlspecialchars($item['unidade']) ?></td>
+                    <td><?= number_format($item['quantidade'], 2, ',', '.') ?></td>
+                    <td>R$ <?= number_format($item['valor_unitario'], 2, ',', '.') ?></td>
 
-</table>
+                    <td class="verde">
+                        R$ <?= number_format($item['subtotal'], 2, ',', '.') ?>
+                    </td>
 
-</section>
+                    <td class="acoes">
 
-<section class="total">
-    <span>Total da encomenda</span>
+                        <button type="button"
+                            class="editar"
+                            title="Editar item"
+                            onclick='abrirEdicao(
+                                <?= $i ?>,
+                                <?= json_encode($item["nome_item"]) ?>,
+                                <?= json_encode($item["quantidade"]) ?>,
+                                <?= json_encode($item["valor_unitario"]) ?>
+                            )'>
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
 
-    <strong>
-        R$ <?= number_format($total, 2, ',', '.') ?>
-    </strong>
-</section>
+                        <form method="POST" style="display:inline">
+                            <input type="hidden" name="acao" value="excluir_item">
+                            <input type="hidden" name="indice" value="<?= $i ?>">
 
-<div class="botoes-finais">
+                            <button type="submit"
+                                class="excluir"
+                                title="Excluir item"
+                                onclick="return confirm('Deseja realmente excluir este item?')">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </form>
 
-    <form method="POST">
-        <input type="hidden" name="acao" value="cancelar">
+                    </td>
+                </tr>
 
-        <button type="submit" class="cancelar">
-            Cancelar
-        </button>
-    </form>
+            <?php endforeach; ?>
 
-    <form method="POST">
-        <input type="hidden" name="acao" value="salvar_encomenda">
+        <?php endif; ?>
 
-        <button type="submit" class="salvar">
-            Salvar Encomenda
-        </button>
-    </form>
+        </tbody>
 
-</div>
+    </table>
+
+    </section>
+
+    <section class="total">
+        <span>Total da encomenda</span>
+
+        <strong>
+            R$ <?= number_format($total, 2, ',', '.') ?>
+        </strong>
+    </section>
+
+    <div class="botoes-finais">
+
+        <form method="POST">
+            <input type="hidden" name="acao" value="cancelar">
+
+            <button type="submit" class="cancelar">
+                Cancelar
+            </button>
+        </form>
+
+        <form method="POST">
+            <input type="hidden" name="acao" value="salvar_encomenda">
+
+            <button type="submit" class="salvar">
+                Salvar Encomenda
+            </button>
+        </form>
+
+    </div>
 
 </main>
 

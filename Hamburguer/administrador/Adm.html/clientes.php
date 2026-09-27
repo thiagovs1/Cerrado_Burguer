@@ -126,11 +126,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         <img src="../../imagens/logo.png" alt="Logo CerradoBurguer">
 
         <div class="logo-text">
-
             <h2>CerradoBurguer</h2>
-
             <p>ADMINISTRAÇÃO</p>
-
         </div>
 
     </div>
@@ -203,235 +200,235 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 <main class="conteudo">
 
-<h1>Clientes</h1>
+    <h1>Clientes</h1>
 
-<section class="cards-resumo">
+    <section class="cards-resumo">
 
-    <div class="card-resumo">
+        <div class="card-resumo">
 
-        <div class="card-icone">
-            <img src="../../imagens/icon-clientes.png" alt="">
-        </div>
+            <div class="card-icone">
+                <img src="../../imagens/icon-clientes.png" alt="">
+            </div>
 
-        <div class="card-info">
-            <span>Total de Clientes</span>
-            <strong><?=$totalClientes?></strong>
-            <small>Clientes cadastrados</small>
-        </div>
-
-    </div>
-
-    <div class="card-resumo">
-
-        <div class="card-icone">
-            <img src="../../imagens/icon-clientes.png" alt="">
-        </div>
-
-        <div class="card-info">
-            <span>Clientes Ativos</span>
-            <strong><?=$clientesAtivos?></strong>
-        </div>
-
-    </div>
-
-    <div class="card-resumo">
-
-        <div class="card-icone">
-            <img src="../../imagens/icon-clientes.png" alt="">
-        </div>
-
-        <div class="card-info">
-            <span>Novos Clientes este Mês</span>
-            <strong><?=$novosClientes?></strong>
-        </div>
-
-    </div>
-
-    <div class="card-resumo">
-
-        <div class="card-icone">
-            <img src="../../imagens/icon-pedidos.png" alt="">
-        </div>
-
-        <div class="card-info">
-            <span>Pedidos Realizados</span>
-            <strong><?=$totalPedidos?></strong>
-            <small>Total de pedidos</small>
-        </div>
-
-    </div>
-
-</section>
-
-<section class="area-clientes">
-
-<div class="tabela-container">
-
-<table>
-
-<thead>
-
-<tr>
-    <th>PERFIL/CLIENTE</th>
-    <th>CONTATO</th>
-    <th>PEDIDOS</th>
-    <th>TOTAL GASTO</th>
-    <th>ÚLTIMO PEDIDO</th>
-    <th>STATUS</th>
-    <th>AÇÕES</th>
-</tr>
-
-</thead>
-
-<tbody>
-
-<?php if(empty($clientes)): ?>
-
-<tr>
-
-    <td colspan="7" class="vazio">
-        Nenhum cliente cadastrado.
-    </td>
-
-</tr>
-
-<?php endif; ?>
-
-<?php foreach($clientes as $cliente): ?>
-
-<tr>
-
-<td>
-
-    <div class="cliente">
-
-        <div class="avatar">
-            <?=strtoupper(substr($cliente['nome']?:'C',0,1))?>
-        </div>
-
-        <div>
-
-            <strong>
-                <?=htmlspecialchars($cliente['nome']?:'Sem nome')?>
-            </strong>
-
-            <small>
-                Cadastro:
-                <?=date('d/m/Y',strtotime($cliente['data_cadastro']))?>
-            </small>
+            <div class="card-info">
+                <span>Total de Clientes</span>
+                <strong><?=$totalClientes?></strong>
+                <small>Clientes cadastrados</small>
+            </div>
 
         </div>
 
-    </div>
+        <div class="card-resumo">
 
-</td>
+            <div class="card-icone">
+                <img src="../../imagens/icon-clientes.png" alt="">
+            </div>
 
-<td>
+            <div class="card-info">
+                <span>Clientes Ativos</span>
+                <strong><?=$clientesAtivos?></strong>
+            </div>
 
-    <div class="contato">
+        </div>
 
-        <span>
-            <?=htmlspecialchars($cliente['email'])?>
-        </span>
+        <div class="card-resumo">
 
-        <small>
-            <?=htmlspecialchars($cliente['telefone']??'')?>
-        </small>
+            <div class="card-icone">
+                <img src="../../imagens/icon-clientes.png" alt="">
+            </div>
 
-    </div>
+            <div class="card-info">
+                <span>Novos Clientes este Mês</span>
+                <strong><?=$novosClientes?></strong>
+            </div>
 
-</td>
+        </div>
 
-<td style="text-align:center">
-    <?=$cliente['total_pedidos']?>
-</td>
+        <div class="card-resumo">
 
-<td>
-    R$ <?=number_format($cliente['total_gasto'],2,',','.')?>
-</td>
+            <div class="card-icone">
+                <img src="../../imagens/icon-pedidos.png" alt="">
+            </div>
 
-<td>
+            <div class="card-info">
+                <span>Pedidos Realizados</span>
+                <strong><?=$totalPedidos?></strong>
+                <small>Total de pedidos</small>
+            </div>
 
-<?php if($cliente['ultimo_pedido']): ?>
+        </div>
 
-    <?=date('d/m/Y',strtotime($cliente['ultimo_pedido']))?>
+    </section>
 
-<?php else: ?>
+    <section class="area-clientes">
 
-    Nenhum
+        <div class="tabela-container">
 
-<?php endif; ?>
+        <table>
 
-</td>
+            <thead>
 
-<td>
+            <tr>
+                <th>PERFIL/CLIENTE</th>
+                <th>CONTATO</th>
+                <th>PEDIDOS</th>
+                <th>TOTAL GASTO</th>
+                <th>ÚLTIMO PEDIDO</th>
+                <th>STATUS</th>
+                <th>AÇÕES</th>
+            </tr>
 
-    <span class="status <?=strtolower($cliente['status'])?>">
-        <?=htmlspecialchars($cliente['status'])?>
-    </span>
+            </thead>
 
-</td>
+            <tbody>
 
-<td>
+            <?php if(empty($clientes)): ?>
 
-    <div class="acoes">
+            <tr>
 
-        <a
-            href="clientes.php?editar=<?=$cliente['id']?>"
-            class="btn-editar">
+                <td colspan="7" class="vazio">
+                    Nenhum cliente cadastrado.
+                </td>
 
-            Editar
+            </tr>
 
-        </a>
+            <?php endif; ?>
 
-        <?php if($cliente['status']==='Inativo'): ?>
+            <?php foreach($clientes as $cliente): ?>
 
-        <form method="POST" style="margin:0">
+            <tr>
 
-            <input
-                type="hidden"
-                name="acao"
-                value="excluir"
-            >
+            <td>
 
-            <input
-                type="hidden"
-                name="id"
-                value="<?=$cliente['id']?>"
-            >
+                <div class="cliente">
 
-            <button
-                type="submit"
-                class="btn-excluir">
+                    <div class="avatar">
+                        <?=strtoupper(substr($cliente['nome']?:'C',0,1))?>
+                    </div>
 
-                <i class="fa-solid fa-trash"></i>
+                    <div>
 
-            </button>
+                        <strong>
+                            <?=htmlspecialchars($cliente['nome']?:'Sem nome')?>
+                        </strong>
 
-        </form>
+                        <small>
+                            Cadastro:
+                            <?=date('d/m/Y',strtotime($cliente['data_cadastro']))?>
+                        </small>
 
-        <?php endif; ?>
+                    </div>
 
-    </div>
+                </div>
 
-</td>
+            </td>
 
-</tr>
+            <td>
 
-<?php endforeach; ?>
+                <div class="contato">
 
-</tbody>
+                    <span>
+                        <?=htmlspecialchars($cliente['email'])?>
+                    </span>
 
-</table>
+                    <small>
+                        <?=htmlspecialchars($cliente['telefone']??'')?>
+                    </small>
 
-</div>
+                </div>
 
-<div class="ver-todos">
-    <span>Ver todos</span>
-    <span>▼</span>
-</div>
+            </td>
 
-</section>
+            <td style="text-align:center">
+                <?=$cliente['total_pedidos']?>
+            </td>
+
+            <td>
+                R$ <?=number_format($cliente['total_gasto'],2,',','.')?>
+            </td>
+
+            <td>
+
+            <?php if($cliente['ultimo_pedido']): ?>
+
+                <?=date('d/m/Y',strtotime($cliente['ultimo_pedido']))?>
+
+            <?php else: ?>
+
+                Nenhum
+
+            <?php endif; ?>
+
+            </td>
+
+            <td>
+
+                <span class="status <?=strtolower($cliente['status'])?>">
+                    <?=htmlspecialchars($cliente['status'])?>
+                </span>
+
+            </td>
+
+            <td>
+
+                <div class="acoes">
+
+                    <a
+                        href="clientes.php?editar=<?=$cliente['id']?>"
+                        class="btn-editar">
+
+                        Editar
+
+                    </a>
+
+                    <?php if($cliente['status']==='Inativo'): ?>
+
+                    <form method="POST" style="margin:0">
+
+                        <input
+                            type="hidden"
+                            name="acao"
+                            value="excluir"
+                        >
+
+                        <input
+                            type="hidden"
+                            name="id"
+                            value="<?=$cliente['id']?>"
+                        >
+
+                        <button
+                            type="submit"
+                            class="btn-excluir">
+
+                            <i class="fa-solid fa-trash"></i>
+
+                        </button>
+
+                    </form>
+
+                    <?php endif; ?>
+
+                </div>
+
+            </td>
+
+            </tr>
+
+            <?php endforeach; ?>
+
+            </tbody>
+
+        </table>
+
+        </div>
+
+        <div class="ver-todos">
+            <span>Ver todos</span>
+            <span>▼</span>
+        </div>
+
+    </section>
 
 </main>
 
