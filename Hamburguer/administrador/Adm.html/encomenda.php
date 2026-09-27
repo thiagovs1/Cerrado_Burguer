@@ -16,7 +16,6 @@ function moeda($valor){
 function classeStatus($status){
     return match($status){
         'Pendente' => 'pendente',
-        'Em Andamento' => 'andamento',
         'Recebida' => 'recebida',
         'Cancelada' => 'cancelado',
         default => ''
@@ -101,7 +100,6 @@ function card($pdo, $condicao = ''){
 
 $hoje = card($pdo, "data_encomenda = CURDATE()");
 $pendentes = card($pdo, "status = 'Pendente'");
-$andamento = card($pdo, "status = 'Em Andamento'");
 $recebidas = card($pdo, "status = 'Recebida'");
 $canceladas = card($pdo, "status = 'Cancelada'");
 
@@ -241,12 +239,6 @@ if ($visualizar > 0) {
         </div>
 
         <div class="card">
-            <h3>Em Andamento</h3>
-            <strong><?= $andamento['quantidade'] ?></strong>
-            <span><?= moeda($andamento['total']) ?></span>
-        </div>
-
-        <div class="card">
             <h3>Recebidas</h3>
             <strong><?= $recebidas['quantidade'] ?></strong>
             <span><?= moeda($recebidas['total']) ?></span>
@@ -268,7 +260,7 @@ if ($visualizar > 0) {
         <select name="status">
             <option value="">Todos os status</option>
             <?php
-            $statusLista = ['Pendente', 'Em Andamento', 'Recebida', 'Cancelada'];
+            $statusLista = ['Pendente', 'Recebida', 'Cancelada'];
             foreach ($statusLista as $s):
             ?>
                 <option value="<?= htmlspecialchars($s) ?>" <?= $status === $s ? 'selected' : '' ?>>

@@ -4,24 +4,10 @@
     box-sizing:border-box
 }
 
-:root{
-    --fundo:#f4dfae;
-    --menu:#fff3d8;
-    --marrom:#562619;
-    --marrom-escuro:#421a10;
-    --marrom-claro:#8c604c;
-    --laranja:#e9a36b;
-    --laranja-escuro:#a94d28;
-    --creme:#fffdf8;
-    --tabela:#f2dfb0;
-    --cabecalho-tabela:#90634c;
-    --borda:#e5d0a6
-}
-
 body{
     font-family:Arial,Helvetica,sans-serif;
-    background:var(--fundo);
-    color:var(--marrom);
+    background:#f4dfae;
+    color:#562619;
     min-height:100vh;
     font-size:14px
 }
@@ -33,7 +19,7 @@ body{
     left:0;
     width:208px;
     height:100vh;
-    background:var(--menu);
+    background:#fff3d8;
     border-right:1px solid #ead7ae;
     z-index:1000
 }
@@ -115,7 +101,7 @@ body{
 .topo h1{
     font-size:29px;
     font-weight:800;
-    color:var(--marrom-escuro);
+    color:#421a10;
     margin-top:3px
 }
 
@@ -125,7 +111,7 @@ body{
 }
 
 .nova-encomenda{
-    background:var(--laranja-escuro);
+    background:#a94d28;
     border-radius:9px;
     padding:8px 14px;
     font-size:12px;
@@ -141,14 +127,14 @@ body{
 /* CARDS */
 .cards{
     display:grid;
-    grid-template-columns:repeat(5,1fr);
+    grid-template-columns:repeat(4,1fr);
     gap:29px;
     margin:10px 0 13px
 }
 
 .card{
     height:115px;
-    background:var(--creme);
+    background:#fffdf8;
     border-radius:25px;
     padding:12px 15px;
     box-shadow:0 3px 7px rgba(70,35,15,.07);
@@ -186,7 +172,7 @@ body{
 /* FILTROS */
 .filtros{
     min-height:43px;
-    background:var(--creme);
+    background:#fffdf8;
     border-radius:10px;
     display:flex;
     align-items:center;
@@ -249,7 +235,7 @@ body{
 }
 
 .filtros button{
-    background:var(--laranja-escuro);
+    background:#a94d28;
     color:#fff
 }
 
@@ -266,7 +252,7 @@ body{
 }
 
 .tabela-container{
-    background:var(--creme);
+    background:#fffdf8;
     border-radius:10px;
     padding:8px;
     min-height:480px
@@ -275,7 +261,7 @@ body{
 .tabela-scroll{
     height:391px;
     overflow:auto;
-    background:var(--tabela);
+    background:#f2dfb0;
     border-radius:8px
 }
 
@@ -285,7 +271,7 @@ table{
 }
 
 thead th{
-    background:var(--cabecalho-tabela);
+    background:#90634c;
     color:#3e2117;
     font-size:9px;
     font-weight:700;
@@ -330,10 +316,6 @@ tbody tr:hover{
 
 .pendente{
     background:#efb51d
-}
-
-.andamento{
-    background:#55a8dc
 }
 
 .recebida{
@@ -393,7 +375,7 @@ tbody tr:hover{
 
 /* DETALHES */
 .detalhes{
-    background:var(--creme);
+    background:#fffdf8;
     border-radius:10px;
     padding:9px;
     min-height:480px
@@ -440,14 +422,14 @@ tbody tr:hover{
 }
 
 .itens-scroll{
-    background:var(--tabela);
+    background:#f2dfb0;
     border-radius:8px;
     overflow:auto
 }
 
 .tabela-itens th{
     height:23px;
-    background:var(--cabecalho-tabela);
+    background:#90634c;
     font-size:8px
 }
 
