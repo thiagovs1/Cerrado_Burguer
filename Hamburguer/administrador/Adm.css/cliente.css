@@ -14,7 +14,6 @@ body{
     color:#4a2114
 }
 
-/* SIDEBAR */
 .sidebar{
     position:fixed;
     top:0;
@@ -86,7 +85,6 @@ body{
     font-weight:bold
 }
 
-/* CONTEÚDO */
 .conteudo{
     margin-left:208px;
     width:calc(100% - 208px);
@@ -103,7 +101,6 @@ body{
     font-weight:700
 }
 
-/* CARDS */
 .cards-resumo{
     width:100%;
     display:grid;
@@ -162,7 +159,6 @@ body{
     font-size:9px
 }
 
-/* CLIENTES */
 .area-clientes{
     width:100%;
     height:calc(100vh - 150px);
@@ -178,7 +174,6 @@ body{
     overflow:auto
 }
 
-/* TABELA */
 table{
     width:100%;
     table-layout:fixed;
@@ -219,7 +214,6 @@ tbody tr:last-child td{
     border-bottom:0
 }
 
-/* CLIENTE */
 .cliente{
     display:flex;
     align-items:center;
@@ -257,7 +251,6 @@ tbody tr:last-child td{
     font-size:8px
 }
 
-/* CONTATO */
 .contato{
     min-width:0
 }
@@ -280,7 +273,6 @@ tbody tr:last-child td{
     font-size:8px
 }
 
-/* STATUS */
 .status{
     font-size:9px;
     white-space:nowrap
@@ -294,7 +286,6 @@ tbody tr:last-child td{
     color:#a52f2f
 }
 
-/* AÇÕES */
 .acoes{
     display:flex;
     align-items:center;
@@ -329,7 +320,6 @@ tbody tr:last-child td{
     color:#a52f2f
 }
 
-/* VER TODOS */
 .ver-todos{
     height:25px;
     display:flex;
@@ -340,7 +330,6 @@ tbody tr:last-child td{
     font-size:9px
 }
 
-/* MENSAGENS */
 .vazio,
 .carregando,
 .erro{
@@ -354,7 +343,6 @@ tbody tr:last-child td{
     color:#a52f2f
 }
 
-/* MODAL */
 .modal{
     display:none;
     position:fixed;
@@ -442,7 +430,6 @@ tbody tr:last-child td{
     box-shadow:0 0 0 2px rgba(216,97,0,.1)
 }
 
-/* BOTÕES */
 .modal-botoes{
     display:flex;
     justify-content:center;
@@ -486,7 +473,6 @@ tbody tr:last-child td{
     background:linear-gradient(135deg,#e87312,#a83f00)
 }
 
-/* RESPONSIVO */
 @media(max-width:1100px){
     .cards-resumo{
         grid-template-columns:repeat(2,1fr)

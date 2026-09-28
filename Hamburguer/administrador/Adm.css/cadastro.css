@@ -7,7 +7,6 @@ color:#542c1f;
 min-height:100vh
 }
 
-/* SIDEBAR */
 .sidebar{
 position:fixed;left:0;top:0;width:208px;height:100vh;
 background:#fff3d8;border-right:1px solid #ead7ae;
@@ -71,7 +70,6 @@ font-size:15px;font-weight:bold
 
 .voltar span{font-size:22px;margin-right:7px}
 
-/* FORMULÁRIO */
 .area-cadastro{
 display:grid;
 grid-template-columns:minmax(450px,1fr) minmax(430px,1fr);
@@ -154,7 +152,6 @@ border:1px solid #e1d2bd;border-radius:7px;
 background:#fffaf2
 }
 
-/* INFORMAÇÕES ADICIONAIS */
 .adicionais{margin-top:20px}
 
 .adicionais h3{
@@ -206,7 +203,6 @@ cursor:pointer;font-size:14px;text-decoration:none
 .salvar:hover{background:#bd4508}
 .botao-visualizar:hover{background:#dfc5a7}
 
-/* TABELA */
 .tabela-cabecalho,.produto{
 display:grid;
 grid-template-columns:1.5fr 1fr .8fr .8fr 1.2fr
@@ -248,7 +244,6 @@ border-radius:8px;margin-bottom:15px
 padding:20px;text-align:center;color:#76594b
 }
 
-/* MODAL */
 .modal-excluir{
 position:fixed;inset:0;
 background:rgba(0,0,0,.55);
@@ -298,7 +293,6 @@ background:#f4511e;color:#fff
 .btn-cancelar-exclusao:hover{background:#401d15}
 .btn-confirmar-exclusao:hover{background:#d84315}
 
-/* RESPONSIVO */
 @media(max-width:1100px){
 .sidebar{width:208px}
 .conteudo{margin-left:208px;width:calc(100% - 208px)}
