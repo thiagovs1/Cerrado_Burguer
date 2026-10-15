@@ -91,21 +91,13 @@ min-height: 130px;
 margin: 0 auto;
 padding: 20px;
 border-radius: 40px;
-
-
 display: flex;
 align-items: center;
 gap: 15px;
-
 position: relative;
-
 box-sizing: border-box;
 font-size: 17px;
-
-transition: 0.2s;
-
-
-}
+transition: 0.2s;}
 
 .item-pao {
 background: #cb962e;
@@ -122,17 +114,12 @@ box-shadow: 0 8px 15px rgba(0, 0, 0, 0.20);
 
 .item > img {
 display: block;
-
-
 width: auto;
 height: 80px;
-
 max-width: 100px;
 max-height: 80px;
-
 object-fit: contain;
 object-position: center;
-
 flex-shrink: 0;
 
 
@@ -153,12 +140,6 @@ font-size: 22px;
 margin: 5px 10px 5px 0;
 color: #481c11;
 line-height: 1.3;
-}
-
-.item span {
-font-weight: bold;
-color: #481c11;
-white-space: nowrap;
 }
 
 .preco-produto {

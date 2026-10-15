@@ -45,10 +45,9 @@ $categoriasFixas = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cardápio - Cerrado Burguer</title>
 
-    <link rel="stylesheet" href="../css-cardapio-tela-inicial/cardapio.css">
-    <link rel="stylesheet" href="../css/menu_perfil.css">
+    <link rel="stylesheet" href="../css-cardapio-tela-inicial/cardapio.css?v=2">
+    <link rel="stylesheet" href="../css/menu_perfil.css?v=2">
 </head>
-
 
 <body>
 

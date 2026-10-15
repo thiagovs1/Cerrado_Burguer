@@ -15,44 +15,52 @@
                 <a href="#">Contato</a>
                 <a href="#">Avaliações</a>
             </nav>
+
             <div class="icones">
                 <img src="../imagens/Perfil.png" class="icone-img" />
                 <img src="../imagens/carrinho.png" class="icone-img" />
             </div>
         </header>
 
-        <div class="area-login">
-            <div class="login-container">
-                <h1>CADASTRAR</h1>
-                <p class="subtitulo">Crie sua conta</p>
+        <section id="inicio">
 
-                <form action="../crud/cadastrar.php" method="POST">
-                    <label>Nome completo:</label>
-                    <input type="text" name="nome" placeholder="Digite seu nome completo" required />
-                    <label>CPF:</label>
-                    <input type="text" name="cpf" placeholder="Digite seu CPF" required />
-                    <label>Telefone:</label>
-                    <input type="text" name="telefone" placeholder="Digite seu número de telefone" required />
-                
-                    <label>E-mail:</label>
-                    <input type="email" name="email" placeholder="Digite seu e-mail" required />
+            <div class="tela-preta"></div>
 
-                    <label>Senha:</label>
-                    <input type="password" name="senha1" placeholder="Digite sua senha" required />
+            <div class="area-login">
 
-                    <label>Confirmar senha:</label>
-                    <input type="password" name="senha2" placeholder="Confirme sua senha" required />
+                <div class="login-container">
+                    <h1>CADASTRAR</h1>
+                    <p class="subtitulo">Crie sua conta</p>
 
-                    <button type="submit">Cadastrar</button>
-                </form>
+                    <form action="../crud/cadastrar.php" method="POST">
+                        <label>Nome completo:</label>
+                        <input type="text" name="nome" placeholder="Digite seu nome completo" required />
+                        <label>CPF:</label>
+                        <input type="text" name="cpf" placeholder="Digite seu CPF" required />
+                        <label>Telefone:</label>
+                        <input type="text" name="telefone" placeholder="Digite seu número de telefone" required />
+                    
+                        <label>E-mail:</label>
+                        <input type="email" name="email" placeholder="Digite seu e-mail" required />
 
-                <p id="mensagem"></p>
+                        <label>Senha:</label>
+                        <input type="password" name="senha1" placeholder="Digite sua senha" required />
 
-                <div class="opcoes">
-                    <a href="login.html">Voltar</a>
+                        <label>Confirmar senha:</label>
+                        <input type="password" name="senha2" placeholder="Confirme sua senha" required />
+
+                        <button type="submit">Cadastrar</button>
+                    </form>
+
+                    <p id="mensagem"></p>
+
+                    <div class="opcoes">
+                        <a href="login.html">Voltar</a>
+                    </div>
                 </div>
             </div>
-        </div>
+
+        </section>
 
         <script>
             const urlParams = new URLSearchParams(window.location.search);

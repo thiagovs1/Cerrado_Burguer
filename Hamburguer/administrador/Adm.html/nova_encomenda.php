@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (!$nome) {
             $erro = "Informe o nome do item.";
-        } elseif (!in_array($tipo, ['Bebida', 'Ingrediente'], true)) {
+        } elseif (!in_array($tipo, ['Bebidas', 'Ingredientes'], true)) {
             $erro = "Selecione o tipo do item.";
         } elseif (!in_array($unidade, $unidades, true)) {
             $erro = "Selecione uma unidade válida.";

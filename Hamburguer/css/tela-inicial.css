@@ -34,11 +34,11 @@ section {
      justify-content: center; align-items: center; flex-direction:column; }
 
 #inicio {
-    position: relative; height: 100vh; background-image: url("../imagens/amburgueres.png");
+    position: relative; height: 100vh; background-image: url("../imagens/hamburgueres.png");
      background-position: center; background-size: cover; }
 
 .tela-preta {
-    position: absolute; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); }
+    position: absolute; width: 100%; height: 92%; background: rgba(0, 0, 0, 0.5); }
 
 .inicio-conteudo {
     position: relative; display: flex; gap: 50px; }
@@ -48,10 +48,13 @@ section {
      padding: 6px; display: flex; align-items: center; position: relative; }
 
 .card-destaque.escuro {
-    background: #a14724; }
+    background: #884927; }
 
-.numero {
-    font-size: 100px; font-weight: bold; color: white; margin-right: 10px; height: 35vh; }
+.numero-2 {
+    font-size: 100px; font-weight: bold; color: #cc0000; margin-right: 10px; height: 35vh; }
+
+.numero-3 {
+    font-size: 100px; font-weight: bold; color: #ef601e; margin-right: 10px; height: 35vh; }
 
 .info {
     color: white; }
