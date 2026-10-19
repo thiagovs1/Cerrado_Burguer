@@ -44,6 +44,7 @@ if ($carrinho) {
     $total = $subtotal + $entrega;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -102,12 +103,24 @@ if ($carrinho) {
 
         <?php if (empty($produtos)): ?>
 
-            <h2>Seu carrinho está vazio.</h2>
+            <div class="carrinho-vazio">
 
-            <a href="../html/cardapio.php">
-                Voltar para o cardápio
-            </a>
+                <div class="texto-carrinho-vazio">
+                    <h1>Seu carrinho está vazio!</h1>
 
+                    <p>
+                        Adicione itens deliciosos do nosso cardápio
+                        e monte o seu pedido.
+                    </p>
+                </div>
+
+                <div class="bnt-ver-cardapio">
+                    <a href="../html/cardapio.php" class="btn-ver-cardapio">
+                        Ver cardápio
+                    </a>
+                </div>
+
+            </div>
         <?php else: ?>
 
             <?php foreach ($produtos as $produto): ?>

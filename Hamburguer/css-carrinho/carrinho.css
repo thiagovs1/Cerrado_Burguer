@@ -1,158 +1,41 @@
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth;}
 
-body {
-    background: #f1dfb6;
-    margin: 0;
-    font-family: Georgia, Arial, Helvetica, sans-serif;
-}
+body { background: #f1dfb6; margin: 0; font-family: Georgia, Arial, Helvetica, sans-serif;}
 
-.topo {
-    background-color: #fdf3dd;
+.topo { background-color: #fdf3dd; display: flex; align-items: center;
+justify-content: center; gap: 40px; padding: 5px 50px; position: fixed; top: 0;
+left: 0; width: 100%; z-index: 1000; box-sizing: border-box;}
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.logo { width: 100px; height: auto;}
 
-    gap: 40px;
+nav { display: flex; align-items: center; gap: 45px;}
 
-    padding: 5px 50px;
+nav a { text-decoration: none; color: #481c11; font-size: 14px; font-weight: normal;}
 
-    position: fixed;
-    top: 0;
-    left: 0;
+nav a:hover {color: #f36f40;}
 
-    width: 100%;
+.icones { display: flex; align-items: center; gap: 10px;}
 
-    z-index: 1000;
+.icone-img { width: 36px; height: 36px; object-fit: contain; cursor: pointer; transition: 0.3s;}
 
-    box-sizing: border-box;
-}
+.icone-img:hover {transform: scale(1.1);}
 
-.logo {
-    width: 100px;
-    height: auto;
-}
+.pedidos { background: #f1dfb6; display: flex; flex-direction: row; justify-content: center;
+align-items: flex-start; gap: 75px; padding: 150px 40px 40px; min-height: 100vh; box-sizing: border-box;}
 
-nav {
-    display: flex;
-    align-items: center;
-    gap: 45px;
-}
+.produtos { width: 500px; display: flex; flex-direction: column; gap: 20px;}
 
-nav a {
-    text-decoration: none;
+.produto-carrinho { width: 100%; min-height: 110px; padding: 10px 20px; border-radius: 40px;
+display: flex; align-items: center; gap: 15px; box-sizing: border-box; position: relative; transition: 0.2s;}
 
-    color: #481c11;
+.produto-carrinho:nth-child(odd) {background: #cb962e;}
 
-    font-size: 14px;
-    font-weight: normal;
-}
+.produto-carrinho:nth-child(even) {background: #884927;}
 
-nav a:hover {
-    color: #f36f40;
-}
+.produto-carrinho:hover { transform: scale(1.02); box-shadow: 0 8px 15px rgba(0, 0, 0, 0.20);}
 
-.icones {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.icone-img {
-    width: 36px;
-    height: 36px;
-
-    object-fit: contain;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-}
-
-.icone-img:hover {
-    transform: scale(1.1);
-}
-
-.pedidos {
-    background: #f1dfb6;
-
-    display: flex;
-    flex-direction: row;
-
-    justify-content: center;
-    align-items: flex-start;
-
-    gap: 75px;
-
-    padding: 150px 40px 40px;
-
-    min-height: 100vh;
-
-    box-sizing: border-box;
-}
-
-.produtos {
-    width: 500px;
-
-    display: flex;
-    flex-direction: column;
-
-    gap: 20px;
-}
-
-.produto-carrinho {
-    width: 100%;
-    min-height: 110px;
-
-    padding: 10px 20px;
-
-    border-radius: 40px;
-
-    display: flex;
-    align-items: center;
-
-    gap: 15px;
-
-    box-sizing: border-box;
-
-    position: relative;
-
-    transition: 0.2s;
-}
-
-.produto-carrinho:nth-child(odd) {
-    background: #cb962e;
-}
-
-.produto-carrinho:nth-child(even) {
-    background: #884927;
-}
-
-.produto-carrinho:hover {
-    transform: scale(1.02);
-
-    box-shadow:
-        0 8px 15px rgba(0, 0, 0, 0.20);
-}
-
-.produto-carrinho img {
-    display: block;
-
-    width: auto;
-    height: 80px;
-
-    max-width: 100px;
-    max-height: 80px;
-
-    object-fit: contain;
-    object-position: center;
-
-    flex-shrink: 0;
-
-    border-radius: 0;
-}
+.produto-carrinho img { display: block; width: auto; height: 80px; max-width: 100px;
+max-height: 80px; object-fit: contain; object-position: center; flex-shrink: 0; border-radius: 0;}
 
 .informacoes-produto {
     flex: 1;
@@ -447,22 +330,96 @@ nav a:hover {
 }
 
 .carne {
-    background: #884927;
+    background: #8c4a24;
 }
 
 .login-container {
     width: 90%;
-
     max-width: 280px;
-
     padding: 20px 24px;
 }
+
+
+/* QUADRADO DO CARRINHO VAZIO */
+.carrinho-vazio {
+    width: 100%;
+    min-height: 153px;
+    padding: 20px 10px;
+    box-sizing: border-box;
+
+    background: #fdf3dd;
+    border: 1px solid #c69a73;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* QUADRADO DOS TEXTOS */
+.texto-carrinho-vazio {
+    width: 100%;
+    text-align: center;
+}
+
+.texto-carrinho-vazio h1 {
+    color: #481c11;
+    font-size: 22px;
+    margin: 0 0 12px;
+    font-weight: bold;
+}
+
+.texto-carrinho-vazio p {
+    color: #481c11;
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* QUADRADO QUE ENVOLVE O BOTÃO */
+.bnt-ver-cardapio {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* BOTÃO VER CARDÁPIO */
+.btn-ver-cardapio {
+    background: #4b1d10;
+    color: white;
+
+    width: 220px;
+    height: 55px;
+
+    border-radius: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+
+    transition: 0.3s;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+/* EFEITO AO PASSAR O MOUSE */
+.btn-ver-cardapio:hover {
+    transform: scale(1.05);
+    background: #6a2a16;
+}
+
 
 @media (max-width: 1000px) {
 
     .topo {
         gap: 25px;
-
         padding: 5px 25px;
     }
 
@@ -476,7 +433,6 @@ nav a:hover {
 
     .pedidos {
         gap: 35px;
-
         padding-left: 20px;
         padding-right: 20px;
     }
@@ -503,7 +459,6 @@ nav a:hover {
 
     .topo {
         gap: 20px;
-
         padding: 5px 20px;
     }
 
@@ -526,21 +481,17 @@ nav a:hover {
 
     .pedidos {
         flex-direction: column;
-
         align-items: center;
-
         padding: 130px 20px 40px;
     }
 
     .produtos {
         width: 100%;
-
         max-width: 550px;
     }
 
     .resumo {
         width: 100%;
-
         max-width: 550px;
     }
 
@@ -553,7 +504,6 @@ nav a:hover {
 
     .topo {
         padding: 8px 15px;
-
         gap: 10px;
     }
 
@@ -584,19 +534,14 @@ nav a:hover {
 
     .produto-carrinho {
         min-height: 100px;
-
         padding: 10px 12px;
-
         border-radius: 30px;
-
         gap: 10px;
     }
 
     .produto-carrinho img {
         width: auto;
-
         height: 60px;
-
         max-width: 75px;
     }
 
@@ -611,13 +556,11 @@ nav a:hover {
     .quantidade button {
         width: 22px;
         height: 22px;
-
         font-size: 14px;
     }
 
     .quantidade span {
         font-size: 13px;
-
         min-width: 16px;
     }
 

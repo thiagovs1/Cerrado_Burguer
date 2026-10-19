@@ -233,3 +233,176 @@ body {
     font-size: 16px;
     z-index: 9999;
 }
+
+@media (max-width: 1000px) {
+
+    .topo {
+        gap: 25px;
+
+        padding: 5px 25px;
+    }
+
+    nav {
+        gap: 25px;
+    }
+
+    nav a {
+        font-size: 13px;
+    }
+
+    .pedidos {
+        gap: 35px;
+
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .produtos {
+        width: 55%;
+    }
+
+    .resumo {
+        width: 300px;
+    }
+
+    .produto-carrinho {
+        padding: 10px 15px;
+    }
+
+    .produto-carrinho img {
+        height: 70px;
+        max-width: 85px;
+    }
+}
+
+@media (max-width: 800px) {
+
+    .topo {
+        gap: 20px;
+
+        padding: 5px 20px;
+    }
+
+    .logo {
+        width: 80px;
+    }
+
+    nav {
+        gap: 15px;
+    }
+
+    nav a {
+        font-size: 12px;
+    }
+
+    .icone-img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .pedidos {
+        flex-direction: column;
+
+        align-items: center;
+
+        padding: 130px 20px 40px;
+    }
+
+    .produtos {
+        width: 100%;
+
+        max-width: 550px;
+    }
+
+    .resumo {
+        width: 100%;
+
+        max-width: 550px;
+    }
+
+    .produto-carrinho {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .topo {
+        padding: 8px 15px;
+
+        gap: 10px;
+    }
+
+    .logo {
+        width: 70px;
+    }
+
+    nav {
+        gap: 7px;
+    }
+
+    nav a {
+        font-size: 10px;
+    }
+
+    .icones {
+        gap: 5px;
+    }
+
+    .icone-img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .pedidos {
+        padding: 115px 15px 40px;
+    }
+
+    .produto-carrinho {
+        min-height: 100px;
+
+        padding: 10px 12px;
+
+        border-radius: 30px;
+
+        gap: 10px;
+    }
+
+    .produto-carrinho img {
+        width: auto;
+
+        height: 60px;
+
+        max-width: 75px;
+    }
+
+    .informacoes-produto h3 {
+        font-size: 15px;
+    }
+
+    .informacoes-produto p {
+        font-size: 13px;
+    }
+
+    .quantidade button {
+        width: 22px;
+        height: 22px;
+
+        font-size: 14px;
+    }
+
+    .quantidade span {
+        font-size: 13px;
+
+        min-width: 16px;
+    }
+
+    .btn-excluir {
+        font-size: 11px;
+    }
+
+    .box {
+        padding: 15px;
+    }
+}
+

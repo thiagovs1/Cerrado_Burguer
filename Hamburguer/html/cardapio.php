@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: text/html; charset=UTF-8');
 
-require_once "../Crud/conexao.php";
+require_once "../crud/conexao.php";
 
 $categorias = $pdo->query("
     SELECT id_categoria, nome, imagem, cor
@@ -31,7 +31,7 @@ $categoriasFixas = [
         'imagem' => '../imagens/batatafrita.png'
     ],
     'Combos' => [
-        'cor' => '#5d2100',
+        'cor' => '#8f6148',
         'imagem' => '../imagens/combo.png'
     ]
 ];

@@ -26,7 +26,7 @@ justify-content: center; align-items: center; flex-direction: column;  box-sizin
 
 .cards { display: flex; gap: 40px; justify-content: center; align-items: center;}
 
-.card { width: 200px; height: 340px; border-radius: 25px; border: 3px solid #39186b; display: flex;
+.card { width: 200px; height: 340px; border-radius: 25px; border: 3px solid #000000; display: flex;
 flex-direction: column; align-items: center; justify-content: center; padding: 28px; box-sizing: border-box;
 margin-top: -100px; box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25); transition: 0.3s; text-decoration: none;}
 
@@ -37,17 +37,17 @@ margin-top: -100px; box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25); transition: 0.3s
 .card h3 { font-size: 18px; font-weight: bold; text-decoration: underline; color: white; text-align: center; 
     margin: 0;}
 
-.card1 {background: #8b4a20;}
+.card1 {background: #884927;}
 
-.card2 { background: #a673c6;}
+.card2 { background: #c19371;}
 
 .card3 { background: #d6781e;}
 
-.card4 { background: #6b1f00;}
+.card4 { background: #8f6148;}
 
 .linha-voltar { width: 1000px; max-width: 100%; display: flex; justify-content: flex-end; margin-top: 25px;}
 
-.btn-voltar { background: #8B4513; color: #fff; text-decoration: none; padding: 8px 18px; border-radius: 8px;
+.btn-voltar { background: #5d2100; color: #fff; text-decoration: none; padding: 8px 18px; border-radius: 8px;
 font-weight: bold; transition: 0.2s;}
 
 .btn-voltar:hover { background: #A0522D;}

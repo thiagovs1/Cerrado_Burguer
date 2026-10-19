@@ -35,7 +35,7 @@ section {
 
 #inicio {
     position: relative; height: 100vh; background-image: url("../imagens/hamburgueres.png");
-     background-position: center; background-size: cover; }
+    background-position: center; background-size: cover; }
 
 .tela-preta {
     position: absolute; width: 100%; height: 92%; background: rgba(0, 0, 0, 0.5); }
@@ -200,7 +200,7 @@ section {
 }
 
 #avaliacao{
-    background:#ecd6a6;
+    background:#f1dfb6;
     padding:70px 0;
 }
 
@@ -208,41 +208,32 @@ section {
 
     width:720px;
     margin:0 auto;
-
     background:#ffffff;
-
     border-radius:30px;
-
     padding:30px;
-
     box-shadow:0 10px 25px rgba(0,0,0,.08);
 
 }
 
 .cabecalho-avaliacao{
-
     display:flex;
     justify-content:space-between;
     align-items:flex-start;
-
     margin-bottom:30px;
 }
 
 .info-restaurante{
-
     display:flex;
     align-items:center;
     gap:20px;
 }
 
 .logo-avaliacao{
-
     width:70px;
     height:70px;
 }
 
 .nome-restaurante h2{
-
     margin:0;
     font-size:36px;
     font-weight:400;
@@ -250,116 +241,76 @@ section {
 }
 
 .nome-restaurante p{
-
     margin-top:8px;
     color:#666;
     font-size:16px;
 }
 
 .btn-comentar{
-
     background:#d86100;
-
     color:white;
-
     border:none;
-
     padding:12px 22px;
-
     border-radius:6px;
-
     cursor:pointer;
-
     font-size:17px;
-
     transition:.25s;
 }
 
 .btn-comentar:hover{
-
     background:#b94d00;
 
 }
 
 .titulo-comentarios{
-
     font-size:30px;
-
     margin-bottom:20px;
-
     color:#333;
 }
 
 .comentario{
-
     display:flex;
-
     gap:15px;
-
     background:#fff8e8;
-
     padding:18px;
-
     border-radius:10px;
-
     margin-bottom:18px;
-
     transition:.2s;
 }
 
 .comentario:hover{
-
     transform:translateY(-2px);
-
     box-shadow:0 5px 15px rgba(0,0,0,.08);
 
 }
 
 .foto-usuario{
-
     width:45px;
-
     height:45px;
-
     border-radius:50%;
-
     background:#f0eeee;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     color:rgb(204, 193, 193);
-
     font-size:22px;
-
     font-weight:bold;
-
     flex-shrink:0;
 }
 
 .conteudo-comentario{
-
     flex:1;
 }
 
 .nome{
-
     font-weight:bold;
-
     color:#222;
-
     margin-bottom:3px;
 }
 
 .tempo{
-
     color:#999;
-
     font-size:12px;
-
     margin-bottom:8px;
 }
 

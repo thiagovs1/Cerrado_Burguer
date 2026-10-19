@@ -54,7 +54,6 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </title>
 
     <link rel="stylesheet" href="../css-cardapio-tela-inicial/hamburguer.css">
-    <link rel="stylesheet" href="../css/menu_perfil.css">
 </head>
 
 <body>
@@ -133,20 +132,29 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                         <div class="preco-produto">
 
-                            <?php if ($produto['promocao'] === 'Sim' && !empty($produto['preco_anterior'])): ?>
+                            <?php
+                            $temPromocao = (
+                                strtolower(trim($produto['promocao'] ?? '')) === 'sim'
+                                && $produto['preco_anterior'] !== null
+                                && $produto['preco_anterior'] !== ''
+                                && (float) $produto['preco_anterior'] > (float) $produto['preco']
+                            );
+                            ?>
+
+                            <?php if ($temPromocao): ?>
 
                                 <span class="preco-antigo">
-                                    R$ <?= number_format($produto['preco_anterior'], 2, ',', '.') ?>
+                                    De: R$ <?= number_format((float) $produto['preco_anterior'], 2, ',', '.') ?>
                                 </span>
 
                                 <span class="preco-promocional">
-                                    R$ <?= number_format($produto['preco'], 2, ',', '.') ?>
+                                    Por: R$ <?= number_format((float) $produto['preco'], 2, ',', '.') ?>
                                 </span>
 
                             <?php else: ?>
 
                                 <span class="preco-normal">
-                                    R$ <?= number_format($produto['preco'], 2, ',', '.') ?>
+                                    R$ <?= number_format((float) $produto['preco'], 2, ',', '.') ?>
                                 </span>
 
                             <?php endif; ?>
